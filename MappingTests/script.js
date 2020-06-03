@@ -1,5 +1,5 @@
 const platform = new H.service.Platform({
-  apikey: "",
+  apikey: "x5fo9v5HB4bh1Boxq98XUddpp4vr2x9NRelXAaPyt0E",
 });
 
 function createMap(mapOrigin = { lat: 43.65107, lng: -79.347015 }) {
@@ -11,7 +11,7 @@ function createMap(mapOrigin = { lat: 43.65107, lng: -79.347015 }) {
     document.querySelector("#map-container"),
     defaultLayers.vector.normal.map,
     {
-      zoom: 13,
+      zoom: 15,
       center: mapOrigin,
     }
   );
@@ -21,7 +21,7 @@ function createMap(mapOrigin = { lat: 43.65107, lng: -79.347015 }) {
 function findRoute(
   routeStart,
   routeEnd,
-  routeMethod = "car",
+  routeMethod = "pedestrian",
   returnMap = true
 ) {
   //finds route found between two gps coords provided in objects of {lat: , lon: }, using a means of transit
@@ -87,7 +87,7 @@ function mapRoute(result) {
 }
 let origin = { lat: "43.687850", lng: "-79.395514" };
 let destination = { lat: "43.664739", lng: "-79.413175" };
-findRoute(origin, destination, 'car');
+findRoute(origin, destination, 'pedestrian');
 // createMap()
 
 
