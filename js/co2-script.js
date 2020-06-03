@@ -32,6 +32,32 @@ var options = [
     }
 ]
 
+// Add class "selected-fuel" to the selected fuel type
+    // Assumption: we'll be using a Bootstrap button group for this part: https://getbootstrap.com/docs/4.0/components/button-group/
+const fuelSelection = document.querySelector("#fuel-selector");
+fuelSelection.addEventListener("click", function(e){
+    var otherButtons = fuelSelection.childNodes;
+    otherButtons[1].classList.remove("selected-fuel");
+    otherButtons[3].classList.remove("selected-fuel");
+    otherButtons[5].classList.remove("selected-fuel");
+    e.target.classList.add("selected-fuel");
+})
+
+// Mirror user input
+    // Add inline onclick events to the buttons (each button has an id), click will fire addType() function
+    // If button is clicked, an object will be added to userInput array
+var userInput = [];
+function addType(e){
+    var mode = e.target.id;
+    if(e.target.id == "walk" || e.target.id == "bike" || e.target.id == "pt"){
+        var inputObject = {type: mode}
+        userInput.push(inputObject)
+    } else { // The remaining options are all car-related and require the fuel-input also
+        var fuelType = document.getElementsByClassName("selected-fuel").id;
+        var inputObject = {type: mode, fuel: fuelType}
+    }
+}
+
 // Save user choices to array to iterate over
 var resultsList = [];
 var userChoices = [ // This is a mockup of the representation of user selections
@@ -54,7 +80,6 @@ userChoices.forEach(calculateEmission);
 function calculateEmission(choice){
     var result;
     result = choice.em * distance;
-    console.log(result);
     var id = choice.id;
     var pushResult = {mode: id, co2: result}
     resultsList.push(pushResult);
