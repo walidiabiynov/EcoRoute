@@ -46,48 +46,68 @@ fuelSelection.addEventListener("click", function(e){
 // Mirror user input
     // Add inline onclick events to the buttons (each button has an id), click will fire addType() function
     // If button is clicked, an object will be added to userInput array
-var userInput = [];
-function addType(e){
-    var mode = e.target.id;
-    if(e.target.id == "walk" || e.target.id == "bike" || e.target.id == "pt"){
-        var inputObject = {type: mode}
-        userInput.push(inputObject)
-    } else { // The remaining options are all car-related and require the fuel-input also
-        var fuelType = document.getElementsByClassName("selected-fuel").id;
-        var inputObject = {type: mode, fuel: fuelType}
+    var userInput = [];
+    var inputObject = {};
+    function addType(e){
+        var carEmission;
+        var mode = e.target.id;
+        switch(mode){
+            case "walk":
+                inputObject = {id: mode, em: options[3].coEmission};
+                userInput.push(inputObject)
+                break;
+            case "bike":
+                inputObject = {id: mode, em: options[2].coEmission};
+                userInput.push(inputObject)
+                break;
+            case "pt":
+                inputObject = {id: mode, em: options[1].coEmission};
+                userInput.push(inputObject)
+                break;
+            default:
+                var index;
+                switch(mode){
+                    case "micro-car":
+                        index = 0;
+                        break;
+                    case "compact-car":
+                        index = 1;
+                        break;
+                    case "sedan":
+                        index = 2;
+                        break;
+                    case "suv":
+                        index = 3;
+                        break;
+                }
+                var fuelType;
+                function getCarEmission(){
+                    fuelType = document.getElementsByClassName("selected-fuel")[0].id;
+                    switch(fuelType){
+                        case "gasoline":
+                            return options[0].coEmissionGasoline[index];
+                        case "diesel":
+                            return options[0].coEmissionDiesel[index];
+                        case "electric":
+                            return options[0].coEmissionElectric;
+                    }
+                }
+                carEmission = getCarEmission();
+                inputObject = {id: mode, em: carEmission};
+                userInput.push(inputObject);
+        }
+        userInput.forEach(calculateEmission);
     }
-}
-
-// Save user choices to array to iterate over
-var resultsList = [];
-var userChoices = [ // This is a mockup of the representation of user selections
-    {
-        id: options[0].id,
-        em: options[0].coEmissionGasoline[1],
-    },
-    {
-        id: options[1].id,
-        em: options[1].coEmission,
-    },
-    {
-        id: options[2].id,
-        em: options[2].coEmission
-    }
-];
-userChoices.forEach(calculateEmission);
 
 // Calculate CO2 emissions
+var resultsList = [];
+var result;
+
 function calculateEmission(choice){
-    var result;
     result = choice.em * distance;
     var id = choice.id;
-    var pushResult = {mode: id, co2: result}
+    var pushResult = {mode: id, co2: result};
+    document.getElementsByClassName(`${id}CO2`)[0].textContent = result;
+    document.getElementsByClassName(`${id}Distance`)[0].textContent = distance;
     resultsList.push(pushResult);
-}
-
-// Render results on page
-resultsList.forEach(renderResults);
-function renderResults(result){
-    document.getElementById(`${result.mode}CO2`).textContent = result.co2;
-    document.getElementById(`${result.mode}Distance`).textContent = distance;
 }
