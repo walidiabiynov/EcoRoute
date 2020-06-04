@@ -37,7 +37,7 @@ var options = [
 const fuelSelection = document.querySelector("#fuel-selector");
 fuelSelection.addEventListener("click", function(e){
     var otherButtons = fuelSelection.childNodes;
-    otherButtons[1].classList.remove("selected-fuel");
+    otherButtons[1].classList.remove("selected-fuel"); // Check option: unclick button upon clicking
     otherButtons[3].classList.remove("selected-fuel");
     otherButtons[5].classList.remove("selected-fuel");
     e.target.classList.add("selected-fuel");
@@ -48,21 +48,32 @@ fuelSelection.addEventListener("click", function(e){
     // If button is clicked, an object will be added to userInput array
     var userInput = [];
     var inputObject = {};
+
+    // Check if transport mode is already in array, if so, replace previous value
+    function validateAndPush(){
+        var check = userInput.findIndex(object => inputObject.id === object.id);
+        if(check >= 0){
+            userInput.splice(check, 1);
+        }
+        userInput.push(inputObject);
+        console.log(userInput);
+    }
+
     function addType(e){
         var carEmission;
         var mode = e.target.id;
         switch(mode){
             case "walk":
                 inputObject = {id: mode, em: options[3].coEmission};
-                userInput.push(inputObject)
+                validateAndPush();
                 break;
             case "bike":
                 inputObject = {id: mode, em: options[2].coEmission};
-                userInput.push(inputObject)
+                validateAndPush();
                 break;
             case "pt":
                 inputObject = {id: mode, em: options[1].coEmission};
-                userInput.push(inputObject)
+                validateAndPush();
                 break;
             default:
                 var index;
@@ -94,20 +105,20 @@ fuelSelection.addEventListener("click", function(e){
                 }
                 carEmission = getCarEmission();
                 inputObject = {id: mode, em: carEmission};
-                userInput.push(inputObject);
+                validateAndPush();
         }
         userInput.forEach(calculateEmission);
     }
 
 // Calculate CO2 emissions
 var resultsList = [];
-var result;
+var coResult;
 
 function calculateEmission(choice){
-    result = choice.em * distance;
+    coResult = choice.em * distance;
     var id = choice.id;
-    var pushResult = {mode: id, co2: result};
-    document.getElementsByClassName(`${id}CO2`)[0].textContent = result;
+    var pushResult = {mode: id, co2: coResult};
+    document.getElementsByClassName(`${id}CO2`)[0].textContent = coResult;
     document.getElementsByClassName(`${id}Distance`)[0].textContent = distance;
     resultsList.push(pushResult);
 }

@@ -10,15 +10,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
-<div class="micro-carCO2 compact-carCO2 sedanCO2 suvCO2"></div><div class="micro-carDistance compact-carDistance sedanDistance suvDistance"></div>
-<div class="ptCO2"></div><div class="ptDistance"></div>
-<div class="bikeCO2"></div><div class="bikeDistance"></div>
-<div class="walkCO2"></div><div class="walkDistance"></div>
+<div>CAR CO2: <span class="micro-carCO2 compact-carCO2 sedanCO2 suvCO2"></span></div><div>Distance: <span class="micro-carDistance compact-carDistance sedanDistance suvDistance"></span></div>
+<div>PUBLIC TRANSPORT CO2: <span class="ptCO2"></span></div><div>Distance: <span class="ptDistance"></span></div>
+<div>BIKE CO2: <span class="bikeCO2"></span></div><div>Distance: <span class="bikeDistance"></span></div>
+<div>WALKING CO2: <span class="walkCO2"></span></div><div>Distance: <span class="walkDistance"></span></div>
 
 <button id="walk" onclick="addType(event)" type="button" class="btn btn-primary">Walk</button>
 <button id="bike" onclick="addType(event)" type="button" class="btn btn-primary">Bike</button>
 <button id="pt" onclick="addType(event)" type="button" class="btn btn-primary">Public Transport</button>
-<button id="car" onclick="addType(event)" type="button" class="btn btn-primary">Car</button>
 <button id="micro-car" onclick="addType(event)" type="button" class="btn btn-Secondary">Micro Car</button>
 <button id="compact-car" onclick="addType(event)" type="button" class="btn btn-Secondary">Compact Car</button>
 <button id="sedan" onclick="addType(event)" type="button" class="btn btn-Secondary">Sedan</button>
