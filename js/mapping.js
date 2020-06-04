@@ -295,3 +295,7 @@ async function temp() {
 // let tempPlaceholderName = '8 Bloor St. W, Toronto'
 // map = instantiateMap();
 // processSearch(tempPlaceholderName)
+
+
+//EVERY PAGE NEEDS A MAP, SO I INSTANTIATE IT HERE
+instantiateMap()
