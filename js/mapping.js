@@ -257,19 +257,19 @@ function placePinOnMap(map, locationObject) {
 }
 
 //TESTING AREA for getting all routes between two points
-async function temp() {
-  sessionStorage.clear();
-  instantiateMap();
-  const destOptions = await processSearch("8 Bloor St. W, Toronto");
-  populateChoiceList(destOptions, "destination");
-  const originOptions = await processSearch("499 Church St. Toronto", "origin");
-  populateChoiceList(originOptions, "origin");
-  getAllRoutes();
+// async function temp() {
+//   sessionStorage.clear();
+//   instantiateMap();
+//   const destOptions = await processSearch("8 Bloor St. W, Toronto");
+//   populateChoiceList(destOptions, "destination");
+//   const originOptions = await processSearch("499 Church St. Toronto", "origin");
+//   populateChoiceList(originOptions, "origin");
+//   getAllRoutes();
 
-  setTimeout(function () {
-    mapRoute("bike");
-  }, 3000);
-}
+//   setTimeout(function () {
+//     mapRoute("bike");
+//   }, 3000);
+// }
 
 // temp();
 
@@ -298,4 +298,3 @@ async function temp() {
 
 
 //EVERY PAGE NEEDS A MAP, SO I INSTANTIATE IT HERE
-instantiateMap()
