@@ -35,12 +35,13 @@
 </br>
     <h1 style="text-align:center;">Your starting point</h1>
     <div class="input-group mb-3">
-        <button type="button" class="btn btn-light" id="search"> Use my location <img src='assets\icons\location.png' width="20" height="20"></button>
-        <input type="text" class="form-control" placeholder="Where are you?" aria-label="Destination" aria-describedby="button-addon2">
+        <button type="button" class="btn btn-light" id="geolocation-search"> Use my location <img src='assets\icons\location.png' width="20" height="20"></button>
+        <input id="origin-search-field" type="text" class="form-control" placeholder="Where are you?" aria-label="Destination" aria-describedby="button-addon2">
         <div class="input-group-append">
-          <button type="button" class="btn btn-success" id="search"><img src="assets\icons\search.png" width="20" height="20"/></button>
+          <button type="button" class="btn btn-success" id="search-submit-button"><img src="assets\icons\search.png" width="20" height="20"/></button>
         </div>
-    </div>
+      </div>
+      <p id="origin" class="text-center location-feedback"></p>
 </br>
     <h1 style="text-align:center;">Which methods of transport?</h1>
     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -62,7 +63,7 @@
         </div>
     </div>
 </br></br>
-<button type="button" class="btn btn-success btn-lg">Get Directions</button>
+<button id="get-directions-button" type="button" class="btn btn-success btn-lg">Get Directions</button>
 <script src="./js/mapping.js"></script>
 <script src="./js/query.js"></script>
 </body>

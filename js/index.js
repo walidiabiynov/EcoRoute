@@ -1,10 +1,5 @@
 //PAGE FOR LOADING FUNCTIONS OF MAIN PAGE
 
-//Event listener for main search field
-//STEPS
-//Validates search input using geocode
-//If there are no options, proceed to next page saving the location
-// If there are multiple options, make modal where they choose, then go to next page
 async function submitSearch() {
   console.log(`submitSearch called`);
   //clear field and grab text
@@ -31,6 +26,8 @@ async function submitSearch() {
   window.location = "./query.html"
 }
 
+
+//What runs on load
 instantiateMap();
 
 $("#destination-search-button").click(function (event) {

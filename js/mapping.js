@@ -220,7 +220,7 @@ function renderRoute(map, arrayOfPoints) {
   let polyline = new H.map.Polyline(linestring, { style: { lineWidth: 3 } }); // TODO change line styling
   //Adding a marker to first and last point
 
-  //DEMO If we want a marker at each point along the path, uncomment this code and comment out the first and last setting
+  //NOTE If we want a marker at each point along the path, uncomment this code and comment out the first and last setting
   // arrayOfPoints.forEach(function(point, index){
 
   //   svgMarkup = '<svg width="24" height="24" ' +
