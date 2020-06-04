@@ -9,6 +9,7 @@ var map;
 //Move functions to more linear layout and clean file
 
 function instantiateMap() {
+  //Creates a map placed in whatever div has the id map-container, positions it at Toronto
   let defaultLayers = platform.createDefaultLayers();
   map = new H.Map(
     document.querySelector("#map-container"),
@@ -50,6 +51,7 @@ function addMarker(map, coords, SVGMarker = "") {
 }
 
 function addLine(map, startPoint, endPoint) {
+  //places a line on the map between two points given
   //   let lineStyle = {
   //     strokeColor: "black",
   //     fillColor: "rgba(255, 255, 255, 0.5)",
@@ -70,66 +72,12 @@ function addLine(map, startPoint, endPoint) {
   map.addObject(polyline);
 }
 
-function addLines(map, arrayOfPoints) {
-  let linestring = new H.geo.LineString();
-
-  arrayOfPoints.forEach(function (point) {
-    // linestring.pushPoint(point);
-    point = point.split(",");
-    linestring.pushLatLngAlt(point[0], point[1]);
-  });
-  let polyline = new H.map.Polyline(linestring, { style: { lineWidth: 3 } });
-  //Adding a marker to first and last point
-  let markerStart = new H.map.Marker(arrayOfPoints[0]);
-  let markerEnd = new H.map.Marker(arrayOfPoints[arrayOfPoints.length - 1]);
-  // map.addObject(polyline);
-  map.addObjects([polyline, markerStart, markerEnd]);
-  map.getViewModel().setLookAtData({
-    bounds: polyline.getBoundingBox(),
-  });
-}
-
-// WORKING ON ROUTING
-async function getRoute(startPoint, endPoint, transitType) {
-  //This function accepts start and end objects with lat and lng, also an array that contains the name of the transit type ex. 'bicycle' and the key under which to store the data ex. distance-bike
-  let method = "fastest;" + transitType[0];
-  let transitTypeKey = transitType[1];
-
-  response = await fetch(
-    `https://route.ls.hereapi.com/routing/7.2/calculateroute.json?apiKey=${APIKey}&waypoint0=geo!${startPoint.lat},${startPoint.lng}&waypoint1=geo!${endPoint.lat},${endPoint.lng}&mode=${method};traffic:disabled&instructionformat=text&routeattributes=shape`
-  );
-
-  if (response.ok) {
-    response = await response.json();
-    console.log("getRoute -> response", response)
-
-    let distanceTravelled = response.response.route[0].summary.distance / 1000;
-    let travelTime = response.response.route[0].summary.travelTime;
-    let transitText = response.response.route[0].summary.text;
-    let shape = response.response.route[0].shape;
-    tempRet = [distanceTravelled, travelTime, transitText, shape];
-
-    saveToSession(`distance-${transitTypeKey}`, distanceTravelled);
-    saveToSession(`traveltime-${transitTypeKey}`, travelTime);
-    saveToSession(`travel-text-${transitTypeKey}`, transitText);
-    saveToSession(`shape-${transitTypeKey}`, shape);
-  }
-
-  return { route: response.response };
-}
-
-function mapRoute(routeKey) {
-  //This function takes the chosen route and maps it on the page
-  addLines(map, loadFromSession(`shape-${routeKey}`));
-}
-
 async function processSearch(
   searchString,
   destinationOrOrigin = "destination"
 ) {
   //Takes a string of a location, ex. 8 Bloor St. W, Toronto
   //Returns all of the objects the string finds, to be chosen from
-  // service.geocode({q: searchString}, populateChoiceList, function(error){console.log("Something went wrong", error)})
 
   let service = platform.getSearchService();
   await service.geocode(
@@ -160,15 +108,9 @@ function populateChoiceList(returnedLocations, destinationOrOrigin) {
   );
 }
 
-function placePinOnMap(map, locationObject) {
-  //Takes a location object in the Here API format, places a pin at that location and
-  map.addObject(new H.map.Marker(locationObject.position));
-  map
-    .getViewModel()
-    .setLookAtData({ position: locationObject.position, zoom: 16 });
-}
-
 function getAllRoutes() {
+  //Once called this function loads origin and destination from sessionStorage tags origin and destination
+  //It then iterates through all travel methods and processes a route through each
   let origin = loadFromSession("origin");
   let destination = loadFromSession("destination");
   let transitTypes = [
@@ -184,19 +126,83 @@ function getAllRoutes() {
   });
 }
 
+async function getRoute(startPoint, endPoint, transitType) {
+  //This function accepts start and end objects with lat and lng, also an array that contains the name of the transit type ex. 'bicycle' and the key under which to store the data ex. distance-bike
+  let method = "fastest;" + transitType[0];
+  let transitTypeKey = transitType[1];
+
+  response = await fetch(
+    `https://route.ls.hereapi.com/routing/7.2/calculateroute.json?apiKey=${APIKey}&waypoint0=geo!${startPoint.lat},${startPoint.lng}&waypoint1=geo!${endPoint.lat},${endPoint.lng}&mode=${method};traffic:disabled&instructionformat=text&routeattributes=shape`
+  );
+
+  if (response.ok) {
+    response = await response.json();
+    console.log("getRoute -> response", response);
+
+    let distanceTravelled = response.response.route[0].summary.distance / 1000;
+    let travelTime = response.response.route[0].summary.travelTime;
+    let transitText = response.response.route[0].summary.text;
+    let shape = response.response.route[0].shape;
+    tempRet = [distanceTravelled, travelTime, transitText, shape];
+
+    saveToSession(`distance-${transitTypeKey}`, distanceTravelled);
+    saveToSession(`traveltime-${transitTypeKey}`, travelTime);
+    saveToSession(`travel-text-${transitTypeKey}`, transitText);
+    saveToSession(`shape-${transitTypeKey}`, shape);
+  }
+
+  return { route: response.response };
+}
+
+function mapRoute(routeKey) {
+  //This function takes the chosen route and maps it on the page
+  addLines(map, loadFromSession(`shape-${routeKey}`));
+}
+
+function addLines(map, arrayOfPoints) {
+  //Places a set of lines on the map, between points given in the form of an array of strings of 'lat,lng', 'lat,lng'.
+  let linestring = new H.geo.LineString();
+  console.log("addLines -> arrayOfPoints", arrayOfPoints);
+
+  arrayOfPoints.forEach(function (point) {
+    // linestring.pushPoint(point);
+    point = point.split(",");
+    console.log("addLines -> point", point);
+    linestring.pushLatLngAlt(point[0], point[1]);
+  });
+  let polyline = new H.map.Polyline(linestring, { style: { lineWidth: 3 } }); // TODO change line styling
+  //Adding a marker to first and last point
+  // let markerStart = new H.map.Marker(arrayOfPoints[0]);
+  // let markerEnd = new H.map.Marker(arrayOfPoints[arrayOfPoints.length - 1]);
+  map.addObject(polyline);
+  // map.addObjects([polyline, markerStart, markerEnd]);
+  map.getViewModel().setLookAtData({
+    bounds: polyline.getBoundingBox(), // TODO add slight zoomout here to better show the line
+  });
+}
+
+function placePinOnMap(map, locationObject) {
+  //Takes a location object in the Here API format, places a pin at that location and
+  map.addObject(new H.map.Marker(locationObject.position));
+  map
+    .getViewModel()
+    .setLookAtData({ position: locationObject.position, zoom: 16 });
+}
+
 //TESTING AREA for getting all routes between two points
-async function temp(){
-  
+async function temp() {
   sessionStorage.clear();
   instantiateMap();
   await processSearch("8 Bloor St. W, Toronto");
   await processSearch("499 Church St. Toronto", "origin");
   getAllRoutes();
 
-
+  setTimeout(function () {
+    mapRoute("bike");
+  }, 3000);
 }
 
-temp()
+temp();
 
 // setTimeout(getAllRoutes, 2000);
 // map = instantiateMap();
