@@ -65,10 +65,21 @@ fuelSelection.addEventListener("click", function(e){
         }
         userInput.push(inputObject);
     }
-
-    function addType(e){
-        var carEmission;
+    // Halt calculation until vehicle choice has been made if user makes fuel choice first
+    function checkVehicleChoice(){
+        var vehicleCheck = userInput.findIndex(object => object.id == "micro-car" || object.id == "compact-car" || object.id == "sedan" || object.id == "suv");
+        if(vehicleCheck >= 0){
+            addType(userInput[vehicleCheck].id);
+        }
+    }
+    // Make vehicle select buttons react to user input
+    function triggerCalculation(e){
         var mode = e.target.id;
+        addType(mode);
+    }
+    // Add transport option to the array
+    function addType(mode){
+        var carEmission;
         switch(mode){
             case "truck":
                 distance = sessionStorage.getItem("distance-truck");
@@ -94,6 +105,7 @@ fuelSelection.addEventListener("click", function(e){
                 validateAndPush();
                 calculateEmission(inputObject);
                 break;
+            // For the car, we first log the type of vehicle to then choose from the array of CO2 emissions based on an index
             default:
                 var index;
                 switch(mode){
@@ -110,16 +122,22 @@ fuelSelection.addEventListener("click", function(e){
                         index = 3;
                         break;
                 }
+                // We default to gasoline if the user does not make a fuel choice
                 var fuelType;
                 function getCarEmission(){
-                    fuelType = document.getElementsByClassName("selected-fuel")[0].id;
-                    switch(fuelType){
-                        case "gasoline":
-                            return options[0].coEmissionGasoline[index];
-                        case "diesel":
-                            return options[0].coEmissionDiesel[index];
-                        case "electric":
-                            return options[0].coEmissionElectric;
+                    if($("button").hasClass("selected-fuel") == true){
+                        fuelType = document.getElementsByClassName("selected-fuel")[0].id;
+                        switch(fuelType){
+                            case "gasoline":
+                                return options[0].coEmissionGasoline[index];
+                            case "diesel":
+                                return options[0].coEmissionDiesel[index];
+                            case "electric":
+                                return options[0].coEmissionElectric;
+                        }
+                    } else {
+                        fuelType = "gasoline";
+                        return options[0].coEmissionGasoline[index];
                     }
                 }
                 carEmission = getCarEmission();
@@ -133,7 +151,6 @@ fuelSelection.addEventListener("click", function(e){
 // Calculate CO2 emissions
 var resultsList = [];
 var coResult;
-
 function calculateEmission(choice){
     coResult = Math.round(choice.em * distance);
     var id = choice.id;
