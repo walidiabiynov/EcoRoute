@@ -8,6 +8,12 @@ var map;
 //TODO render points at end and start of the addLines function
 //Move functions to more linear layout and clean file
 
+//TODO Add slippy/user input to map position/zoom
+//Catch turn by turn in getRoutes and place in local
+//todo setup turn by turn directions saved
+//implement promise in geocode function
+//implement error catching in getroutes and geocode
+
 function instantiateMap() {
   //Creates a map placed in whatever div has the id map-container, positions it at Toronto
   let defaultLayers = platform.createDefaultLayers();
@@ -79,16 +85,27 @@ async function processSearch(
   //Takes a string of a location, ex. 8 Bloor St. W, Toronto
   //Returns all of the objects the string finds, to be chosen from
 
-  let service = platform.getSearchService();
-  await service.geocode(
-    { q: searchString },
-    function (returnedChoices) {
-      populateChoiceList(returnedChoices, destinationOrOrigin);
-    },
-    function (error) {
-      console.log("Something went wrong", error);
-    }
-  );
+  function geocodeWrapper(input){
+    return new Promise( (resolve, reject) => {
+      platform.getSearchService().geocode(input, resolve, reject)
+    })
+  }
+
+  const geocodedOptions = await geocodeWrapper({q: searchString})
+  console.log("geocodedOptions", geocodedOptions)
+  populateChoiceList(geocodedOptions, destinationOrOrigin)
+
+
+
+  // await platform.getSearchService().geocode(
+  //   { q: searchString },
+  //   function (returnedChoices) {
+  //     populateChoiceList(returnedChoices, destinationOrOrigin);
+  //   },
+  //   function (error) {
+  //     console.log("Something went wrong", error);
+  //   }
+  // );
 }
 
 function populateChoiceList(returnedLocations, destinationOrOrigin) {
