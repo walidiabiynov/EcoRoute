@@ -9,13 +9,10 @@ const startIcon = `<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
 width="24.000000pt" height="24.000000pt" viewBox="0 0 24.000000 24.000000"
 preserveAspectRatio="xMidYMid meet">
 <g transform="translate(0.000000,24.000000) scale(0.100000,-0.100000)"
-fill="#000000" stroke="none">
+fill="#4d4d4d" stroke="">
 <path d="M65 215 c-16 -15 -25 -36 -25 -54 0 -31 65 -161 80 -161 15 0 80 130
-80 159 0 69 -86 106 -135 56z m95 -5 c34 -18 33 -57 -2 -126 -18 -35 -35 -64
--38 -64 -3 0 -20 29 -38 64 -35 68 -36 107 -3 126 21 12 58 13 81 0z"/>
-<path d="M103 193 c-18 -7 -16 -50 3 -57 25 -10 33 -7 44 13 7 15 6 23 -6 35
--16 17 -21 18 -41 9z m32 -22 c7 -12 -12 -24 -25 -16 -11 7 -4 25 10 25 5 0
-11 -4 15 -9z"/>
+80 159 0 69 -86 106 -135 56z m69 -21 c9 -3 16 -16 16 -29 0 -25 -21 -38 -45
+-29 -18 7 -20 50 -2 57 6 3 13 6 14 6 1 1 8 -2 17 -5z"/>
 </g>
 </svg>`;
 
@@ -23,7 +20,7 @@ const endIcon = `<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
 width="24.000000pt" height="24.000000pt" viewBox="0 0 24.000000 24.000000"
 preserveAspectRatio="xMidYMid meet">
 <g transform="translate(0.000000,24.000000) scale(0.100000,-0.100000)"
-fill="#000000" stroke="none">
+fill="#00cc00" stroke="">
 <path d="M65 215 c-16 -15 -25 -36 -25 -54 0 -31 65 -161 80 -161 15 0 80 130
 80 159 0 69 -86 106 -135 56z m69 -21 c9 -3 16 -16 16 -29 0 -25 -21 -38 -45
 -29 -18 7 -20 50 -2 57 6 3 13 6 14 6 1 1 8 -2 17 -5z"/>
@@ -239,15 +236,23 @@ function renderRoute(map, arrayOfPoints) {
   //    addMarker(point, simpleDotIcon)
   // })
 
-  addMarker(arrayOfPoints[0], startIcon);
-  addMarker(arrayOfPoints[arrayOfPoints.length - 1], endIcon);
+  addMarker(arrayOfPoints[0], endIcon);
+  addMarker(arrayOfPoints[arrayOfPoints.length - 1], startIcon);
   // let markerStart = new H.map.Marker(arrayOfPoints[0]);
   // let markerEnd = new H.map.Marker(arrayOfPoints[arrayOfPoints.length - 1]);
   map.addObject(polyline);
   // map.addObjects([polyline, markerStart, markerEnd]);
-  map.getViewModel().setLookAtData({
-    bounds: polyline.getBoundingBox(), // TODO add slight zoomout here to better show the line
-  });
+  // map.getViewModel().setLookAtData({
+  //   bounds: polyline.getBoundingBox(), // TODO add slight zoomout here to better show the line
+  // });
+  // map.getViewModel().setLookAtData({
+  //   zoom: 16.2
+  // });
+  bBox = polyline.getBoundingBox()
+  console.log(bBox)
+  map.getViewModel().setLookAtData({bounds: bBox})
+  
+
 }
 
 function placePinOnMap(map, locationObject) {
