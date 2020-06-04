@@ -1,33 +1,42 @@
 // Create input variables
-var distance = 3; // Has to be in km, will be taken from HERE output
+var distance; // Has to be in km, will be taken from HERE output
+    // Placeholder input for testing
+    sessionStorage.setItem("distance-truck", 4);
+    sessionStorage.setItem("distance-car", 3);
+    sessionStorage.setItem("distance-pt", 2.7);
+    sessionStorage.setItem("distance-bike", 2.1);
+    sessionStorage.setItem("distance-walk", 2.4);
+
 var options = [
     { 
         // CO2 emission in g/km, data by: https://www.carbonfootprint.com/ 
         id: "car",
         mode: ["micro-car", "compact-car", "sedan", "suv"],
         gas: ["gasoline", "diesel", "electric"],
-        chosen: false,
         coEmissionGasoline: [ 125.0692, 147.144, 156.4524, 230.2278 ],
         coEmissionDiesel: [ 115.6062, 138.82, 141.0578, 170.4394 ],
         coEmissionElectric: 7.7, // Considering the current mix of energy production in Ontario: https://www.cer-rec.gc.ca/nrg/ntgrtd/mrkt/snpsht/2018/09-01-1hwrnrgprjctsfnncd-eng.html
     }, 
+    {
+        // Generalized CO2 emission for trucks: https://www.transportenvironment.org/sites/te/files/publications/2015%2009%20TE%20Briefing%20Truck%20CO2%20Too%20big%20to%20ignore_FINAL.pdf
+        id: "truck",
+        mode: "truck",        
+        coEmission: 924
+    },
     { 
         // CO2 emission in g/km, TTC as an example: http://www.ttc.ca/PDF/About_the_TTC/Sustainability_Reports/2013_Sustainability_Report.PDF
         id: "pt",
         mode:"publicTransport",
-        chosen: false,
         coEmission: 64
     }, 
     {
         id: "bike",
         mode: "bike",
-        chosen: false,
         coEmission: 0
     }, 
     {
         id: "walk",
         mode: "pedestrian",
-        chosen: false,
         coEmission: 0
     }
 ]
@@ -48,7 +57,6 @@ fuelSelection.addEventListener("click", function(e){
     // If button is clicked, an object will be added to userInput array
     var userInput = [];
     var inputObject = {};
-
     // Check if transport mode is already in array, if so, replace previous value
     function validateAndPush(){
         var check = userInput.findIndex(object => inputObject.id === object.id);
@@ -56,24 +64,35 @@ fuelSelection.addEventListener("click", function(e){
             userInput.splice(check, 1);
         }
         userInput.push(inputObject);
-        console.log(userInput);
     }
 
     function addType(e){
         var carEmission;
         var mode = e.target.id;
         switch(mode){
-            case "walk":
-                inputObject = {id: mode, em: options[3].coEmission};
-                validateAndPush();
-                break;
-            case "bike":
-                inputObject = {id: mode, em: options[2].coEmission};
-                validateAndPush();
-                break;
-            case "pt":
+            case "truck":
+                distance = sessionStorage.getItem("distance-truck");
                 inputObject = {id: mode, em: options[1].coEmission};
                 validateAndPush();
+                calculateEmission(inputObject);
+                break;
+            case "walk":
+                distance = sessionStorage.getItem("distance-walk");
+                inputObject = {id: mode, em: options[4].coEmission};
+                validateAndPush();
+                calculateEmission(inputObject);
+                break;
+            case "bike":
+                distance = sessionStorage.getItem("distance-bike");
+                inputObject = {id: mode, em: options[3].coEmission};
+                validateAndPush();
+                calculateEmission(inputObject);
+                break;
+            case "pt":
+                distance = sessionStorage.getItem("distance-pt");
+                inputObject = {id: mode, em: options[2].coEmission};
+                validateAndPush();
+                calculateEmission(inputObject);
                 break;
             default:
                 var index;
@@ -104,10 +123,11 @@ fuelSelection.addEventListener("click", function(e){
                     }
                 }
                 carEmission = getCarEmission();
+                distance = sessionStorage.getItem("distance-car");
                 inputObject = {id: mode, em: carEmission};
                 validateAndPush();
+                calculateEmission(inputObject);
         }
-        userInput.forEach(calculateEmission);
     }
 
 // Calculate CO2 emissions
@@ -115,7 +135,7 @@ var resultsList = [];
 var coResult;
 
 function calculateEmission(choice){
-    coResult = choice.em * distance;
+    coResult = Math.round(choice.em * distance);
     var id = choice.id;
     var pushResult = {mode: id, co2: coResult};
     document.getElementsByClassName(`${id}CO2`)[0].textContent = coResult;
