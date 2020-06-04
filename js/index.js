@@ -11,10 +11,15 @@ async function submitSearch() {
   let searchText = $("#destination-search-field").val();
   $("#destination-search-field").val("");
   const locations = await processSearch(searchText);
+  console.log("submitSearch -> locations", locations)
 
   let choices = locations.items;
 
-  if (choices.length > 1) {
+  if (choices.length === 0) {
+    ///No matches found, present to user
+    console.log('No matches found')
+    return
+  } else if (choices.length > 1) {
     choice = choices[0];
   } else {
     //HARDCODING CHOICE FOR NOW
