@@ -152,17 +152,22 @@ async function getRoute(startPoint, endPoint, transitType) {
     ).then((response) => response.json());
     console.log("getRoute -> response", response);
 
+    //This call has the potential to return multiple routes, that's why they're in a route array instead of just an object
+    //I hard code choosing the first option here, but we can figure out implementation of some form of choice if we want
+
     let distanceTravelled = response.response.route[0].summary.distance / 1000;
     let travelTime = response.response.route[0].summary.travelTime;
     let transitText = response.response.route[0].summary.text;
     let shape = response.response.route[0].shape;
-    tempRet = [distanceTravelled, travelTime, transitText, shape];
+    let directions = response.response.route[0].leg[0].maneuver
 
     saveToSession(`distance-${transitTypeKey}`, distanceTravelled);
     saveToSession(`traveltime-${transitTypeKey}`, travelTime);
     saveToSession(`travel-text-${transitTypeKey}`, transitText);
     saveToSession(`shape-${transitTypeKey}`, shape);
+    saveToSession(`directions-${transitTypeKey}`, directions)
     return { route: response.response };
+
   } catch (e) {
     console.log(
       `an error occured fetching the routing information from Here`,
@@ -174,10 +179,10 @@ async function getRoute(startPoint, endPoint, transitType) {
 
 function mapRoute(routeKey) {
   //This function takes the chosen route and maps it on the page
-  addLines(map, loadFromSession(`shape-${routeKey}`));
+  renderRoute(map, loadFromSession(`shape-${routeKey}`));
 }
 
-function addLines(map, arrayOfPoints) {
+function renderRoute(map, arrayOfPoints) {
   //Places a set of lines on the map, between points given in the form of an array of strings of 'lat,lng', 'lat,lng'.
   let linestring = new H.geo.LineString();
   console.log("addLines -> arrayOfPoints", arrayOfPoints);
