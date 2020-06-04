@@ -82,15 +82,14 @@ async function processSearch(searchString) {
   //Takes a string of a location, ex. 8 Bloor St. W, Toronto
   //Returns all of the objects the string finds, to be chosen from
 
-  function geocodeWrapper(input){
-    return new Promise( (resolve, reject) => {
-      platform.getSearchService().geocode(input, resolve, reject)
-    })
+  function geocodeWrapper(input) {
+    return new Promise((resolve, reject) => {
+      platform.getSearchService().geocode(input, resolve, reject);
+    });
   }
 
-  const geocodedOptions = await geocodeWrapper({q: searchString})
-  return geocodedOptions
-
+  const geocodedOptions = await geocodeWrapper({ q: searchString });
+  return geocodedOptions;
 
   // await platform.getSearchService().geocode(
   //   { q: searchString },
@@ -119,7 +118,7 @@ function populateChoiceList(returnedLocations, destinationOrOrigin) {
     destinationOrOrigin === "destination" ? "destination" : "origin",
     choice
   );
-  return choice
+  return choice;
 }
 
 function getAllRoutes() {
@@ -144,13 +143,13 @@ async function getRoute(startPoint, endPoint, transitType) {
   //This function accepts start and end objects with lat and lng, also an array that contains the name of the transit type ex. 'bicycle' and the key under which to store the data ex. distance-bike
   let method = "fastest;" + transitType[0];
   let transitTypeKey = transitType[1];
-
-  response = await fetch(
-    `https://route.ls.hereapi.com/routing/7.2/calculateroute.json?apiKey=${APIKey}&waypoint0=geo!${startPoint.lat},${startPoint.lng}&waypoint1=geo!${endPoint.lat},${endPoint.lng}&mode=${method};traffic:disabled&instructionformat=text&routeattributes=shape`
-  );
-
-  if (response.ok) {
-    response = await response.json();
+  try {
+    response = await fetch(
+      `https://route.ls.hereapi.com/routing/7.2/calculateroute.json?apiKey=${APIKey}` +
+        `&waypoint0=geo!${startPoint.lat},${startPoint.lng}` +
+        `&waypoint1=geo!${endPoint.lat},${endPoint.lng}&mode=${method}` +
+        `;traffic:disabled&instructionformat=text&routeattributes=shape`
+    ).then((response) => response.json());
     console.log("getRoute -> response", response);
 
     let distanceTravelled = response.response.route[0].summary.distance / 1000;
@@ -163,9 +162,14 @@ async function getRoute(startPoint, endPoint, transitType) {
     saveToSession(`traveltime-${transitTypeKey}`, travelTime);
     saveToSession(`travel-text-${transitTypeKey}`, transitText);
     saveToSession(`shape-${transitTypeKey}`, shape);
+    return { route: response.response };
+  } catch (e) {
+    console.log(
+      `an error occured fetching the routing information from Here`,
+      e
+    );
+    return null;
   }
-
-  return { route: response.response };
 }
 
 function mapRoute(routeKey) {
@@ -208,9 +212,9 @@ async function temp() {
   sessionStorage.clear();
   instantiateMap();
   const destOptions = await processSearch("8 Bloor St. W, Toronto");
-  populateChoiceList(destOptions, 'destination')
+  populateChoiceList(destOptions, "destination");
   const originOptions = await processSearch("499 Church St. Toronto", "origin");
-  populateChoiceList(originOptions, 'origin')
+  populateChoiceList(originOptions, "origin");
   getAllRoutes();
 
   setTimeout(function () {
