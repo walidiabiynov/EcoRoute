@@ -36,8 +36,6 @@ const simpleDotIcon =
 
 //TODO Add slippy/user input to map position/zoom
 //ADD IN WAYPOINTS for each step, with popup dialog with instructions
-//TODO add start and end markers
-//TODO slightly zoom out map after setting it to look at the bounding box of the route
 
 function instantiateMap() {
   //Creates a map placed in whatever div has the id map-container, positions it at Toronto
@@ -238,21 +236,16 @@ function renderRoute(map, arrayOfPoints) {
 
   addMarker(arrayOfPoints[0], endIcon);
   addMarker(arrayOfPoints[arrayOfPoints.length - 1], startIcon);
-  // let markerStart = new H.map.Marker(arrayOfPoints[0]);
-  // let markerEnd = new H.map.Marker(arrayOfPoints[arrayOfPoints.length - 1]);
+
   map.addObject(polyline);
   // map.addObjects([polyline, markerStart, markerEnd]);
   // map.getViewModel().setLookAtData({
-  //   bounds: polyline.getBoundingBox(), // TODO add slight zoomout here to better show the line
-  // });
-  // map.getViewModel().setLookAtData({
-  //   zoom: 16.2
+  //   bounds: polyline.getBoundingBox(),
   // });
   bBox = polyline.getBoundingBox()
-  console.log(bBox)
+  bBox.ha += 0.0005 //These are the variables the API uses to define the bounding box, I'm just making it bigger on the N and S to make it a little prettier.
+  bBox.ka -= 0.0005 
   map.getViewModel().setLookAtData({bounds: bBox})
-  
-
 }
 
 function placePinOnMap(map, locationObject) {
@@ -278,7 +271,7 @@ async function temp() {
   }, 3000);
 }
 
-temp();
+// temp();
 
 // map = instantiateMap();
 // addMarker({ lat: 43.6652641, lng: -79.3807487 });
