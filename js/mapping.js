@@ -78,10 +78,7 @@ function addLine(map, startPoint, endPoint) {
   map.addObject(polyline);
 }
 
-async function processSearch(
-  searchString,
-  destinationOrOrigin = "destination"
-) {
+async function processSearch(searchString) {
   //Takes a string of a location, ex. 8 Bloor St. W, Toronto
   //Returns all of the objects the string finds, to be chosen from
 
@@ -92,9 +89,7 @@ async function processSearch(
   }
 
   const geocodedOptions = await geocodeWrapper({q: searchString})
-  console.log("geocodedOptions", geocodedOptions)
-  populateChoiceList(geocodedOptions, destinationOrOrigin)
-
+  return geocodedOptions
 
 
   // await platform.getSearchService().geocode(
@@ -110,6 +105,7 @@ async function processSearch(
 
 function populateChoiceList(returnedLocations, destinationOrOrigin) {
   //This is a placeholder, ideally this populates our method of choosing (or chooses based on criteria we have) then calls the function to render it
+  //It saves the choice, it also returns it just in case that's needed for function chaining later
   choices = returnedLocations.items;
 
   if (choices.length === 0) {
@@ -123,6 +119,7 @@ function populateChoiceList(returnedLocations, destinationOrOrigin) {
     destinationOrOrigin === "destination" ? "destination" : "origin",
     choice
   );
+  return choice
 }
 
 function getAllRoutes() {
@@ -210,8 +207,10 @@ function placePinOnMap(map, locationObject) {
 async function temp() {
   sessionStorage.clear();
   instantiateMap();
-  await processSearch("8 Bloor St. W, Toronto");
-  await processSearch("499 Church St. Toronto", "origin");
+  const destOptions = await processSearch("8 Bloor St. W, Toronto");
+  populateChoiceList(destOptions, 'destination')
+  const originOptions = await processSearch("499 Church St. Toronto", "origin");
+  populateChoiceList(originOptions, 'origin')
   getAllRoutes();
 
   setTimeout(function () {
@@ -219,7 +218,7 @@ async function temp() {
   }, 3000);
 }
 
-temp();
+// temp();
 
 // setTimeout(getAllRoutes, 2000);
 // map = instantiateMap();
