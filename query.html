@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Query</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+</head>
+<body class="container-fluid">
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+          <img src="assets\icons\nature.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+          Eco App
+        </a>
+        <a class="nav-item">
+            <a class="nav-link" href="#">About</a>
+        </a>
+    </nav>
+</br></br>
+
+    <h1 style="text-align:center;">Where you're going</h1>
+    <!-- Destination will appear here -->
+</br>
+    <h1 style="text-align:center;">Your starting point</h1>
+    <div class="input-group mb-3">
+        <button type="button" class="btn btn-light" id="search"> Use my location <img src='assets\icons\location.png' width="20" height="20"></button>
+        <input type="text" class="form-control" placeholder="Where are you?" aria-label="Destination" aria-describedby="button-addon2">
+        <div class="input-group-append">
+          <button type="button" class="btn btn-success" id="search"><img src="assets\icons\search.png" width="20" height="20"/></button>
+        </div>
+    </div>
+</br>
+    <h1 style="text-align:center;">Which methods of transport?</h1>
+    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+        <button type="button" class="btn btn-info" data-toggle="button" aria-pressed="false">Walk</button>
+        <button type="button" class="btn btn-info" data-toggle="button" aria-pressed="false">Bike</button>
+        <button type="button" class="btn btn-info" data-toggle="button" aria-pressed="false">Public Transport</button>
+      
+        <div class="btn-group" role="group">
+          <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Car
+          </button>
+          <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+            <a class="dropdown-item" href="#">Compact Car</a>
+            <a class="dropdown-item" href="#">Sedan</a>
+            <a class="dropdown-item" href="#">SUV</a>
+            <a class="dropdown-item" href="#">Truck</a>
+            <a class="dropdown-item" href="#">Enter custom</a>
+          </div>
+        </div>
+    </div>
+</br></br>
+<button type="button" class="btn btn-success btn-lg">Get Directions</button>
+</body>
+</html>
