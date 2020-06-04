@@ -1,14 +1,18 @@
 #map-container {
   width: 100%;
-  height: 400px;
+  height: 340px;
   margin: 0 0 0 0;
-    animation: all;
+  animation: all;
 }
 
 .map-dim {
-    opacity: 0.6;
+  opacity: 0.6;
 }
 
 .nav-light {
-    margin-bottom: 0;
+  margin-bottom: 0;
+}
+
+.location-feedback {
+  font-size: 1.5rem;
 }

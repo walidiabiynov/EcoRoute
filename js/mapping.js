@@ -131,7 +131,8 @@ async function processSearch(searchString) {
 function populateChoiceList(returnedLocations, destinationOrOrigin) {
   //This is a placeholder, ideally this populates our method of choosing (or chooses based on criteria we have) then calls the function to render it
   //It saves the choice, it also returns it just in case that's needed for function chaining later
-  choices = returnedLocations.items;
+  let choices = returnedLocations.items;
+  let choice;
 
   if (choices.length === 0) {
     choice = choices[0];
@@ -295,6 +296,3 @@ function placePinOnMap(map, locationObject) {
 // let tempPlaceholderName = '8 Bloor St. W, Toronto'
 // map = instantiateMap();
 // processSearch(tempPlaceholderName)
-
-
-//EVERY PAGE NEEDS A MAP, SO I INSTANTIATE IT HERE
