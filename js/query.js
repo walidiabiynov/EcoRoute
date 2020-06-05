@@ -34,7 +34,14 @@ async function getDirectionsButton() {
   //a check they've input both locations
   if (loadFromSession("destination") && loadFromSession("origin")) {
     await getAllRoutes();
-    window.location.href = "./results.html";
+    // Check if at lest one transport option has been selected
+    // Save resultsList to sessionStorage
+    if(resultsList.length > 0){
+        sessionStorage.setItem("results", JSON.stringify(resultsList));
+        window.location.href = "./results.html";
+    } else {
+        errorModal('Please choose at least one mode of transportation to proceed.');
+    }
   }
 }
 

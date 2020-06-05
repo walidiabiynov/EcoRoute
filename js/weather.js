@@ -3,10 +3,8 @@ var weather;
 
 // Getting lat and long from sessionStorage
 var storage = JSON.parse(sessionStorage.getItem("destination"));
-// var weatherLat = storage.position.lat;
-// var weatherLong = storage.position.lng;
-var weatherLat = 52.49285;
-var weatherLong = 13.43001;
+var weatherLat = storage.position.lat;
+var weatherLong = storage.position.lng;
 
 // Fetching the weather
 async function fetchWeather(){

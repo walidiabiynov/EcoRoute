@@ -181,8 +181,3 @@ function calculateEmission(choice){
     // document.getElementsByClassName(`${id}Distance`)[0].textContent = choice.distance;
     resultsList.push(pushResult);
 }
-
-// Save results to session storage
-function saveResults(){
-    sessionStorage.setItem("results", JSON.stringify(resultsList));
-}
