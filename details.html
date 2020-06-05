@@ -17,6 +17,7 @@
       charset="utf-8"
     ></script>
     <link rel="stylesheet" href="./assets/sharedstyle.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </head>
 <body class="container-fluid">
     <nav class="navbar navbar-light bg-light">
@@ -30,10 +31,59 @@
     </nav>
     <div id="map-container"></div>
 </br>
-    <a href="#" class="stretched-link">Back to Results</a>
-
+    <a href="#" class="link">Back to Results</a>
+</br>
     <h1 style="text-align: center;">You're going to ${destination} by ${transportMethod} </h1>
     <h4>${travelTime} ${travelDistance} <button type="button" class="btn btn-light" id="sendtomobile"> Send directions to mobile <img src='assets\icons\smartphone.png' width="20" height="20"></button> </h4> 
-
+</br>
+    <h1 style="text-align: center;">Your environmental impact</h1>
+    <h6><img src="assets\icons\medal.png" width="20" height="20"> You're making the ${methodRanking} most environmentally conscious choice! </h6>
+</br>
+<h1 style="text-align: center;">How that compares to your other options</h1>
+<div id="graph-container"  style="width: 50%;">
+    <canvas id="emissionsGraph"></canvas>
+    <script>
+    var ctx = document.getElementById('emissionsGraph').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Walking', 'Bike', 'Public Transport', 'Car'],
+            datasets: [{
+                label: 'CO2 Emmisions',
+                backgroundColor: 'rgb(20, 125, 20)',
+                borderColor: 'rgb(20, 125, 20)',
+                borderWidth: 1,
+                data: [0, 2, 5, 10, 20]
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+</div>
+</br></br>
+<h1 style="text-align: center;">Offset your impact</h1>
+<h4 style="color: green;text-align: center;">Consider donating to one of these organizations to offset your CO2 impact:</h4>
+</br>
+<div class="card-deck" id="orgGroup">
+    <div class="card">
+      <img class="card-img-top" src="assets\charities\DavidSuzukiFoundation.png" alt="Card image cap">
+    </div>
+    <div class="card">
+      <img class="card-img-top" src="assets\charities\cpawslogo.png" alt="Card image cap">
+    </div>
+    <div class="card">
+      <img class="card-img-top" src="assets\charities\EnvironmentalDefence.png" alt="Card image cap">
+    </div>
+</div>
+</br>
+<a href="#" class="link">Back to Results</a>
 </body>
 </html>
