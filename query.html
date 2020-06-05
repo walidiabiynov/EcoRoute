@@ -18,54 +18,62 @@
     ></script>
     <link rel="stylesheet" href="./assets/sharedstyle.css">
 </head>
-<body class="container-fluid">
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-          <img src="assets\icons\nature.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-          Eco App
-        </a>
-        <a class="nav-item">
-            <a class="nav-link" href="#">About</a>
-        </a>
-    </nav>
-    <div id="map-container"></div>
-    
-    <h1 style="text-align:center;">Where you're going</h1>
-    <p id="destination" class='text-center location-feedback'></p>
-</br>
-    <h1 style="text-align:center;">Your starting point</h1>
-    <div class="input-group mb-3">
-        <button type="button" class="btn btn-light" id="geolocation-search"> Use my location <img src='assets\icons\location.png' width="20" height="20"></button>
-        <input id="origin-search-field" type="text" class="form-control" placeholder="Where are you?" aria-label="Destination" aria-describedby="button-addon2">
-        <div class="input-group-append">
-          <button type="button" class="btn btn-success" id="search-submit-button"><img src="assets\icons\search.png" width="20" height="20"/></button>
-        </div>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="assets\icons\nature.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+      Eco App
+    </a>
+    <div class="nav-item">
+        <a class="nav-link" href="#">About</a>
+    </div>
+  </nav>
+  <!-- Map container -->
+  <div id="map-container"></div>
+  <!-- User input -->
+  <div class="container">
+    <!-- Destination -->
+    <h2 class="mt-5 mb-5">Where you're going</h2>
+      <p id="destination" class='text-center location-feedback'></p>
+    <!-- Origin -->
+    <h2 class="mt-5 mb-5">Your starting point</h2>
+      <div class="input-group mb-3">
+          <button type="button" class="btn btn-light" id="geolocation-search"> Use my location <img src='assets\icons\location.png' width="20" height="20"></button>
+          <input id="origin-search-field" type="text" class="form-control" placeholder="Where are you?" aria-label="Destination" aria-describedby="button-addon2">
+          <div class="input-group-append">
+            <button type="button" class="btn btn-success" id="search-submit-button"><img src="assets\icons\search.png" width="20" height="20"/></button>
+          </div>
       </div>
       <p id="origin" class="text-center location-feedback"></p>
-</br>
-    <h1 style="text-align:center;">Which methods of transport?</h1>
-    <div class="container-fluid" style="text-align: center;" id="travelOptions">
-      <button type="button" class="btn btn-info" data-toggle="button" aria-pressed="false" onclick="">Walk</button>
-      <button type="button" class="btn btn-info" data-toggle="button" aria-pressed="false" onclick="">Bike</button>
-      <button type="button" class="btn btn-info" data-toggle="button" aria-pressed="false" onclick="">Public Transport</button>
-      <div class="btn-group" role="group">
-        <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Car
-        </button>
-        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-          <a class="dropdown-item" href="#">Compact Car</a>
-          <a class="dropdown-item" href="#">Sedan</a>
-          <a class="dropdown-item" href="#">SUV</a>
-          <a class="dropdown-item" href="#">Truck</a>
-          <a class="dropdown-item" href="#">Enter custom</a>
-        </div>
-      </div>
+    <!-- Transport options -->
+    <h2 class="mt-5 mb-5">Which methods of transport?</h2>
+    <div class="mb-2">
+      <button id="walk" onclick="triggerCalculation(event)" type="button" class="btn btn-primary">Walk</button>
+      <button id="bike" onclick="triggerCalculation(event)" type="button" class="btn btn-primary">Bike</button>
+      <button id="pt" onclick="triggerCalculation(event)" type="button" class="btn btn-primary">Public Transport</button>
     </div>
-</br></br>
-<button id="get-directions-button" type="button" class="btn btn-success btn-lg">Get Directions</button>
+    <div class="mb-2">
+      <button id="truck" onclick="triggerCalculation(event)" type="button" class="btn btn-primary">Truck</button>
+      <button id="micro-car" onclick="triggerCalculation(event)" type="button" class="btn btn-Secondary">Micro Car</button>
+      <button id="compact-car" onclick="triggerCalculation(event)" type="button" class="btn btn-Secondary">Compact Car</button>
+      <button id="sedan" onclick="triggerCalculation(event)" type="button" class="btn btn-Secondary">Sedan</button>
+      <button id="suv" onclick="triggerCalculation(event)" type="button" class="btn btn-Secondary">SUV</button>
+    </div>
+    <div id="fuel-selector" class="btn-group mb-2" role="group" aria-label="Basic example">
+      <button id="gasoline" onclick="checkVehicleChoice(event)" class="btn btn-secondary">Gasoline</button>
+      <button id="diesel" onclick="checkVehicleChoice(event)" class="btn btn-secondary">Diesel</button>
+      <button id="electric" onclick="checkVehicleChoice(event)" class="btn btn-secondary">Electric</button>
+    </div>
+    <!-- Trigger calculation -->
+    <div class="mt-5 mb-5">
+      <button id="get-directions-button" type="button" class="btn btn-success btn-lg">Get Directions</button>
+    </div>
+</div>
+
 <script src="./js/mapping.js"></script>
 <script src="./js/query.js"></script>
-</br></br>
-<a href="#" class="stretched-link">Start Over</a>
+<script src="./js/co2.js"></script>
+
 </body>
 </html>
