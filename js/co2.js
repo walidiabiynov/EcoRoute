@@ -46,7 +46,7 @@ var options = [
 const fuelSelection = document.querySelector("#fuel-selector");
 fuelSelection.addEventListener("click", function(e){
     var otherButtons = fuelSelection.childNodes;
-    otherButtons[1].classList.remove("selected-fuel"); // Check option: unclick button upon clicking
+    otherButtons[1].classList.remove("selected-fuel");
     otherButtons[3].classList.remove("selected-fuel");
     otherButtons[5].classList.remove("selected-fuel");
     e.target.classList.add("selected-fuel");
@@ -63,7 +63,8 @@ fuelSelection.addEventListener("click", function(e){
         var check = userInput.findIndex(object => inputObject.id === object.id);
         if(check >= 0){
             userInput.splice(check, 1);
-        } else {
+        } 
+        if(!shouldRemove) {
             userInput.push(inputObject);
         }
         if(inputObject.id == "micro-car" || inputObject.id == "compact-car" || inputObject.id == "sedan" || inputObject.id == "suv"){
@@ -71,7 +72,9 @@ fuelSelection.addEventListener("click", function(e){
             if(deleteVehicle >= 0){
                 userInput.splice(deleteVehicle, 1);
             } 
-            userInput.push(inputObject);
+            if(!shouldRemove){
+                userInput.push(inputObject);
+            }
         }
     }
     // Halt calculation until vehicle choice has been made if user makes fuel choice first 
@@ -82,7 +85,11 @@ fuelSelection.addEventListener("click", function(e){
         }
     }
     // Make vehicle select buttons react to user input
+    var shouldRemove;
     function triggerCalculation(e){
+        shouldRemove = e.target.classList.contains("active");
+        console.log(shouldRemove);
+        e.target.classList.toggle("active");
         var mode = e.target.id;
         addType(mode);
     }
