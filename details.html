@@ -21,6 +21,7 @@
     ></script>
     <link rel="stylesheet" href="./assets/sharedstyle.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="./js/details.js"></script>
 </head>
 <body>
   <!-- ERROR MODAL -->
@@ -70,13 +71,13 @@
       var chart = new Chart(ctx, {
           type: 'bar',
           data: {
-              labels: ['Walking', 'Bike', 'Public Transport', 'Car'],
+              labels: allModes,
               datasets: [{
                   label: 'CO2 Emmisions',
                   backgroundColor: 'rgb(20, 125, 20)',
                   borderColor: 'rgb(20, 125, 20)',
                   borderWidth: 1,
-                  data: [0, 2, 5, 10]
+                  data: co2Values
                   }]
               },
               options: {
