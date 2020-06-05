@@ -5,7 +5,7 @@ var co2Values = [];
 
 // Split up results array into two new arrays to populate the graph
 for(i=0; i<storageResults.length; i++){
-    allModes.push(storageResults[i].mode);
+    allModes.push(storageResults[i].mode); 
     co2Values.push(storageResults[i].co2);
 }
 
