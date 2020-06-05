@@ -21,3 +21,18 @@
 .location-feedback {
   font-size: 1.5rem;
 }
+
+/* User choice styles */
+.btn-transport, .btn-car {
+  background-color: #4a4a4a; 
+  border-color: #4a4a4a;
+}
+
+.btn-transport:hover, .btn-car:hover {
+  background-color: green; 
+  border-color: green;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+  background-color: green; 
+}
