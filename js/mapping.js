@@ -137,10 +137,10 @@ function displayOptionsModal(choices, destinationOrOrigin){
 function modalChoiceClicked(event){
   //This takes the modal's button press, logs the chosen choice, and moves to the next page
   console.log(event)
-  choiceId = event.target.data.id
-  $('#locationChoiceModal').modal('hide')
-  saveToSession(event.target.data.dOrO, choice)
-  nextPageUrl = (event.target.data.dOrO === 'destination') ? './query.html' : './results.html'
+  // choiceId = event.target.data.id
+  // $('#locationChoiceModal').modal('hide')
+  // saveToSession(event.target.data.dOrO, choice)
+  // nextPageUrl = (event.target.data.dOrO === 'destination') ? './query.html' : './results.html'
 
 
 }
