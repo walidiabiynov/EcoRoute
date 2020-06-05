@@ -10,13 +10,12 @@ async function submitSearch() {
 
   if (choices.length === 0) {
     ///No matches found, present to user
+    errorModal('There were no matches found, please try again.')
     console.log('No matches found')
     return
   } else if (choices.length === 1) {
     choice = choices[0];
   } else {
-    //HARDCODING CHOICE FOR NOW
-    //We could either present a modal or choose based on location
     displayOptionsModal(choices, 'destination')
     return
   }

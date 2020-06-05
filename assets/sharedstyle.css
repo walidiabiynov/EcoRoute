@@ -36,3 +36,8 @@
 .dropdown-item.active, .dropdown-item:active {
   background-color: green; 
 }
+
+.units {
+  font-size: 0.8rem;
+  color: gray;
+}
