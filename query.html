@@ -45,26 +45,33 @@
 </br>
     <h1 style="text-align:center;">Which methods of transport?</h1>
     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-        <button type="button" class="btn btn-info" data-toggle="button" aria-pressed="false">Walk</button>
-        <button type="button" class="btn btn-info" data-toggle="button" aria-pressed="false">Bike</button>
-        <button type="button" class="btn btn-info" data-toggle="button" aria-pressed="false">Public Transport</button>
+        <button onclick="triggerCalculation(event)" type="button" class="btn btn-info" data-toggle="button" aria-pressed="false">Walk</button>
+        <button onclick="triggerCalculation(event)" type="button" class="btn btn-info" data-toggle="button" aria-pressed="false">Bike</button>
+        <button onclick="triggerCalculation(event)" type="button" class="btn btn-info" data-toggle="button" aria-pressed="false">Public Transport</button>
       
         <div class="btn-group" role="group">
           <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Car
           </button>
           <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-            <a class="dropdown-item" href="#">Compact Car</a>
-            <a class="dropdown-item" href="#">Sedan</a>
-            <a class="dropdown-item" href="#">SUV</a>
-            <a class="dropdown-item" href="#">Truck</a>
+            <a id="compact-car" onclick="triggerCalculation(event)" class="dropdown-item" href="#">Compact Car</a>
+            <a id="sedan" onclick="triggerCalculation(event)" class="dropdown-item" href="#">Sedan</a>
+            <a id="suv" onclick="triggerCalculation(event)" class="dropdown-item" href="#">SUV</a>
+            <a id="truck" onclick="triggerCalculation(event)" class="dropdown-item" href="#">Truck</a>
             <a class="dropdown-item" href="#">Enter custom</a>
           </div>
+        </div>
+
+        <div id="fuel-selector" class="btn-group" role="group" aria-label="Basic example">
+          <button id="gasoline" onclick="checkVehicleChoice()" class="btn btn-secondary">Gasoline</button>
+          <button id="diesel" onclick="checkVehicleChoice()" class="btn btn-secondary">Diesel</button>
+          <button id="electric" onclick="checkVehicleChoice()" class="btn btn-secondary">Electric</button>
         </div>
     </div>
 </br></br>
 <button id="get-directions-button" type="button" class="btn btn-success btn-lg">Get Directions</button>
 <script src="./js/mapping.js"></script>
 <script src="./js/query.js"></script>
+<script src="./js/co2.js"></script>
 </body>
 </html>

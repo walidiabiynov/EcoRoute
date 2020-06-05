@@ -58,18 +58,27 @@ fuelSelection.addEventListener("click", function(e){
     var userInput = [];
     var inputObject = {};
     // Check if transport mode is already in array, if so, replace previous value
+    // Also: If transport button gets clicked a second time, remove transport mode from user choices
     function validateAndPush(){
         var check = userInput.findIndex(object => inputObject.id === object.id);
         if(check >= 0){
             userInput.splice(check, 1);
+        } else {
+            userInput.push(inputObject);
         }
-        userInput.push(inputObject);
+        if(inputObject.id == "micro-car" || inputObject.id == "compact-car" || inputObject.id == "sedan" || inputObject.id == "suv"){
+            var deleteVehicle = userInput.findIndex(object => object.id == "micro-car" || object.id == "compact-car" || object.id == "sedan" || object.id == "suv");
+            if(deleteVehicle >= 0){
+                userInput.splice(deleteVehicle, 1);
+            } 
+            userInput.push(inputObject);
+        }
     }
-    // Halt calculation until vehicle choice has been made if user makes fuel choice first
-    function checkVehicleChoice(){
+    // Halt calculation until vehicle choice has been made if user makes fuel choice first 
+    function checkVehicleChoice(e){
         var vehicleCheck = userInput.findIndex(object => object.id == "micro-car" || object.id == "compact-car" || object.id == "sedan" || object.id == "suv");
         if(vehicleCheck >= 0){
-            addType(userInput[vehicleCheck].id);
+            addType(userInput[vehicleCheck].id, e.target.id);
         }
     }
     // Make vehicle select buttons react to user input
@@ -78,32 +87,29 @@ fuelSelection.addEventListener("click", function(e){
         addType(mode);
     }
     // Add transport option to the array
-    function addType(mode){
+    
+    function addType(mode, fuelChoice){
         var carEmission;
         switch(mode){
             case "truck":
                 distance = sessionStorage.getItem("distance-truck");
-                inputObject = {id: mode, em: options[1].coEmission};
+                inputObject = {id: mode, em: options[1].coEmission, distance: distance};
                 validateAndPush();
-                calculateEmission(inputObject);
                 break;
             case "walk":
                 distance = sessionStorage.getItem("distance-walk");
-                inputObject = {id: mode, em: options[4].coEmission};
+                inputObject = {id: mode, em: options[4].coEmission, distance: distance};
                 validateAndPush();
-                calculateEmission(inputObject);
                 break;
             case "bike":
                 distance = sessionStorage.getItem("distance-bike");
-                inputObject = {id: mode, em: options[3].coEmission};
+                inputObject = {id: mode, em: options[3].coEmission, distance: distance};
                 validateAndPush();
-                calculateEmission(inputObject);
                 break;
             case "pt":
                 distance = sessionStorage.getItem("distance-pt");
-                inputObject = {id: mode, em: options[2].coEmission};
+                inputObject = {id: mode, em: options[2].coEmission, distance: distance};
                 validateAndPush();
-                calculateEmission(inputObject);
                 break;
             // For the car, we first log the type of vehicle to then choose from the array of CO2 emissions based on an index
             default:
@@ -123,10 +129,12 @@ fuelSelection.addEventListener("click", function(e){
                         break;
                 }
                 // We default to gasoline if the user does not make a fuel choice
-                var fuelType;
+                var fuelType = fuelChoice;
                 function getCarEmission(){
-                    if($("button").hasClass("selected-fuel") == true){
-                        fuelType = document.getElementsByClassName("selected-fuel")[0].id;
+                    if($("button").hasClass("selected-fuel") == true || fuelType){
+                        if(!fuelType){
+                            fuelType = document.getElementsByClassName("selected-fuel")[0].id;
+                        }
                         switch(fuelType){
                             case "gasoline":
                                 return options[0].coEmissionGasoline[index];
@@ -142,20 +150,21 @@ fuelSelection.addEventListener("click", function(e){
                 }
                 carEmission = getCarEmission();
                 distance = sessionStorage.getItem("distance-car");
-                inputObject = {id: mode, em: carEmission};
+                inputObject = {id: mode, em: carEmission, distance: distance};
                 validateAndPush();
-                calculateEmission(inputObject);
         }
+        resultsList = [];
+        userInput.forEach(calculateEmission);
     }
 
 // Calculate CO2 emissions
 var resultsList = [];
 var coResult;
 function calculateEmission(choice){
-    coResult = Math.round(choice.em * distance);
+    coResult = Math.round(choice.em * choice.distance);
     var id = choice.id;
     var pushResult = {mode: id, co2: coResult};
     document.getElementsByClassName(`${id}CO2`)[0].textContent = coResult;
-    document.getElementsByClassName(`${id}Distance`)[0].textContent = distance;
+    document.getElementsByClassName(`${id}Distance`)[0].textContent = choice.distance;
     resultsList.push(pushResult);
 }
