@@ -207,6 +207,7 @@ async function getAllRoutes() {
 
 function mapRoute(routeKey) {
   //This function takes the chosen route and maps it on the page
+  console.log('mapping route', routeKey)
   renderRoute(map, loadFromSession(`shape-${routeKey}`));
 }
 
@@ -246,7 +247,7 @@ function renderRoute(map, arrayOfPoints) {
   //   bounds: polyline.getBoundingBox(),
   // });
   bBox = polyline.getBoundingBox();
-  bBox.ha += 0.0005; //These are the variables the API uses to define the bounding box, I'm just making it bigger on the N and S to make it a little prettier.
+  bBox.ha += 0.0028; //These are the variables the API uses to define the bounding box, I'm just making it bigger on the N and S to make it a little prettier.
   bBox.ka -= 0.0005;
   map.getViewModel().setLookAtData({ bounds: bBox });
 }

@@ -1,4 +1,6 @@
 //-----------------------------------------
+map = instantiateMap()
+
 destination = loadFromSession("destination");
 $("#destination-feedback").text(destination.address.label.split(',').slice(0, 2).toString());
 
@@ -6,16 +8,23 @@ const chosenTransportMethods = loadFromSession("results")
 const rowEl = $('#results-row')
 
 let distances = []
+
+if (['micro-car', 'compact-car', 'sedan', 'suv'].includes(chosenTransportMethods[0])){
+  mapRoute('car')
+} else {
+  mapRoute(chosenTransportMethods[0].mode)
+}
+
 chosenTransportMethods.forEach(function (transportMethod, index) {
 
   transportMethodId = transportMethod.mode
 
-  //This fixes a problem that micro-cars and whatnot are not keys included in the ro utes
+  //This fixes a problem that micro-cars and whatnot are not keys included in the routes
   if (['micro-car', 'compact-car', 'sedan', 'suv'].includes(transportMethodId)){
     console.log('avast a car')
     transportMethodId = 'car'
   }
-
+  
 
   console.log(transportMethod)
   console.log(loadFromSession(`distance-${transportMethodId}`).toFixed(1))
