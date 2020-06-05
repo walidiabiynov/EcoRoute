@@ -115,6 +115,8 @@ async function processSearch(searchString) {
   }
 
   const geocodedOptions = await geocodeWrapper({ q: searchString });
+  console.log("processSearch -> geocodedOptions", geocodedOptions)
+  
   return geocodedOptions;
 }
 
