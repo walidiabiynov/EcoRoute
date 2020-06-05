@@ -5,8 +5,11 @@ $("#destination-feedback").text(destination.address.label);
 const chosenTransportMethods = loadFromSession("results")
 const rowEl = $('#results-row')
 
+let distances = []
 chosenTransportMethods.forEach(function (transportMethod, index) {
 
+  distances.push(loadFromSession(`distance-${transportMethod.mode}`))
+  
   let cardElText =
     `<div class="col-sm-3"><div class="card"><div class="card-body">` +
     `<h5 class="card-title">${
@@ -20,3 +23,12 @@ chosenTransportMethods.forEach(function (transportMethod, index) {
     `</div></div></div></div>`;
     rowEl.append(cardElText)
 });
+
+if (distances.length > 1){
+  distances.sort((a, b) => b - a)
+  console.log("distances", distances)
+  $('#distance-range').text('between ' + distances[distances.length - 1].toFixed(1) + ' to ' + distances[0].toFixed(1))
+} else {
+  
+  $('#distance-range').text(distances[0].toFixed(1))
+}
