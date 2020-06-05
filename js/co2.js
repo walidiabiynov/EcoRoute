@@ -60,20 +60,26 @@ fuelSelection.addEventListener("click", function(e){
     // Check if transport mode is already in array, if so, replace previous value
     // Also: If transport button gets clicked a second time, remove transport mode from user choices
     function validateAndPush(){
-        var check = userInput.findIndex(object => inputObject.id === object.id);
-        if(check >= 0){
-            userInput.splice(check, 1);
-        } 
-        if(!shouldRemove) {
-            userInput.push(inputObject);
-        }
         if(inputObject.id == "micro-car" || inputObject.id == "compact-car" || inputObject.id == "sedan" || inputObject.id == "suv"){
             var deleteVehicle = userInput.findIndex(object => object.id == "micro-car" || object.id == "compact-car" || object.id == "sedan" || object.id == "suv");
             if(deleteVehicle >= 0){
+                document.getElementById(`${userInput[deleteVehicle].id}`).classList.remove("active");
                 userInput.splice(deleteVehicle, 1);
+                document.getElementById("car").style = "background-color: #4a4a4a; border-color: #4a4a4a;";
             } 
             if(!shouldRemove){
                 userInput.push(inputObject);
+                document.getElementById("car").style = "background-color: green; border-color: green;";
+            }
+        } else {
+            var check = userInput.findIndex(object => inputObject.id === object.id);
+            if(check >= 0){
+                userInput.splice(check, 1);
+                document.getElementById(`${inputObject.id}`).style = "background-color: #4a4a4a; border-color: #4a4a4a;";
+            } 
+            if(!shouldRemove) {
+                userInput.push(inputObject);
+                document.getElementById(`${inputObject.id}`).style = "background-color: green; border-color: green;";
             }
         }
     }
@@ -171,7 +177,12 @@ function calculateEmission(choice){
     coResult = Math.round(choice.em * choice.distance);
     var id = choice.id;
     var pushResult = {mode: id, co2: coResult};
-    document.getElementsByClassName(`${id}CO2`)[0].textContent = coResult;
-    document.getElementsByClassName(`${id}Distance`)[0].textContent = choice.distance;
+    // document.getElementsByClassName(`${id}CO2`)[0].textContent = coResult;
+    // document.getElementsByClassName(`${id}Distance`)[0].textContent = choice.distance;
     resultsList.push(pushResult);
+}
+
+// Save results to session storage
+function saveResults(){
+    sessionStorage.setItem("results", JSON.stringify(resultsList));
 }
