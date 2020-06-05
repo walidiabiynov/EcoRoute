@@ -41,3 +41,9 @@
   font-size: 0.8rem;
   color: gray;
 }
+
+.minimized-text {
+  font-style: italic;
+  /* font-size: 2rem; */
+  
+}
