@@ -19,8 +19,9 @@ async function submitSearch() {
     return;
   }
   saveToSession("origin", choice);
+  $('#origin').text(choice.address.label)
   //Location is saved, we can move to next page
-  window.location = "./results.html";
+  // window.location = "./results.html";
 
   //TODO Add second marker to screen, zoom screen in some fashion to see both
   //I might be able to define a bounding box based on the highest and lowest lng and lat coords of each and do that to define the min bounding box of the map
@@ -32,7 +33,7 @@ async function getDirectionsButton() {
   //a check they've input both locations
   if (loadFromSession("destination") && loadFromSession("origin")) {
     await getAllRoutes();
-    window.location = "./results.html";
+    window.location.href = "./results.html";
   }
 }
 

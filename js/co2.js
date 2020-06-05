@@ -1,11 +1,11 @@
 // Create input variables
-var distance; // Has to be in km, will be taken from HERE output
-    // Placeholder input for testing
-    sessionStorage.setItem("distance-truck", 4);
-    sessionStorage.setItem("distance-car", 3);
-    sessionStorage.setItem("distance-pt", 2.7);
-    sessionStorage.setItem("distance-bike", 2.1);
-    sessionStorage.setItem("distance-walk", 2.4);
+// var distance; // Has to be in km, will be taken from HERE output
+//     // Placeholder input for testing
+//     sessionStorage.setItem("distance-truck", 4);
+//     sessionStorage.setItem("distance-car", 3);
+//     sessionStorage.setItem("distance-pt", 2.7);
+//     sessionStorage.setItem("distance-bike", 2.1);
+//     sessionStorage.setItem("distance-walk", 2.4);
 
 var options = [
     { 

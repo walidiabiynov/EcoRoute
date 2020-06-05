@@ -141,27 +141,12 @@ function modalChoiceClicked(event) {
   choice = loadFromSession('locationChoices')[event.target.dataset.id]
   $('#locationChoiceModal').modal('hide')
   saveToSession(event.target.dataset.doro, choice)
-  window.location = (event.target.dataset.doro === 'destination') ? './query.html' : './results.html'
-}
-
-function populateChoiceList(returnedLocations, destinationOrOrigin) {
-  //This is a placeholder, ideally this populates our method of choosing (or chooses based on criteria we have) then calls the function to render it
-  //It saves the choice, it also returns it just in case that's needed for function chaining later
-  let choices = returnedLocations.items;
-  let choice;
-
-  if (choices.length === 0) {
-    choice = choices[0];
+  if (event.target.dataset.doro === 'destination'){
+    window.location = './query.html'
   } else {
-    //HARDCODING CHOICE FOR NOW
-    //We could either attach this function to a button or choose based on location
-    choice = choices[0];
+    saveToSession("origin", choice);
+    $('#origin').text(choice.address.label)
   }
-  saveToSession(
-    destinationOrOrigin === "destination" ? "destination" : "origin",
-    choice
-  );
-  return choice;
 }
 
 async function getAllRoutes() {
@@ -208,6 +193,7 @@ async function getAllRoutes() {
       saveToSession(`directions-${transitTypeKey}`, directions);
     });
   });
+  // return new Promise((resolve, reject) => )
 }
 
 function mapRoute(routeKey) {
