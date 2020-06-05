@@ -2,6 +2,7 @@ function detailsButton(event){
   console.log('details button clicked')
   console.log(event.target.dataset.method)
   saveToSession('detail-method-selected', event.target.dataset.method)
+  window.location.href = "./details.html"
 }
 
 

@@ -68,11 +68,6 @@ function keyTranslator(key) {
   } else {
     console.log('Key translator failed because the key was not located : ', key)
   }
-
-
-
-
-
 }
 
 function instantiateMap() {
