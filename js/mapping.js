@@ -115,10 +115,36 @@ async function processSearch(searchString) {
   }
 
   const geocodedOptions = await geocodeWrapper({ q: searchString });
-  console.log("processSearch -> geocodedOptions", geocodedOptions)
   
   return geocodedOptions;
 }
+
+function displayOptionsModal(choices, destinationOrOrigin){
+  ///This function takes input options = list of objects located by geocode, whether it is the destination or origin
+  //It then populates a list of choices in a modal it displays on the page
+  //The modals's buttons have the id of the choice, as referenced in a saved to sessionStorage array of the choices
+  saveToSession('locationChoices', choices)
+  $('#locationChoiceModal').modal('show')
+
+  listEl = $('#locationChoiceModal .list-group')
+  choices.forEach(function(choice, index){
+    console.log(choice)
+    listEl.
+    listEl.append(`<a href="#" class="list-group-item list-group-item-action" data-id="${index} data-dOrO=${destinationOrOrigin}" onclick="${modalChoiceClicked(event)}">${choice.address.label}</a>`)
+  })
+}
+
+function modalChoiceClicked(event){
+  //This takes the modal's button press, logs the chosen choice, and moves to the next page
+  console.log(event)
+  choiceId = event.target.data.id
+  $('#locationChoiceModal').modal('hide')
+  saveToSession(event.target.data.dOrO, choice)
+  nextPageUrl = (event.target.data.dOrO === 'destination') ? './query.html' : './results.html'
+
+
+}
+
 
 function populateChoiceList(returnedLocations, destinationOrOrigin) {
   //This is a placeholder, ideally this populates our method of choosing (or chooses based on criteria we have) then calls the function to render it
@@ -155,10 +181,7 @@ async function getAllRoutes() {
 
   let routeObjects = [];
 
-  console.log(`starting loop`);
   transitTypes.forEach(function (transitType) {
-    // routeObject = getRoute(origin.position, destination.position, transitType);
-    // console.log(routeObject)
 
     routeObject = routeObjects.push(
       fetch(

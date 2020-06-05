@@ -14,12 +14,13 @@ async function submitSearch() {
     ///No matches found, present to user
     console.log('No matches found')
     return
-  } else if (choices.length > 1) {
+  } else if (choices.length === 1) {
     choice = choices[0];
   } else {
     //HARDCODING CHOICE FOR NOW
     //We could either present a modal or choose based on location
-    choice = choices[0];
+    displayOptionsModal(choices, 'destination')
+    return
   }
   saveToSession("destination", choice);
   //Location is saved, we can move to next page
