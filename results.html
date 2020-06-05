@@ -37,7 +37,7 @@
     <div>
       <div class="row">
         <div class="col-sm-8">
-          <h1 class="mt-5 mb-3">How do you want to get to ${destination}?</h1>
+          <h1 class="mt-5 mb-3">How do you want to get to <span id='destination-feedback'></span>?</h1>
           <p class="mb-5"><img src='assets\icons\location.png' width="20" height="20"> Your destination is ${distance} km away </p> 
         </div>
         <div class="col-sm-4">
@@ -54,46 +54,10 @@
     </div>
     <!-- Transport options -->
     <div class="jumbotron jumbotron-fluid" id="travelChoices">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-3">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">By ${Option 1} </h5>
-                      <p class="card-text">CO2: </br> Time: </br> Distance: </p>
-                      <a href="#" class="btn btn-success">Learn more</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-3">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">By ${Option 2}</h5>
-                      <p class="card-text">CO2: </br> Time: </br> Distance: </p>
-                      <a href="#" class="btn btn-success">Learn more</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="card">
-                      <div class="card-body">
-                        <h5 class="card-title">By ${Option 3}</h5>
-                        <p class="card-text">CO2: </br> Time: </br> Distance: </p>
-                        <a href="#" class="btn btn-success">Learn more</a>
-                      </div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="card">
-                      <div class="card-body">
-                        <h5 class="card-title">By ${Option 4}</h5>
-                        <p class="card-text">CO2: </br> Time: </br> Distance: </p>
-                        <a href="#" class="btn btn-success">Learn more</a>
-                      </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <div class="container">
+          <div id="results-row" class="row">
+          </div>
+      </div>
     </div>
   </main>
 
