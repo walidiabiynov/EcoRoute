@@ -3,6 +3,10 @@ const platform = new H.service.Platform({
   apikey: APIKey,
 });
 
+const transportNameKeys = ['bike', 'car', 'pt', 'truck', 'walk']
+const transportNameVals = ['Bicycle', 'Car', 'Public Transit', 'Truck', 'Walking']
+
+
 var map;
 
 const startIcon = `<svg version="1.0" xmlns="http://www.w3.org/2000/svg"

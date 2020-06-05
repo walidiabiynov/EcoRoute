@@ -23,6 +23,45 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </head>
 <body class="container-fluid">
+
+  <!-- ERROR MODAL -->
+  <div
+  class="modal fade"
+  id="error-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="error-modal"
+  aria-hidden="true"
+>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Warning!</h5>
+            <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+            >
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p id="error-modal-text"></p>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="#">
           <img src="assets\icons\nature.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
@@ -88,5 +127,7 @@
 </div>
 </br>
 <a href="#" class="link">Back to Results</a>
+<script src="./js/modals.js"></script>
+
 </body>
 </html>

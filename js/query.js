@@ -46,7 +46,6 @@ function getLocation() {
         lng: position.coords.longitude,
       };
       $("#origin").text(`${position.lat}, ${position.lng}`); //TODO Reverse geocode and get location name, fill that here
-      console.log("getLocation -> position", position);
       saveToSession("origin", { position: position });
     });
   } else {
@@ -87,7 +86,6 @@ $("#get-directions-button").click(function (event) {
 
 $("#geolocation-search").click(function (event) {
   //gets the current location of the user
-  console.log(`alert alert i have been clicked someone call a doctor`);
   getLocation();
 });
 
