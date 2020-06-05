@@ -116,16 +116,6 @@ async function processSearch(searchString) {
 
   const geocodedOptions = await geocodeWrapper({ q: searchString });
   return geocodedOptions;
-
-  // await platform.getSearchService().geocode(
-  //   { q: searchString },
-  //   function (returnedChoices) {
-  //     populateChoiceList(returnedChoices, destinationOrOrigin);
-  //   },
-  //   function (error) {
-  //     console.log("Something went wrong", error);
-  //   }
-  // );
 }
 
 function populateChoiceList(returnedLocations, destinationOrOrigin) {
@@ -148,7 +138,7 @@ function populateChoiceList(returnedLocations, destinationOrOrigin) {
   return choice;
 }
 
-function getAllRoutes() {
+async function getAllRoutes() {
   //Once called this function loads origin and destination from sessionStorage tags origin and destination
   //It then iterates through all travel methods and processes a route through each
   let origin = loadFromSession("origin");
@@ -161,47 +151,43 @@ function getAllRoutes() {
     ["publicTransport", "pt"],
   ];
 
+  let routeObjects = [];
+
+  console.log(`starting loop`);
   transitTypes.forEach(function (transitType) {
-    getRoute(origin.position, destination.position, transitType);
+    // routeObject = getRoute(origin.position, destination.position, transitType);
+    // console.log(routeObject)
+
+    routeObject = routeObjects.push(
+      fetch(
+        `https://route.ls.hereapi.com/routing/7.2/calculateroute.json?apiKey=${APIKey}` +
+          `&waypoint0=geo!${origin.position.lat},${origin.position.lng}` +
+          `&waypoint1=geo!${destination.position.lat},${destination.position.lng}&mode=fastest;${transitType[0]}` +
+          ";traffic:disabled&instructionformat=text&routeattributes=shape"
+      ).then((response) => response.json())
+    );
+  });
+
+  let transitTypeKey;
+  return Promise.all(routeObjects).then((response) => {
+    response.forEach(function (routeObject, index) {
+      transitTypeKey = transitTypes[index][1];
+      let distanceTravelled =
+      routeObject.response.route[0].summary.distance / 1000;
+      let travelTime = routeObject.response.route[0].summary.travelTime;
+      let transitText = routeObject.response.route[0].summary.text;
+      let shape = routeObject.response.route[0].shape;
+      let directions = routeObject.response.route[0].leg[0].maneuver;
+
+      saveToSession(`distance-${transitTypeKey}`, distanceTravelled);
+      saveToSession(`traveltime-${transitTypeKey}`, travelTime);
+      saveToSession(`travel-text-${transitTypeKey}`, transitText);
+      saveToSession(`shape-${transitTypeKey}`, shape);
+      saveToSession(`directions-${transitTypeKey}`, directions);
+    });
   });
 }
 
-async function getRoute(startPoint, endPoint, transitType) {
-  //This function accepts start and end objects with lat and lng, also an array that contains the name of the transit type ex. 'bicycle' and the key under which to store the data ex. distance-bike
-  let method = "fastest;" + transitType[0];
-  let transitTypeKey = transitType[1];
-  try {
-    response = await fetch(
-      `https://route.ls.hereapi.com/routing/7.2/calculateroute.json?apiKey=${APIKey}` +
-        `&waypoint0=geo!${startPoint.lat},${startPoint.lng}` +
-        `&waypoint1=geo!${endPoint.lat},${endPoint.lng}&mode=${method}` +
-        `;traffic:disabled&instructionformat=text&routeattributes=shape`
-    ).then((response) => response.json());
-    console.log("getRoute -> response", response);
-
-    //This call has the potential to return multiple routes, that's why they're in a route array instead of just an object
-    //I hard code choosing the first option here, but we can figure out implementation of some form of choice if we want
-
-    let distanceTravelled = response.response.route[0].summary.distance / 1000;
-    let travelTime = response.response.route[0].summary.travelTime;
-    let transitText = response.response.route[0].summary.text;
-    let shape = response.response.route[0].shape;
-    let directions = response.response.route[0].leg[0].maneuver;
-
-    saveToSession(`distance-${transitTypeKey}`, distanceTravelled);
-    saveToSession(`traveltime-${transitTypeKey}`, travelTime);
-    saveToSession(`travel-text-${transitTypeKey}`, transitText);
-    saveToSession(`shape-${transitTypeKey}`, shape);
-    saveToSession(`directions-${transitTypeKey}`, directions);
-    return { route: response.response };
-  } catch (e) {
-    console.log(
-      `an error occured fetching the routing information from Here`,
-      e
-    );
-    return null;
-  }
-}
 
 function mapRoute(routeKey) {
   //This function takes the chosen route and maps it on the page
@@ -243,10 +229,10 @@ function renderRoute(map, arrayOfPoints) {
   // map.getViewModel().setLookAtData({
   //   bounds: polyline.getBoundingBox(),
   // });
-  bBox = polyline.getBoundingBox()
-  bBox.ha += 0.0005 //These are the variables the API uses to define the bounding box, I'm just making it bigger on the N and S to make it a little prettier.
-  bBox.ka -= 0.0005 
-  map.getViewModel().setLookAtData({bounds: bBox})
+  bBox = polyline.getBoundingBox();
+  bBox.ha += 0.0005; //These are the variables the API uses to define the bounding box, I'm just making it bigger on the N and S to make it a little prettier.
+  bBox.ka -= 0.0005;
+  map.getViewModel().setLookAtData({ bounds: bBox });
 }
 
 function placePinOnMap(map, locationObject) {
@@ -260,16 +246,14 @@ function placePinOnMap(map, locationObject) {
 //TESTING AREA for getting all routes between two points
 // async function temp() {
 //   sessionStorage.clear();
-//   instantiateMap();
+//   // instantiateMap();
 //   const destOptions = await processSearch("8 Bloor St. W, Toronto");
 //   populateChoiceList(destOptions, "destination");
 //   const originOptions = await processSearch("499 Church St. Toronto", "origin");
 //   populateChoiceList(originOptions, "origin");
-//   getAllRoutes();
-
-//   setTimeout(function () {
-//     mapRoute("bike");
-//   }, 3000);
+//   console.log("Beginnining route finding");
+//   await getAllRoutes();
+//   console.log("ending route finding");
 // }
 
 // temp();

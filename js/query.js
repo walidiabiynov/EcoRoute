@@ -29,17 +29,17 @@ async function submitSearch() {
   //I might be able to define a bounding box based on the highest and lowest lng and lat coords of each and do that to define the min bounding box of the map
 }
 
-function getDirectionsButton() {
+async function getDirectionsButton() {
   //This needs to be in an async function so I can await, otherwise the page changes and it doesn't actually do the math
 
   //a check they've input both locations
   if (loadFromSession("destination") && loadFromSession("origin")) {
     console.log(`getting all routes, this will take a moment`);
 
-    getAllRoutes();
+    await getAllRoutes();
     console.log(`route acquired`);
-    setTimeout(function(){window.location = "./results.html"}, 3500) //I'm so sorry for this...  I'm still working on async
-    // window.location = "./results.html";
+    // setTimeout(function(){window.location = "./results.html"}, 3500) //I'm so sorry for this...  I'm still working on async
+    window.location = "./results.html";
   }
 }
 
@@ -53,7 +53,6 @@ map.setCenter(destination.position);
 map.setZoom(17);
 
 //populating the text field with the destination
-// console.log(destination)
 $("#destination").text(destination.address.label);
 
 //Event listeners for the buttons on the page
