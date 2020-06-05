@@ -20,7 +20,7 @@ async function submitSearch() {
     return;
   }
   saveToSession("origin", choice);
-  $('#origin').text(choice.address.label)
+  $('#origin').text(choice.address.label.split(',').slice(0, 2).toString())
   //Location is saved, we can move to next page
   // window.location = "./results.html";
 
