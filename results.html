@@ -6,9 +6,20 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <title>Results</title>
+    <script
+      src="https://js.api.here.com/v3/3.1/mapsjs-core.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    <script
+      src="https://js.api.here.com/v3/3.1/mapsjs-service.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="./assets/sharedstyle.css">
+    <title>Results</title>
+    
 </head>
 <body class="container-fluid">
     <nav class="navbar navbar-light bg-light">
@@ -27,43 +38,7 @@
 
 <div class="jumbotron jumbotron-fluid" id="travelChoices">
     <div class="container">
-        <div class="row">
-            <div class="col-sm-3">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">By ${Option 1} </h5>
-                  <p class="card-text">CO2: </br> Time: </br> Distance: </p>
-                  <a href="#" class="btn btn-success">Learn more</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-3">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">By ${Option 2}</h5>
-                  <p class="card-text">CO2: </br> Time: </br> Distance: </p>
-                  <a href="#" class="btn btn-success">Learn more</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">By ${Option 3}</h5>
-                    <p class="card-text">CO2: </br> Time: </br> Distance: </p>
-                    <a href="#" class="btn btn-success">Learn more</a>
-                  </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">By ${Option 4}</h5>
-                    <p class="card-text">CO2: </br> Time: </br> Distance: </p>
-                    <a href="#" class="btn btn-success">Learn more</a>
-                  </div>
-                </div>
-            </div>
+        <div id="results-row" class="row">
         </div>
     </div>
 
