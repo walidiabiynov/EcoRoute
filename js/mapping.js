@@ -61,6 +61,7 @@ const simpleDotIcon =
 //ADD IN WAYPOINTS for each step, with popup dialog with instructions
 
 function keyTranslator(key) {
+  //Translates keys to pretty names and backwards pt - Public Transit etc.
   if (transportNameKeys.includes(key)){
     return transportNameVals[transportNameKeys.indexOf(key)]
   } else if (transportNameVals.includes(key)) {
@@ -68,6 +69,16 @@ function keyTranslator(key) {
   } else {
     console.log('Key translator failed because the key was not located : ', key)
   }
+}
+
+function mapKeyTranslator(key){
+  //Catches the microcars and translates to cars
+  if (['micro-car', 'compact-car', 'sedan', 'suv'].includes(key)){
+    return 'car'
+  } else {
+    return key
+  }
+
 }
 
 function instantiateMap() {

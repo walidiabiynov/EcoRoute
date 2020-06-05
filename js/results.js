@@ -19,11 +19,8 @@ const rowEl = $('#results-row')
 
 let distances = []
 
-if (['micro-car', 'compact-car', 'sedan', 'suv'].includes(chosenTransportMethods[0])){
-  mapRoute('car')
-} else {
-  mapRoute(chosenTransportMethods[0].mode)
-}
+mapRoute(mapKeyTranslator(chosenTransportMethods[0].mode))
+
 
 chosenTransportMethods.forEach(function (transportMethod, index) {
 
