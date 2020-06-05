@@ -3,13 +3,27 @@ const platform = new H.service.Platform({
   apikey: APIKey,
 });
 
-const transportNameKeys = ["bike", "car", "pt", "truck", "walk"];
+const transportNameKeys = [
+  "bike",
+  "car",
+  "pt",
+  "truck",
+  "walk",
+  "micro-car",
+  "compact-car",
+  "sedan",
+  "suv",
+];
 const transportNameVals = [
   "Bicycle",
   "Car",
   "Public Transit",
   "Truck",
   "Walking",
+  "Micro-car",
+  "Compact-car",
+  "Sedan",
+  "SUV",
 ];
 
 var map;
@@ -45,6 +59,16 @@ const simpleDotIcon =
 
 //TODO Add slippy/user input to map position/zoom
 //ADD IN WAYPOINTS for each step, with popup dialog with instructions
+
+function keyTranslator(key) {
+  if (transportNameKeys.includes(key)){
+    return transportNameVals[transportNameKeys.indexOf(key)]
+  } else if (transportNameVals.includes(key)) {
+    return transportNameKeys[transportNameVals.indexOf(key)]
+  } else {
+    console.log('Key translator failed because the key was not located : ', key)
+  }
+}
 
 function instantiateMap() {
   //Creates a map placed in whatever div has the id map-container, positions it at Toronto
@@ -194,7 +218,7 @@ async function getAllRoutes() {
       let transitText = routeObject.response.route[0].summary.text;
       let shape = routeObject.response.route[0].shape;
       let directions = routeObject.response.route[0].leg[0].maneuver;
-      console.log(routeObject)
+      console.log(routeObject);
       saveToSession(`distance-${transitTypeKey}`, distanceTravelled);
       saveToSession(`traveltime-${transitTypeKey}`, travelTime);
       saveToSession(`travel-text-${transitTypeKey}`, transitText);
@@ -207,7 +231,7 @@ async function getAllRoutes() {
 
 function mapRoute(routeKey) {
   //This function takes the chosen route and maps it on the page
-  console.log('mapping route', routeKey)
+  console.log("mapping route", routeKey);
   renderRoute(map, loadFromSession(`shape-${routeKey}`));
 }
 

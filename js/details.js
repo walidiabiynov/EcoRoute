@@ -13,3 +13,8 @@ for(i=0; i<storageResults.length; i++){
     // 1 tree can remove 48 lbs of co2 in a year https://www.co2meter.com/blogs/news/could-global-co2-levels-be-reduced-by-planting-trees#:~:text=A%20typical%20hardwood%20tree%20can,it%20reaches%2040%20years%20old.
     // Find no. 2
     // Find no. 3 
+
+
+
+//Filling in map content
+instantiateMap()

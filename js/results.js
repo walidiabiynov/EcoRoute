@@ -1,3 +1,13 @@
+function detailsButton(event){
+  console.log('details button clicked')
+  console.log(event.target.dataset.method)
+  saveToSession('detail-method-selected', event.target.dataset.method)
+  window.location.href = "./details.html"
+}
+
+
+
+
 //-----------------------------------------
 map = instantiateMap()
 
@@ -39,7 +49,7 @@ chosenTransportMethods.forEach(function (transportMethod, index) {
     `<p>CO2: ${transportMethod.co2.toFixed(1)} <span class="units">g/kg<span></p>` +
     `<p>Time: ${(loadFromSession(`traveltime-${transportMethodId}`)/60).toFixed(1)} minutes</p>` +
     `<p>Distance: ${loadFromSession(`distance-${transportMethodId}`).toFixed(1)} km</p>` +
-    `<button class="btn btn-success">Learn More</button>` +
+    `<button class="btn btn-success" data-method="${transportMethod.mode}" onclick="detailsButton(event)">Learn More</button>` +
     `</div></div></div></div>`;
     rowEl.append(cardElText)
 });
