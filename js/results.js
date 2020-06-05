@@ -1,6 +1,6 @@
 //-----------------------------------------
 destination = loadFromSession("destination");
-$("#destination-feedback").text(destination.address.label);
+$("#destination-feedback").text(destination.address.label.split(',').slice(0, 2).toString());
 
 const chosenTransportMethods = loadFromSession("results")
 const rowEl = $('#results-row')
@@ -32,3 +32,5 @@ if (distances.length > 1){
   
   $('#distance-range').text(distances[0].toFixed(1))
 }
+
+//TODO catch if the range is within a certain amount and just display that amount

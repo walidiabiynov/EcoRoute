@@ -65,7 +65,7 @@ map.setCenter(destination.position);
 map.setZoom(17);
 
 //populating the text field with the destination
-$("#destination").text(destination.address.label);
+$("#destination").text(destination.address.label.split(',').slice(0, 2).toString());
 
 //Event listeners for the buttons on the page
 $("#search-submit-button").click(function (event) {

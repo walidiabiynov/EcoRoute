@@ -3,9 +3,14 @@ const platform = new H.service.Platform({
   apikey: APIKey,
 });
 
-const transportNameKeys = ['bike', 'car', 'pt', 'truck', 'walk']
-const transportNameVals = ['Bicycle', 'Car', 'Public Transit', 'Truck', 'Walking']
-
+const transportNameKeys = ["bike", "car", "pt", "truck", "walk"];
+const transportNameVals = [
+  "Bicycle",
+  "Car",
+  "Public Transit",
+  "Truck",
+  "Walking",
+];
 
 var map;
 
@@ -142,14 +147,14 @@ function displayOptionsModal(choices, destinationOrOrigin) {
 
 function modalChoiceClicked(event) {
   //This takes the modal's button press, logs the chosen choice, and moves to the next page
-  choice = loadFromSession('locationChoices')[event.target.dataset.id]
-  $('#locationChoiceModal').modal('hide')
-  saveToSession(event.target.dataset.doro, choice)
-  if (event.target.dataset.doro === 'destination'){
-    window.location = './query.html'
+  choice = loadFromSession("locationChoices")[event.target.dataset.id];
+  $("#locationChoiceModal").modal("hide");
+  saveToSession(event.target.dataset.doro, choice);
+  if (event.target.dataset.doro === "destination") {
+    window.location = "./query.html";
   } else {
     saveToSession("origin", choice);
-    $('#origin').text(choice.address.label)
+    $("#origin").text(choice.address.label);
   }
 }
 
