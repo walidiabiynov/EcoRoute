@@ -8,6 +8,7 @@ async function submitSearch() {
 
   if (choices.length === 0) {
     ///No matches found, present to user
+    errorModal('There were no matches found, please try again.')
     console.log("No matches found");
     return;
   } else if (choices.length === 1) {
