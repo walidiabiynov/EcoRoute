@@ -115,36 +115,34 @@ async function processSearch(searchString) {
   }
 
   const geocodedOptions = await geocodeWrapper({ q: searchString });
-  
+
   return geocodedOptions;
 }
 
-function displayOptionsModal(choices, destinationOrOrigin){
+function displayOptionsModal(choices, destinationOrOrigin) {
   ///This function takes input options = list of objects located by geocode, whether it is the destination or origin
   //It then populates a list of choices in a modal it displays on the page
   //The modals's buttons have the id of the choice, as referenced in a saved to sessionStorage array of the choices
-  saveToSession('locationChoices', choices)
-  $('#locationChoiceModal').modal('show')
+  saveToSession("locationChoices", choices);
+  $("#locationChoiceModal").modal("show");
 
-  listEl = $('#locationChoiceModal .list-group')
-  choices.forEach(function(choice, index){
-    console.log(choice)
-    listEl.
-    listEl.append(`<a href="#" class="list-group-item list-group-item-action" data-id="${index} data-dOrO=${destinationOrOrigin}" onclick="${modalChoiceClicked(event)}">${choice.address.label}</a>`)
-  })
+  let listEl = $("#locationChoiceModal .list-group");
+  listEl.html("");
+  choices.forEach(function (choice, index) {
+    console.log(choice);
+    listEl.append(
+      `<button type="button" class="list-group-item list-group-item-action" data-id="${index}" data-doro="${destinationOrOrigin}" onclick="modalChoiceClicked(event)">${choice.address.label}</button>`
+    );
+  });
 }
 
-function modalChoiceClicked(event){
+function modalChoiceClicked(event) {
   //This takes the modal's button press, logs the chosen choice, and moves to the next page
-  console.log(event)
-  // choiceId = event.target.data.id
-  // $('#locationChoiceModal').modal('hide')
-  // saveToSession(event.target.data.dOrO, choice)
-  // nextPageUrl = (event.target.data.dOrO === 'destination') ? './query.html' : './results.html'
-
-
+  choice = loadFromSession('locationChoices')[event.target.dataset.id]
+  $('#locationChoiceModal').modal('hide')
+  saveToSession(event.target.dataset.doro, choice)
+  window.location = (event.target.dataset.doro === 'destination') ? './query.html' : './results.html'
 }
-
 
 function populateChoiceList(returnedLocations, destinationOrOrigin) {
   //This is a placeholder, ideally this populates our method of choosing (or chooses based on criteria we have) then calls the function to render it
@@ -182,7 +180,6 @@ async function getAllRoutes() {
   let routeObjects = [];
 
   transitTypes.forEach(function (transitType) {
-
     routeObject = routeObjects.push(
       fetch(
         `https://route.ls.hereapi.com/routing/7.2/calculateroute.json?apiKey=${APIKey}` +
@@ -198,7 +195,7 @@ async function getAllRoutes() {
     response.forEach(function (routeObject, index) {
       transitTypeKey = transitTypes[index][1];
       let distanceTravelled =
-      routeObject.response.route[0].summary.distance / 1000;
+        routeObject.response.route[0].summary.distance / 1000;
       let travelTime = routeObject.response.route[0].summary.travelTime;
       let transitText = routeObject.response.route[0].summary.text;
       let shape = routeObject.response.route[0].shape;
@@ -212,7 +209,6 @@ async function getAllRoutes() {
     });
   });
 }
-
 
 function mapRoute(routeKey) {
   //This function takes the chosen route and maps it on the page

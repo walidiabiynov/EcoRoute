@@ -10,15 +10,17 @@ async function submitSearch() {
     ///No matches found, present to user
     console.log("No matches found");
     return;
-  } else if (choices.length > 1) {
+  } else if (choices.length === 1) {
     choice = choices[0];
   } else {
     //HARDCODING CHOICE FOR NOW
     //We could either present a modal or choose based on location
-    choice = choices[0];
+    displayOptionsModal(choices, "origin");
+    return;
   }
-  $("#origin").text(choice.address.label);
   saveToSession("origin", choice);
+  //Location is saved, we can move to next page
+  window.location = "./results.html";
 
   //TODO Add second marker to screen, zoom screen in some fashion to see both
   //I might be able to define a bounding box based on the highest and lowest lng and lat coords of each and do that to define the min bounding box of the map
@@ -38,10 +40,13 @@ function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function (position) {
       //TODO put in the call to the generalized function for setting the place name
-      position = {lat: position.coords.latitude, lng: position.coords.longitude}
-      $("#origin").text(`${position.lat}, ${position.lng}`);  //TODO Reverse geocode and get location name, fill that here
-      console.log("getLocation -> position", position)
-      saveToSession("origin", {position: position});
+      position = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
+      $("#origin").text(`${position.lat}, ${position.lng}`); //TODO Reverse geocode and get location name, fill that here
+      console.log("getLocation -> position", position);
+      saveToSession("origin", { position: position });
     });
   } else {
     console.log("Geolocation unsupported by this browser");

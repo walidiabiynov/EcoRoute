@@ -1,12 +1,10 @@
 //PAGE FOR LOADING FUNCTIONS OF MAIN PAGE
 
 async function submitSearch() {
-  console.log(`submitSearch called`);
   //clear field and grab text
   let searchText = $("#destination-search-field").val();
   $("#destination-search-field").val("");
   const locations = await processSearch(searchText);
-  console.log("submitSearch -> locations", locations)
 
   let choices = locations.items;
 
