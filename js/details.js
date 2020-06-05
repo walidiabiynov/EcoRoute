@@ -42,4 +42,3 @@ var chart = new Chart(ctx, {
 
 
 //Filling in map content
-instantiateMap()
