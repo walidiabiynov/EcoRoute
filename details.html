@@ -58,8 +58,8 @@
   <div id="map-container"></div>
   <!-- Main content -->
   <main class="container">
-    <h1 class="mt-5">You're going to ${destination} by ${transportMethod} </h1>
-    <h4>${travelTime} ${travelDistance} <button type="button" class="btn btn-light" id="sendtomobile"> Send directions to mobile <img src='assets\icons\smartphone.png' width="20" height="20"></button> </h4> 
+    <h1 class="mt-5">You're going to <span id="destination-name"></span> by <span id="transport-method"></span></h1>
+    <h4><span id="travel-time"></span> <span id="travel-distance"></span> <button type="button" class="btn btn-light" id="sendtomobile"> Send directions to mobile <img src='assets\icons\smartphone.png' width="20" height="20"></button> </h4> 
     <h2 class="mt-5">Your environmental impact</h2>
     <h6><img src="assets\icons\medal.png" width="20" height="20"> You're making the ${methodRanking} most environmentally conscious choice! </h6>
     <h2 class="mt-5 mb-5">How that compares to your other options</h2>
@@ -107,6 +107,7 @@
 </main>
 
 <script src="./js/modals.js"></script>
-
+<script src="./js/mapping.js"></script>
+<script src="./js/details.js"></script>
 </body>
 </html>
