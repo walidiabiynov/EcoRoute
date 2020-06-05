@@ -10,66 +10,83 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
 </head>
-<body class="container-fluid">
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-          <img src="assets\icons\nature.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-          Eco App
-        </a>
-        <a class="nav-item">
-            <a class="nav-link" href="#">About</a>
-        </a>
-    </nav>
-</br></br>
-<h1 style="text-align: center;">How do you want to get to ${destination}?</h1>
-</br>
-<p style="text-align: center;"><img src='assets\icons\location.png' width="20" height="20"> Your destination is ${distance} km away </p> 
-
-<div class="jumbotron jumbotron-fluid" id="travelChoices">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-3">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">By ${Option 1} </h5>
-                  <p class="card-text">CO2: </br> Time: </br> Distance: </p>
-                  <a href="#" class="btn btn-success">Learn more</a>
-                </div>
-              </div>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img src="assets\icons\nature.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+        Eco App
+      </a>
+      <a class="nav-item">
+          <a class="nav-link" href="#">About</a>
+      </a>
+  </nav>
+  <!-- Main content -->
+  <main class="container">
+    <div>
+      <div class="row">
+        <div class="col-sm-8">
+          <h1 class="mt-5 mb-3">How do you want to get to ${destination}?</h1>
+          <p class="mb-5"><img src='assets\icons\location.png' width="20" height="20"> Your destination is ${distance} km away </p> 
+        </div>
+        <div class="col-sm-4">
+          <div class="card mt-5 mb-5" style="width: 100%;">
+            <div class="card-body">
+              <h5 class="card-title">Weather info</h5>
+              <h6 class="card-subtitle mb-2 text-muted" id="temperature"></h6>
+              <p class="card-text" id="condition">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <div id="weather-icon"></div>
             </div>
-            <div class="col-sm-3">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">By ${Option 2}</h5>
-                  <p class="card-text">CO2: </br> Time: </br> Distance: </p>
-                  <a href="#" class="btn btn-success">Learn more</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">By ${Option 3}</h5>
-                    <p class="card-text">CO2: </br> Time: </br> Distance: </p>
-                    <a href="#" class="btn btn-success">Learn more</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Transport options -->
+    <div class="jumbotron jumbotron-fluid" id="travelChoices">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">By ${Option 1} </h5>
+                      <p class="card-text">CO2: </br> Time: </br> Distance: </p>
+                      <a href="#" class="btn btn-success">Learn more</a>
+                    </div>
                   </div>
                 </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">By ${Option 4}</h5>
-                    <p class="card-text">CO2: </br> Time: </br> Distance: </p>
-                    <a href="#" class="btn btn-success">Learn more</a>
+                <div class="col-sm-3">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">By ${Option 2}</h5>
+                      <p class="card-text">CO2: </br> Time: </br> Distance: </p>
+                      <a href="#" class="btn btn-success">Learn more</a>
+                    </div>
                   </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">By ${Option 3}</h5>
+                        <p class="card-text">CO2: </br> Time: </br> Distance: </p>
+                        <a href="#" class="btn btn-success">Learn more</a>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">By ${Option 4}</h5>
+                        <p class="card-text">CO2: </br> Time: </br> Distance: </p>
+                        <a href="#" class="btn btn-success">Learn more</a>
+                      </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+  </main>
 
-    
-  </div>
-</br></br>
-<a href="#" class="stretched-link">Start Over</a>
+<script src="js/weather.js"></script>
+
 </body>
 </html>
