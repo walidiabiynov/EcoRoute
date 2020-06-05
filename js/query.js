@@ -1,10 +1,8 @@
 async function submitSearch() {
-  console.log(`submitSearch called`);
   //clear field and grab text
   let searchText = $("#origin-search-field").val();
   $("#origin-search-field").val("");
   const locations = await processSearch(searchText);
-  console.log("submitSearch -> locations", locations);
 
   let choices = locations.items;
 
@@ -21,25 +19,33 @@ async function submitSearch() {
   }
   $("#origin").text(choice.address.label);
   saveToSession("origin", choice);
-  console.log("submitSearch -> choice", choice);
-
-  addMarker(destination.position, startIcon);
 
   //TODO Add second marker to screen, zoom screen in some fashion to see both
   //I might be able to define a bounding box based on the highest and lowest lng and lat coords of each and do that to define the min bounding box of the map
 }
 
-function getDirectionsButton() {
+async function getDirectionsButton() {
   //This needs to be in an async function so I can await, otherwise the page changes and it doesn't actually do the math
 
   //a check they've input both locations
   if (loadFromSession("destination") && loadFromSession("origin")) {
-    console.log(`getting all routes, this will take a moment`);
+    await getAllRoutes();
+    window.location = "./results.html";
+  }
+}
 
-    getAllRoutes();
-    console.log(`route acquired`);
-    setTimeout(function(){window.location = "./results.html"}, 3500) //I'm so sorry for this...  I'm still working on async
-    // window.location = "./results.html";
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      //TODO put in the call to the generalized function for setting the place name
+      position = {lat: position.coords.latitude, lng: position.coords.longitude}
+      $("#origin").text(`${position.lat}, ${position.lng}`);  //TODO Reverse geocode and get location name, fill that here
+      console.log("getLocation -> position", position)
+      saveToSession("origin", {position: position});
+    });
+  } else {
+    console.log("Geolocation unsupported by this browser");
+    //TODO RETURN MESSAGE IN MODAL TO USER THAT THIS BUTTON DOESN'T FUNCTION
   }
 }
 
@@ -53,7 +59,6 @@ map.setCenter(destination.position);
 map.setZoom(17);
 
 //populating the text field with the destination
-// console.log(destination)
 $("#destination").text(destination.address.label);
 
 //Event listeners for the buttons on the page
@@ -71,11 +76,15 @@ $("#origin-search-field").on("keypress", function (event) {
 
 $("#get-directions-button").click(function (event) {
   //all routes are generated then the next page is moved to
-  console.log(`alert alert i have been clicked someone call a doctor`);
   getDirectionsButton();
 });
 
-//TODO Fix async issues
+$("#geolocation-search").click(function (event) {
+  //gets the current location of the user
+  console.log(`alert alert i have been clicked someone call a doctor`);
+  getLocation();
+});
+
 //TODO Catch if there are already values in sessionStorage from past attempts
 //TODO catch error values
 //TODO catch direct loads of this page
