@@ -19,12 +19,14 @@ async function submitSearch() {
     displayOptionsModal(choices, "destination");
     return;
   }
+
   saveToSession("destination", choice);
   //Location is saved, we can move to next page
   window.location = "./query.html";
 }
 
 //What runs on load
+sessionStorage.clear() //THIS CLEARS EVERYTHING IN CASE IT'S A RELOAD
 instantiateMap();
 
 $("#destination-search-button").click(function (event) {

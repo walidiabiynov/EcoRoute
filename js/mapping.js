@@ -194,7 +194,7 @@ async function getAllRoutes() {
       let transitText = routeObject.response.route[0].summary.text;
       let shape = routeObject.response.route[0].shape;
       let directions = routeObject.response.route[0].leg[0].maneuver;
-
+      console.log(routeObject)
       saveToSession(`distance-${transitTypeKey}`, distanceTravelled);
       saveToSession(`traveltime-${transitTypeKey}`, travelTime);
       saveToSession(`travel-text-${transitTypeKey}`, transitText);
