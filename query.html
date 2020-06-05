@@ -44,27 +44,28 @@
       <p id="origin" class="text-center location-feedback"></p>
 </br>
     <h1 style="text-align:center;">Which methods of transport?</h1>
-    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-        <button type="button" class="btn btn-info" data-toggle="button" aria-pressed="false">Walk</button>
-        <button type="button" class="btn btn-info" data-toggle="button" aria-pressed="false">Bike</button>
-        <button type="button" class="btn btn-info" data-toggle="button" aria-pressed="false">Public Transport</button>
-      
-        <div class="btn-group" role="group">
-          <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Car
-          </button>
-          <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-            <a class="dropdown-item" href="#">Compact Car</a>
-            <a class="dropdown-item" href="#">Sedan</a>
-            <a class="dropdown-item" href="#">SUV</a>
-            <a class="dropdown-item" href="#">Truck</a>
-            <a class="dropdown-item" href="#">Enter custom</a>
-          </div>
+    <div class="container-fluid" style="text-align: center;" id="travelOptions">
+      <button type="button" class="btn btn-info" data-toggle="button" aria-pressed="false" onclick="">Walk</button>
+      <button type="button" class="btn btn-info" data-toggle="button" aria-pressed="false" onclick="">Bike</button>
+      <button type="button" class="btn btn-info" data-toggle="button" aria-pressed="false" onclick="">Public Transport</button>
+      <div class="btn-group" role="group">
+        <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Car
+        </button>
+        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+          <a class="dropdown-item" href="#">Compact Car</a>
+          <a class="dropdown-item" href="#">Sedan</a>
+          <a class="dropdown-item" href="#">SUV</a>
+          <a class="dropdown-item" href="#">Truck</a>
+          <a class="dropdown-item" href="#">Enter custom</a>
         </div>
+      </div>
     </div>
 </br></br>
 <button id="get-directions-button" type="button" class="btn btn-success btn-lg">Get Directions</button>
 <script src="./js/mapping.js"></script>
 <script src="./js/query.js"></script>
+</br></br>
+<a href="#" class="stretched-link">Start Over</a>
 </body>
 </html>
