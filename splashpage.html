@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Splash Page</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<<<<<<< HEAD
     <link rel="stylesheet" href="./assets/style.css" />
       <script
       src="https://js.api.here.com/v3/3.1/mapsjs-core.js"
@@ -16,25 +18,38 @@
     type="text/javascript"
     charset="utf-8"
     ></script>
+=======
+    <script
+      src="https://js.api.here.com/v3/3.1/mapsjs-core.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    <script
+      src="https://js.api.here.com/v3/3.1/mapsjs-service.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    <link rel="stylesheet" href="./assets/sharedstyle.css">
+>>>>>>> master
 </head>
 <body class="container-fluid">
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="#">
-          <img src="assets\icons\nature.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-          Eco App
+            <img src="assets\icons\nature.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+            Eco App
         </a>
         <a class="nav-item">
             <a class="nav-link" href="#">About</a>
         </a>
     </nav>
-</br>
+<div id="map-container" class="map-dim" style="height:300px;"></div>
     <div class="jumbotron">
         <h1 class="display-4" style="text-align:center;">Where do you want to go today?</h1>
         <hr class="my-4">
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Where to?" aria-label="Destination" aria-describedby="button-addon2">
+            <input id="destination-search-field" type="text" class="form-control" placeholder="Where to?" aria-label="Destination" aria-describedby="button-addon2">
             <div class="input-group-append">
-              <button type="button" class="btn btn-success" id="search"><img src="assets\icons\search.png" width="20" height="20"/> Let's Go!</button>
+              <button id="destination-search-button" type="button" class="btn btn-success" id="search"><img src="assets\icons\search.png" width="20" height="20"/> Let's Go!</button>
             </div>
           </div>
     </div>
@@ -66,6 +81,8 @@
     </br>
     
 </section>
+<script src="./js/mapping.js"></script>
+<script src="./js/index.js"></script>
 </body>
 
 </html>

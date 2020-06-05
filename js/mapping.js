@@ -5,14 +5,37 @@ const platform = new H.service.Platform({
 
 var map;
 
-//TODO render points at end and start of the addLines function
-//Move functions to more linear layout and clean file
+const startIcon = `<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+width="24.000000pt" height="24.000000pt" viewBox="0 0 24.000000 24.000000"
+preserveAspectRatio="xMidYMid meet">
+<g transform="translate(0.000000,24.000000) scale(0.100000,-0.100000)"
+fill="#4d4d4d" stroke="">
+<path d="M65 215 c-16 -15 -25 -36 -25 -54 0 -31 65 -161 80 -161 15 0 80 130
+80 159 0 69 -86 106 -135 56z m69 -21 c9 -3 16 -16 16 -29 0 -25 -21 -38 -45
+-29 -18 7 -20 50 -2 57 6 3 13 6 14 6 1 1 8 -2 17 -5z"/>
+</g>
+</svg>`;
+
+const endIcon = `<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+width="24.000000pt" height="24.000000pt" viewBox="0 0 24.000000 24.000000"
+preserveAspectRatio="xMidYMid meet">
+<g transform="translate(0.000000,24.000000) scale(0.100000,-0.100000)"
+fill="#00cc00" stroke="">
+<path d="M65 215 c-16 -15 -25 -36 -25 -54 0 -31 65 -161 80 -161 15 0 80 130
+80 159 0 69 -86 106 -135 56z m69 -21 c9 -3 16 -16 16 -29 0 -25 -21 -38 -45
+-29 -18 7 -20 50 -2 57 6 3 13 6 14 6 1 1 8 -2 17 -5z"/>
+</g>
+</svg>`;
+
+const simpleDotIcon =
+  '<svg width="18" height="18" ' +
+  'xmlns="http://www.w3.org/2000/svg">' +
+  '<circle cx="8" cy="8" r="8" ' +
+  'fill="#1b468d" stroke="white" stroke-width="1"  />' +
+  "</svg>";
 
 //TODO Add slippy/user input to map position/zoom
-//Catch turn by turn in getRoutes and place in local
-//todo setup turn by turn directions saved
-//implement promise in geocode function
-//implement error catching in getroutes and geocode
+//ADD IN WAYPOINTS for each step, with popup dialog with instructions
 
 function instantiateMap() {
   //Creates a map placed in whatever div has the id map-container, positions it at Toronto
@@ -38,18 +61,21 @@ function loadFromSession(key) {
   return JSON.parse(sessionStorage.getItem(key));
 }
 
-function addMarker(map, coords, SVGMarker = "") {
-  //Adds a styled marker to the map (default filler for style) at coords = {lat: lng: }
-  if (SVGMarker === "") {
-    let svgMarkup =
-      '<svg width="24" height="24" ' +
-      'xmlns="http://www.w3.org/2000/svg">' +
-      '<rect stroke="white" fill="red" x="1" y="1" width="22" ' +
-      'height="22" /><text x="12" y="18" font-size="12pt" ' +
-      'font-family="Arial" font-weight="regular" text-anchor="middle" ' +
-      'fill="white">HI</text></svg>';
+function addMarker(
+  coords,
+  svgMarkup = '<svg width="24" height="24" ' +
+    'xmlns="http://www.w3.org/2000/svg">' +
+    '<rect stroke="white" fill="red" x="1" y="1" width="22" ' +
+    'height="22" /><text x="12" y="18" font-size="12pt" ' +
+    'font-family="Arial" font-weight="regular" text-anchor="middle" ' +
+    'fill="white">HI</text></svg>'
+) {
+  //Adds a styled marker to the map (default filler for style) at coords = 'lat,lng' or {lat: lng:} in an object
+  //DOES NOT center map at location, make sure to do so
+  if (typeof coords === "string") {
+    coords = coords.split(",");
+    coords = { lat: coords[0], lng: coords[1] };
   }
-
   let icon = new H.map.Icon(svgMarkup);
   let marker = new H.map.Marker(coords, { icon: icon });
 
@@ -105,7 +131,8 @@ async function processSearch(searchString) {
 function populateChoiceList(returnedLocations, destinationOrOrigin) {
   //This is a placeholder, ideally this populates our method of choosing (or chooses based on criteria we have) then calls the function to render it
   //It saves the choice, it also returns it just in case that's needed for function chaining later
-  choices = returnedLocations.items;
+  let choices = returnedLocations.items;
+  let choice;
 
   if (choices.length === 0) {
     choice = choices[0];
@@ -159,15 +186,14 @@ async function getRoute(startPoint, endPoint, transitType) {
     let travelTime = response.response.route[0].summary.travelTime;
     let transitText = response.response.route[0].summary.text;
     let shape = response.response.route[0].shape;
-    let directions = response.response.route[0].leg[0].maneuver
+    let directions = response.response.route[0].leg[0].maneuver;
 
     saveToSession(`distance-${transitTypeKey}`, distanceTravelled);
     saveToSession(`traveltime-${transitTypeKey}`, travelTime);
     saveToSession(`travel-text-${transitTypeKey}`, transitText);
     saveToSession(`shape-${transitTypeKey}`, shape);
-    saveToSession(`directions-${transitTypeKey}`, directions)
+    saveToSession(`directions-${transitTypeKey}`, directions);
     return { route: response.response };
-
   } catch (e) {
     console.log(
       `an error occured fetching the routing information from Here`,
@@ -185,23 +211,42 @@ function mapRoute(routeKey) {
 function renderRoute(map, arrayOfPoints) {
   //Places a set of lines on the map, between points given in the form of an array of strings of 'lat,lng', 'lat,lng'.
   let linestring = new H.geo.LineString();
-  console.log("addLines -> arrayOfPoints", arrayOfPoints);
 
   arrayOfPoints.forEach(function (point) {
     // linestring.pushPoint(point);
     point = point.split(",");
-    console.log("addLines -> point", point);
     linestring.pushLatLngAlt(point[0], point[1]);
   });
   let polyline = new H.map.Polyline(linestring, { style: { lineWidth: 3 } }); // TODO change line styling
   //Adding a marker to first and last point
-  // let markerStart = new H.map.Marker(arrayOfPoints[0]);
-  // let markerEnd = new H.map.Marker(arrayOfPoints[arrayOfPoints.length - 1]);
+
+  //NOTE If we want a marker at each point along the path, uncomment this code and comment out the first and last setting
+  // arrayOfPoints.forEach(function(point, index){
+
+  //   svgMarkup = '<svg width="24" height="24" ' +
+  //     'xmlns="http://www.w3.org/2000/svg">' +
+  //     '<rect stroke="white" fill="red" x="1" y="1" width="22" ' +
+  //     'height="22" /><text x="12" y="18" font-size="12pt" ' +
+  //     'font-family="Arial" font-weight="regular" text-anchor="middle" ' +
+  //     `fill="white">${index}</text></svg>`
+  //   addMarker(point, svgMarkup)
+  // })
+  // arrayOfPoints.forEach(function(point, index){
+  //    addMarker(point, simpleDotIcon)
+  // })
+
+  addMarker(arrayOfPoints[0], endIcon);
+  addMarker(arrayOfPoints[arrayOfPoints.length - 1], startIcon);
+
   map.addObject(polyline);
   // map.addObjects([polyline, markerStart, markerEnd]);
-  map.getViewModel().setLookAtData({
-    bounds: polyline.getBoundingBox(), // TODO add slight zoomout here to better show the line
-  });
+  // map.getViewModel().setLookAtData({
+  //   bounds: polyline.getBoundingBox(),
+  // });
+  bBox = polyline.getBoundingBox()
+  bBox.ha += 0.0005 //These are the variables the API uses to define the bounding box, I'm just making it bigger on the N and S to make it a little prettier.
+  bBox.ka -= 0.0005 
+  map.getViewModel().setLookAtData({bounds: bBox})
 }
 
 function placePinOnMap(map, locationObject) {
@@ -213,21 +258,24 @@ function placePinOnMap(map, locationObject) {
 }
 
 //TESTING AREA for getting all routes between two points
-async function temp() {
-  sessionStorage.clear();
-  instantiateMap();
-  const destOptions = await processSearch("8 Bloor St. W, Toronto");
-  populateChoiceList(destOptions, "destination");
-  const originOptions = await processSearch("499 Church St. Toronto", "origin");
-  populateChoiceList(originOptions, "origin");
-  getAllRoutes();
+// async function temp() {
+//   sessionStorage.clear();
+//   instantiateMap();
+//   const destOptions = await processSearch("8 Bloor St. W, Toronto");
+//   populateChoiceList(destOptions, "destination");
+//   const originOptions = await processSearch("499 Church St. Toronto", "origin");
+//   populateChoiceList(originOptions, "origin");
+//   getAllRoutes();
 
-  setTimeout(function () {
-    mapRoute("bike");
-  }, 3000);
-}
+//   setTimeout(function () {
+//     mapRoute("bike");
+//   }, 3000);
+// }
 
 // temp();
+
+// map = instantiateMap();
+// addMarker({ lat: 43.6652641, lng: -79.3807487 });
 
 // setTimeout(getAllRoutes, 2000);
 // map = instantiateMap();
