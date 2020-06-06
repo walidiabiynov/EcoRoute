@@ -68,7 +68,7 @@ $("#destination-name").text(
 );
 $("#transport-method").text(keyTranslator(chosenMethod).toLowerCase());
 $("#travel-text").text(loadFromSession(`travel-text-${routeKey}`));
-$("#method-ranking").text(rankChoice(chosenMethod));
+$("#method-ranking").text(rankChoice(routeKey));
 
 //This is an array of metrics, I'll sort randomly and choose two to use as comparators,
 //displaying them in order of units/time
