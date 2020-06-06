@@ -45,7 +45,7 @@ chosenTransportMethods.forEach(function (transportMethod, index) {
     `<div class="card-text">` +
     `<p>CO2: ${transportMethod.co2.toFixed(
       1
-    )} <span class="units">g/km<span></p>` +
+    )} <span class="units">g<span></p>` +
     `<p>Time: ${(
       loadFromSession(`traveltime-${transportMethodId}`) / 60
     ).toFixed(1)} minutes</p>` +
