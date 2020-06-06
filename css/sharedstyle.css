@@ -7,6 +7,10 @@ body {
   height: 50px;
 }
 
+.divider-sm {
+  height: 30px;
+}
+
 a {
   color: #00CC76;
   text-decoration: none;
@@ -178,7 +182,7 @@ a:hover {
 }
 
 @media only screen and (max-width: 450px) {
-  .divider {
+  .divider, .divider-sm {
     display: none;
   }
 }

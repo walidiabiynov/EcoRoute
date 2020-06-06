@@ -20,7 +20,7 @@
       type="text/javascript"
       charset="utf-8"
     ></script>
-    <link rel="stylesheet" href="./assets/sharedstyle.css">
+    <link rel="stylesheet" href="./css/sharedstyle.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </head>
 <body>
@@ -62,8 +62,12 @@
     <h2 class="mt-5">You're going to <span id="destination-name"></span> by <span id="transport-method"></span></h2>
     <h5><span id="travel-text" class="green"></span> <span id="travel-distance"></span> <button type="button" class="btn btn-light" id="show-directions"> Show turn by turn directions</button> </h5> 
     <!-- <img src='assets\icons\smartphone.png' width="20" height="20">  THIS WAS THE MOBILE ICON, I DIDN'T WANT TO LOSE IT -->
+    <div class="divider-sm"></div>
+    <!-- Environmental impact -->
     <h3 class="mt-5">Your environmental impact</h3>
     <h6 class="green-text"><img src="assets\icons\medal.png" width="20" height="20"> You're making the <span id="method-ranking"></span> most environmentally conscious choice! </h6>
+    <div class="divider-sm"></div>
+    <!-- Comparison values -->
     <h3 class="my-5">Your relative environmental impact</h3>
     <div id="relative-metric-container">
       <div class="row">
@@ -82,23 +86,28 @@
       </div>
 
     </div>
+    <div class="divider-sm"></div>
+    <!-- Graph -->
     <h3 class="my-5">How that compares to your other options</h3>
     <div id="graph-container">
       <canvas id="emissionsGraph"></canvas>
     </div>
+    <div class="divider-sm"></div>
+    <!-- Charity section -->
     <h3 class="mt-5">Offset your impact</h3>
     <h5 class="green mb-3">Consider donating to one of these organizations to offset your CO2 impact.</h5>
     <div class="row mt-5">
       <div class="col-sm-4 mb-2">
-          <a><img class="click-logo" src="./assets/img/dsf.jpg" alt="DSF"/></a>
+          <a href="https://davidsuzuki.org/" target="_blank"><img class="click-logo" src="./assets/img/dsf.jpg" alt="DSF"/></a>
       </div>
       <div class="col-sm-4 mb-2">
-          <a><img class="click-logo" src="./assets/img/cpaws.jpg" alt="CPAWS"/></a>
+          <a href="https://cpaws.org/" target="_blank"><img class="click-logo" src="./assets/img/cpaws.jpg" alt="CPAWS"/></a>
       </div>
       <div class="col-sm-4 mb-2">
-        <a><img class="click-logo" src="./assets/img/ed.jpg" alt="ED"/></a>
+        <a href="https://environmentaldefence.ca/" target="_blank"><img class="click-logo" src="./assets/img/ed.jpg" alt="ED"/></a>
     </div>
-  </div>
+    </div>
+    <div class="divider-sm"></div>
   </main>
   <!-- Footer -->
   <footer class="mb-5">
