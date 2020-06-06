@@ -24,6 +24,31 @@ a {
   margin-bottom: 0;
 }
 
+/* Landing page header styles */
+.landing-wrapper {
+  position: relative;
+}
+
+.landing-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+}
+
+.landing-map {
+  height: 500px!important;
+  opacity: .4!important;
+}
+
+.landing-input {
+  width: 70%;
+  margin: 0 auto;
+}
+
 /* Parallax styles */
 .image-stage {
   height: 400px;
@@ -90,14 +115,6 @@ a {
   text-align: center;
 }
 
-/* Media queries */
-@media only screen and (max-width: 1200px) {
-  #graph-container {
-    width: 100%;
-  }
-  
-}
-
 .green-text, .green {
   color: #008000;
 }
@@ -122,4 +139,16 @@ a {
 
 #co2-amount{
   font-size: 3rem;
+}
+
+/* Media queries */
+@media only screen and (max-width: 1200px) {
+  #graph-container {
+    width: 100%;
+  }
+
+  .landing-input {
+    width: 100%;
+  }
+  
 }

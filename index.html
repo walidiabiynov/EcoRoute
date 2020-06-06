@@ -73,14 +73,16 @@
         </a>
     </nav>
     <!-- Map header -->
-    <div id="map-container" class="map-dim" style="height:300px;"></div>
-        <div class="jumbotron">
-            <h1 class="display-4">Where do you want to go today?</h1>
-            <hr class="my-4">
-            <div class="input-group mb-3">
-                <input id="destination-search-field" type="text" class="form-control" placeholder="Where to?" aria-label="Destination" aria-describedby="button-addon2">
-                <div class="input-group-append">
-                <a id="destination-search-button" type="button" class="btn btn-success" id="search" href="./query.html"><img src="assets\icons\search.png" width="20" height="20"/> Let's Go!</a>
+    <div class="landing-wrapper">
+        <div id="map-container" class="map-dim landing-map"></div>
+        <div class="landing-header">
+            <div class="container">
+                <h3 class="text-center mb-3 bold">Where do you want to go today?</h3>
+                <div class="input-group mb-3 landing-input">
+                    <input id="destination-search-field" type="text" class="form-control" placeholder="Where to?" aria-label="Destination" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <a id="destination-search-button" type="button" class="btn btn-success" id="search" href="./query.html"><img src="assets\icons\search.png" width="20" height="20"/> Let's go!</a>
+                    </div>
                 </div>
             </div>
         </div>
