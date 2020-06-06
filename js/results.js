@@ -43,15 +43,15 @@ chosenTransportMethods.forEach(function (transportMethod, index) {
       transportNameVals[transportNameKeys.indexOf(transportMethodId)]
     }</h5>` +
     `<div class="card-text">` +
-    `<p>CO2: ${transportMethod.co2.toFixed(
+    `<p>CO<sup>2</sup>: <span class="info-text">${transportMethod.co2.toFixed(
       1
-    )} <span class="units">g<span></p>` +
-    `<p>Time: ${(
+    )} <span class="units">g</span></span></p>` +
+    `<p>Time: <span class="info-text">${(
       loadFromSession(`traveltime-${transportMethodId}`) / 60
-    ).toFixed(1)} minutes</p>` +
-    `<p>Distance: ${loadFromSession(`distance-${transportMethodId}`).toFixed(
+    ).toFixed(1)} minutes</span></p>`+
+    `<p>Distance: <span class="info-text">${loadFromSession(`distance-${transportMethodId}`).toFixed(
       1
-    )} km</p>` +
+    )} km</span></p>` +
     `<button class="btn btn-success" data-method="${transportMethod.mode}" data-rate="${transportMethod.co2}" onclick="detailsButton(event)">Learn More</button>` +
     `</div></div></div></div>`;
   rowEl.append(cardElText);
