@@ -58,10 +58,29 @@
   <!-- Main content -->
   <main class="container">
     <h1 class="mt-5">You're going to <span class="minimized-text" id="destination-name"></span> by <span class="minimized-text" id="transport-method"></span></h1>
-    <h4><span id="travel-text"></span> <span id="travel-distance"></span> <button type="button" class="btn btn-light" id="sendtomobile"> Send directions to mobile <img src='assets\icons\smartphone.png' width="20" height="20"></button> </h4> 
+    <h4><span id="travel-text"></span> <span id="travel-distance"></span> <button type="button" class="btn btn-light" id="show-directions"> Show turn by turn directions</button> </h4> 
+    <!-- <img src='assets\icons\smartphone.png' width="20" height="20">  THIS WAS THE MOBILE ICON, I DIDN'T WANT TO LOSE IT -->
     <h2 class="mt-5">Your environmental impact</h2>
     <h6 class="green-text"><img src="assets\icons\medal.png" width="20" height="20"> You're making the <span id="method-ranking"></span> most environmentally conscious choice! </h6>
-    <h2 class="mt-5 mb-5">How that compares to your other options</h2>
+    <h2 class="my-5">Your relative environmental impact</h2>
+    <div id="relative-metric-container">
+      <div class="row">
+        <div class="col-4 text-center d-flex flex-column justify-content-center">
+          <p id="co2-amount" class="green">24</p>
+          <p>g CO<sup>2</sup></p>
+        </div>
+        <div class="col-4 d-flex flex-column justify-content-center">
+          equals =
+          <!-- THIS IS WHERE THE NICE GRAPHIC WILL GO, PLACEHOLDER FOR NOW -->
+        </div>
+        <div id="co2-metrics" class="col-4 d-flex flex-column justify-content-between">
+
+        </div>
+
+      </div>
+
+    </div>
+    <h2 class="my-5">How that compares to your other options</h2>
     <div id="graph-container">
       <canvas id="emissionsGraph"></canvas>
     </div>

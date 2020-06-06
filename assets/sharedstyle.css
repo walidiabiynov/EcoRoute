@@ -90,3 +90,12 @@
 .results-card {
   max-width: 250px;
 }
+
+#relative-metric-container .text-center p {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+#co2-amount{
+  font-size: 3rem;
+}

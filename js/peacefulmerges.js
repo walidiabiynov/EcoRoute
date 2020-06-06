@@ -112,3 +112,14 @@ console.log(chosenRate)
 if (chosenRate != 0){
 
 }
+
+
+//TURN BY TURN DIRECTIONS
+$('#show-directions').click(function(event){
+    console.log(`I was clicked, something is working`)
+    //Expand frame, render line by line instructions in foreach
+})
+
+
+//ADDING METRICS
+$('#co2-amount').text(chosenRate)
