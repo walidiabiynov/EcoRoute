@@ -8,9 +8,13 @@ body {
 }
 
 a {
-  color: #008000;
+  color: #00CC76;
   text-decoration: none;
   font-weight: 700;
+}
+
+a:hover {
+  color: gray;
 }
 
 .click-logo {
@@ -19,9 +23,16 @@ a {
   width: 100%;
 }
 
+.btn-primary, .btn-success {
+  color: #fff;
+  background-color: #00CC76;
+  border-color: #00CC76;
+}
+
 /* Navbar */
-.nav-light {
+.navbar {
   margin-bottom: 0;
+  background-color: #092327!important;
 }
 
 /* Landing page header styles */
@@ -87,17 +98,21 @@ a {
 }
 
 .btn-transport:hover, .btn-car:hover {
-  background-color: green; 
-  border-color: green;
+  background-color: #00CC76; 
+  border-color: #00CC76;
 }
 
 .dropdown-item.active, .dropdown-item:active {
-  background-color: green; 
+  background-color: #00CC76; 
 }
 
 .units {
   font-size: 0.8rem;
   color: gray;
+}
+
+.vehicle-choice {
+  display: inline-block;
 }
 
 /* Details styles */
@@ -110,13 +125,22 @@ a {
   /* font-size: 2rem; */
 }
 
+/* Results styles */
+.jumbotron {
+  border-radius: 3px;
+}
+
+.jumbotron-fluid {
+  background-color: #092327;
+}
+
 /* Footer styles */
 .footer {
   text-align: center;
 }
 
 .green-text, .green {
-  color: #008000;
+  color: #00CC76;
 }
 
 .bold {
@@ -151,4 +175,10 @@ a {
     width: 100%;
   }
   
+}
+
+@media only screen and (max-width: 450px) {
+  .divider {
+    display: none;
+  }
 }

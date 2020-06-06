@@ -106,13 +106,13 @@
 
 
   <!-- Navbar -->
-  <nav class="navbar navbar-light bg-light">
+  <nav class="navbar">
     <a class="navbar-brand" href="#">
       <img src="assets\icons\nature.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
       Eco App
     </a>
     <div class="nav-item">
-        <a class="nav-link" href="#">About</a>
+        <a class="nav-link" href="./#about">About</a>
     </div>
   </nav>
   <!-- Map container -->
@@ -120,10 +120,10 @@
   <!-- User input -->
   <div class="container">
     <!-- Destination -->
-    <h2 class="mt-5 mb-5">Where you're going</h2>
-      <p id="destination" class='text-center location-feedback'></p>
+    <h2 class="mt-5 mb-2">Where you're going</h2>
+      <p id="destination" class='text-left green location-feedback'></p>
     <!-- Origin -->
-    <h2 class="mt-5 mb-5">Your starting point</h2>
+    <h2 class="mt-5 mb-3">Your starting point</h2>
       <div class="input-group mb-3">
           <button type="button" class="btn btn-light" id="geolocation-search"> Use my location <img src='assets\icons\location.png' width="20" height="20"></button>
           <input id="origin-search-field" type="text" class="form-control" placeholder="Where are you?" aria-label="Destination" aria-describedby="button-addon2">
@@ -131,32 +131,34 @@
             <button type="button" class="btn btn-success" id="search-submit-button"><img src="assets\icons\search.png" width="20" height="20"/></button>
           </div>
       </div>
-      <p id="origin" class="text-center location-feedback"></p>
+      <p id="origin" class="text-left green location-feedback"></p>
     <!-- Transport options -->
     <div id="choice-buttons">
-    <h2 class="mt-5 mb-5">Which methods of transport?</h2>
+    <h2 class="mt-5 mb-3">Which methods of transport?</h2>
     <div class="mb-2">
       <button id="walk" onclick="triggerCalculation(event)" type="button" class="btn btn-primary btn-transport">Walk</button>
       <button id="bike" onclick="triggerCalculation(event)" type="button" class="btn btn-primary btn-transport">Bike</button>
       <button id="pt" onclick="triggerCalculation(event)" type="button" class="btn btn-primary btn-transport">Public Transport</button>
     </div>
-    <div class="mb-2 vehicle-choice">
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle btn-car" type="button" id="car" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Car
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a id="micro-car" onclick="triggerCalculation(event)" class="dropdown-item">Micro Car</a>
-          <a id="compact-car" onclick="triggerCalculation(event)" class="dropdown-item">Compact Car</a>
-          <a id="sedan" onclick="triggerCalculation(event)" class="dropdown-item">Sedan</a>
-          <a id="suv" onclick="triggerCalculation(event)" class="dropdown-item">SUV</a>
+    <div class="car-block mt-3 mb-2">
+      <div class="mb-2 vehicle-choice">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle btn-car" type="button" id="car" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Car
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a id="micro-car" onclick="triggerCalculation(event)" class="dropdown-item">Micro Car</a>
+            <a id="compact-car" onclick="triggerCalculation(event)" class="dropdown-item">Compact Car</a>
+            <a id="sedan" onclick="triggerCalculation(event)" class="dropdown-item">Sedan</a>
+            <a id="suv" onclick="triggerCalculation(event)" class="dropdown-item">SUV</a>
+          </div>
         </div>
       </div>
-    </div>
-    <div id="fuel-selector" class="btn-group mb-2" role="group" aria-label="Basic example">
-      <button id="gasoline" onclick="checkVehicleChoice(event)" class="btn btn-secondary btn-fuel">Gasoline</button>
-      <button id="diesel" onclick="checkVehicleChoice(event)" class="btn btn-secondary btn-fuel">Diesel</button>
-      <button id="electric" onclick="checkVehicleChoice(event)" class="btn btn-secondary btn-fuel">Electric</button>
+      <div id="fuel-selector" class="btn-group" role="group" aria-label="Basic example">
+        <button id="gasoline" onclick="checkVehicleChoice(event)" class="btn btn-secondary btn-fuel">Gasoline</button>
+        <button id="diesel" onclick="checkVehicleChoice(event)" class="btn btn-secondary btn-fuel">Diesel</button>
+        <button id="electric" onclick="checkVehicleChoice(event)" class="btn btn-secondary btn-fuel">Electric</button>
+      </div>
     </div>
     <div>
       <button id="truck" onclick="triggerCalculation(event)" type="button" class="btn btn-primary btn-transport">Commercial Truck (Diesel)</button>
@@ -175,7 +177,7 @@
         <p class="footer">Built with <i class="fa green-text">&#xf06c;</i> in Toronto | &copy; 2020</p>
     </div>
   </footer>
-  
+
 <script src="./js/modals.js"></script>
 <script src="./js/mapping.js"></script>
 <script src="./js/query.js"></script>

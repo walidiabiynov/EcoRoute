@@ -46,25 +46,25 @@
     </div>
   </div>
   <!-- Navbar -->
-  <nav class="navbar navbar-light bg-light">
+  <nav class="navbar">
       <a class="navbar-brand" href="#">
         <img src="assets\icons\nature.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
         Eco App
       </a>
       <a class="nav-item">
-          <a class="nav-link" href="#">About</a>
+          <a class="nav-link" href="./#about">About</a>
       </a>
   </nav>
   <!-- Map -->
   <div id="map-container"></div>
   <!-- Main content -->
   <main class="container">
-    <h1 class="mt-5">You're going to <span class="minimized-text" id="destination-name"></span> by <span class="minimized-text" id="transport-method"></span></h1>
-    <h4><span id="travel-text"></span> <span id="travel-distance"></span> <button type="button" class="btn btn-light" id="show-directions"> Show turn by turn directions</button> </h4> 
+    <h2 class="mt-5">You're going to <span id="destination-name"></span> by <span id="transport-method"></span></h2>
+    <h5><span id="travel-text" class="green"></span> <span id="travel-distance"></span> <button type="button" class="btn btn-light" id="show-directions"> Show turn by turn directions</button> </h5> 
     <!-- <img src='assets\icons\smartphone.png' width="20" height="20">  THIS WAS THE MOBILE ICON, I DIDN'T WANT TO LOSE IT -->
-    <h2 class="mt-5">Your environmental impact</h2>
+    <h3 class="mt-5">Your environmental impact</h3>
     <h6 class="green-text"><img src="assets\icons\medal.png" width="20" height="20"> You're making the <span id="method-ranking"></span> most environmentally conscious choice! </h6>
-    <h2 class="my-5">Your relative environmental impact</h2>
+    <h3 class="my-5">Your relative environmental impact</h3>
     <div id="relative-metric-container">
       <div class="row">
         <div class="col-4 text-center d-flex flex-column justify-content-center">
@@ -82,31 +82,31 @@
       </div>
 
     </div>
-    <h2 class="my-5">How that compares to your other options</h2>
+    <h3 class="my-5">How that compares to your other options</h3>
     <div id="graph-container">
       <canvas id="emissionsGraph"></canvas>
     </div>
-  <h2 class="mt-5">Offset your impact</h2>
-  <h4 class="green">Consider donating to one of these organizations to offset your CO2 impact:</h4>
-  <div class="card-deck mb-5" id="orgGroup">
-      <div class="card">
-        <img class="card-img-top" src="assets\charities\DavidSuzukiFoundation.png" alt="Card image cap">
+    <h3 class="mt-5">Offset your impact</h3>
+    <h5 class="green mb-3">Consider donating to one of these organizations to offset your CO2 impact.</h5>
+    <div class="row mt-5">
+      <div class="col-sm-4 mb-2">
+          <a><img class="click-logo" src="./assets/img/dsf.jpg" alt="DSF"/></a>
       </div>
-      <div class="card">
-        <img class="card-img-top" src="assets\charities\cpawslogo.png" alt="Card image cap">
+      <div class="col-sm-4 mb-2">
+          <a><img class="click-logo" src="./assets/img/cpaws.jpg" alt="CPAWS"/></a>
       </div>
-      <div class="card">
-        <img class="card-img-top" src="assets\charities\EnvironmentalDefence.png" alt="Card image cap">
-      </div>
+      <div class="col-sm-4 mb-2">
+        <a><img class="click-logo" src="./assets/img/ed.jpg" alt="ED"/></a>
+    </div>
   </div>
-</main>
-<!-- Footer -->
-<footer class="mb-5">
-  <div class="container">
-      <hr>
-      <p class="footer">Built with <i class="fa green-text">&#xf06c;</i> in Toronto | &copy; 2020</p>
-  </div>
-</footer>
+  </main>
+  <!-- Footer -->
+  <footer class="mb-5">
+    <div class="container">
+        <hr>
+        <p class="footer">Built with <i class="fa green-text">&#xf06c;</i> in Toronto | &copy; 2020</p>
+    </div>
+  </footer>
 
 <script src="./js/modals.js"></script>
 <script src="./js/mapping.js"></script>
