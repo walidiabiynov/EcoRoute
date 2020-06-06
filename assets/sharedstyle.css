@@ -6,6 +6,21 @@
   margin-bottom: 0;
 }
 
+/* Parallax styles */
+.image-stage {
+  height: 400px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.parallax {
+  height: auto;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 /* Map styles */
 #map-container {
   width: 100%;

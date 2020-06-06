@@ -73,7 +73,7 @@
     <!-- Map header -->
     <div id="map-container" class="map-dim" style="height:300px;"></div>
         <div class="jumbotron">
-            <h1 class="display-4" style="text-align:center;">Where do you want to go today?</h1>
+            <h1 class="display-4">Where do you want to go today?</h1>
             <hr class="my-4">
             <div class="input-group mb-3">
                 <input id="destination-search-field" type="text" class="form-control" placeholder="Where to?" aria-label="Destination" aria-describedby="button-addon2">
@@ -84,31 +84,44 @@
         </div>
     </div>
     <!-- Main content -->
-    <main class="container">
-        <section>
-            <h2 class="display-8" style="text-align:center;">Making green choices when traveling -</br>We're here to help!</h2>
+    <main>
+        <section class="container">
+            <h2 class="display-8">Making green choices when traveling -</br>We're here to help!</h2>
             </br>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum blandit turpis. Nam ut finibus nunc. Vivamus quis congue nisi. Nam pulvinar pretium nisl eget tristique. Etiam a justo fringilla, convallis felis non, gravida metus. Vivamus in quam nibh. Donec eget iaculis erat, a blandit dolor.
-                Proin rhoncus orci eget egestas vehicula. Duis laoreet molestie congue. Aenean finibus tortor in ultricies pretium. Nunc blandit arcu et ligula auctor, nec dictum leo dignissim. Donec ultrices lacinia venenatis. In luctus dui nec erat congue eleifend at sit amet tellus. Maecenas blandit nunc a ullamcorper accumsan. Maecenas nec felis augue. Sed vitae erat neque. Mauris auctor placerat magna in euismod. Nunc nunc est, accumsan a felis eu, pharetra mollis est. Proin viverra egestas augue vitae aliquam. Curabitur non viverra risus. Nam sit amet vulputate lorem, non maximus lacus. Maecenas purus augue, ullamcorper in velit at, eleifend egestas neque.Donec ipsum metus, dictum id libero in, placerat elementum mi. Aenean a mollis est. Donec ut sagittis lectus. Morbi porta quam at vehicula hendrerit. Praesent sit amet porta lorem. Nunc at nisl aliquam, aliquam nunc vel, luctus nibh. Quisque aliquam placerat turpis pretium scelerisque.
             </p>
         </section>
-        <img src='assets\splash pics\forest.jpg' class="container-fluid">
-        <section>
+        <div class="image-stage">
+            <img class="parallax" src='assets\splash pics\forest.jpg' alt="image">
+        </div>
+        <section class="container">
             <h2 class="display-8" style="text-align:left;">Our Data sources</h2>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum blandit turpis. Nam ut finibus nunc. Vivamus quis congue nisi. Nam pulvinar pretium nisl eget tristique. Etiam a justo fringilla, convallis felis non, gravida metus. Vivamus in quam nibh. Donec eget iaculis erat, a blandit dolor.
-                Proin rhoncus orci eget egestas vehicula. Duis laoreet molestie congue. Aenean finibus tortor in ultricies pretium. Nunc blandit arcu et ligula auctor, nec dictum leo dignissim. Donec ultrices lacinia venenatis. In luctus dui nec erat congue eleifend at sit amet tellus. Maecenas blandit nunc a ullamcorper accumsan. Maecenas nec felis augue. Sed vitae erat neque. Mauris auctor placerat magna in euismod. Nunc nunc est, accumsan a felis eu, pharetra mollis est. Proin viverra egestas augue vitae aliquam. Curabitur non viverra risus. Nam sit amet vulputate lorem, non maximus lacus. Maecenas purus augue, ullamcorper in velit at, eleifend egestas neque.Donec ipsum metus, dictum id libero in, placerat elementum mi. Aenean a mollis est. Donec ut sagittis lectus. Morbi porta quam at vehicula hendrerit. Praesent sit amet porta lorem. Nunc at nisl aliquam, aliquam nunc vel, luctus nibh. Quisque aliquam placerat turpis pretium scelerisque.
             </p>
         </section>
-        <img src='assets\splash pics\ocean.jpg' class="container-fluid" height="450">
-        <section>
-            <h2 class="display-8" style="text-align:center;">The Faces behind Eco App</h2>
+        <div class="image-stage">
+            <img class="parallax" src='assets\splash pics\ocean.jpg' alt="image">
+        </div>
+        <section class="container">
+            <h2 class="display-8">The Faces behind Eco App</h2>
         </section>
+    </main>
 
 <script src="./js/modals.js"></script>
 <script src="./js/mapping.js"></script>
 <script src="./js/index.js"></script>
+<!-- Parallax script for hero images, source: https://simpleparallax.com/ -->
+<script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@5.2.0/dist/simpleParallax.min.js"></script>
+<script>
+    var images = document.querySelectorAll('.parallax');
+    new simpleParallax(images, {
+    scale: 1.5,
+    overflow: false,
+    orientation: "down",
+  });
+  </script>
 </body>
 
 </html>
