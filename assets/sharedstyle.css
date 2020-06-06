@@ -86,3 +86,7 @@
 .info-text {
   color: #8c8c8c;
 }
+
+.results-card {
+  max-width: 250px;
+}

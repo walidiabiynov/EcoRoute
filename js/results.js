@@ -38,7 +38,7 @@ chosenTransportMethods.forEach(function (transportMethod, index) {
   distances.push(loadFromSession(`distance-${transportMethodId}`));
 
   let cardElText =
-    `<div class="col-sm-3"><div class="card"><div class="card-body">` +
+    `<div class=""><div class="card results-card mx-3"><div class="card-body">` +
     `<h5 class="card-title">${
       transportNameVals[transportNameKeys.indexOf(transportMethodId)]
     }</h5>` +
