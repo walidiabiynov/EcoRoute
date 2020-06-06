@@ -16,7 +16,7 @@ var chart = new Chart(ctx, {
     data: {
         labels: allModes,
         datasets: [{
-            label: 'CO2 Emmisions',
+            label: "CO₂ Emissions in grams",
             backgroundColor: 'rgb(20, 125, 20)',
             borderColor: 'rgb(20, 125, 20)',
             borderWidth: 1,
@@ -24,21 +24,47 @@ var chart = new Chart(ctx, {
             }]
         },
         options: {
+            animation: {
+                duration: 1,
+                onProgress: function() {
+                  var chartInstance = this.chart,
+                    ctx = chartInstance.ctx;
+          
+                  ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+                  ctx.textAlign = 'center';
+                  ctx.textBaseline = 'bottom';
+        
+                  this.data.datasets.forEach(function(dataset, i) {
+                    var meta = chartInstance.controller.getDatasetMeta(i);
+                    meta.data.forEach(function(bar, index) {
+                      var data = dataset.data[index];
+                      ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                    });
+                  });
+                }
+            },
+            legend: {
+                display: true
+            },
+            tooltips: {
+                enabled: false
+            },
             scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
+                xAxes: [{
+                    gridLines: {
+                        display: false
                     }
-                }]
+                }],
+                yAxes: [{
+                    gridLines: {
+                        display: false
+                    },
+                    ticks: {
+                        display: false
+                    }
+                }],
             }
         }
     });
-    
-// Create 3 comparison values for context of co2 impact
-    // 1 tree can remove 48 lbs of co2 in a year https://www.co2meter.com/blogs/news/could-global-co2-levels-be-reduced-by-planting-trees#:~:text=A%20typical%20hardwood%20tree%20can,it%20reaches%2040%20years%20old.
-    // Find no. 2
-    // Find no. 3 
-
-
 
 //Filling in map content
