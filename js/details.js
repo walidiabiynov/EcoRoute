@@ -17,8 +17,8 @@ var chart = new Chart(ctx, {
         labels: allModes,
         datasets: [{
             label: "CO₂ Emissions in grams",
-            backgroundColor: 'rgb(20, 125, 20)',
-            borderColor: 'rgb(20, 125, 20)',
+            backgroundColor: 'rgb(0, 204, 118)',
+            borderColor: 'rgb(0, 204, 118)',
             borderWidth: 1,
             data: co2Values
             }]

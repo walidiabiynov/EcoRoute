@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Details</title>
+    <title>EcoRoute - Trip details</title>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script
       src="https://js.api.here.com/v3/3.1/mapsjs-core.js"
@@ -18,6 +20,10 @@
       type="text/javascript"
       charset="utf-8"
     ></script>
+<<<<<<< HEAD
+=======
+    <link rel="stylesheet" href="./css/sharedstyle.css">
+>>>>>>> master
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <link rel="stylesheet" href="./assets/sharedstyle.css">
 </head>
@@ -44,25 +50,30 @@
     </div>
   </div>
   <!-- Navbar -->
-  <nav class="navbar navbar-light bg-light">
-      <a class="navbar-brand" href="#">
+  <nav class="navbar">
+      <a class="navbar-brand" href="./">
         <img src="assets\icons\nature.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-        Eco App
+        EcoRoute
       </a>
       <a class="nav-item">
-          <a class="nav-link" href="#">About</a>
+          <a class="nav-link" href="./#about">About</a>
       </a>
   </nav>
   <!-- Map -->
   <div id="map-container"></div>
   <!-- Main content -->
   <main class="container">
-    <h1 class="mt-5">You're going to <span class="minimized-text" id="destination-name"></span> by <span class="minimized-text" id="transport-method"></span></h1>
-    <h4><span id="travel-text"></span> <span id="travel-distance"></span> <button type="button" class="btn btn-light" id="show-directions"> Show turn by turn directions</button> </h4> 
+    <p class="go-back mt-5 mb-3"><a href="./results.html">&larr; Back to results</a></p>
+    <h2>You're going to <span id="destination-name"></span> by <span id="transport-method"></span></h2>
+    <h5><span id="travel-text" class="green"></span> <span id="travel-distance"></span> <button type="button" class="btn btn-light" id="show-directions"> Show turn by turn directions</button> </h5> 
     <!-- <img src='assets\icons\smartphone.png' width="20" height="20">  THIS WAS THE MOBILE ICON, I DIDN'T WANT TO LOSE IT -->
-    <h2 class="mt-5">Your environmental impact</h2>
+    <div class="divider-sm"></div>
+    <!-- Environmental impact -->
+    <h3 class="mt-5">Your environmental impact</h3>
     <h6 class="green-text"><img src="assets\icons\medal.png" width="20" height="20"> You're making the <span id="method-ranking"></span> most environmentally conscious choice! </h6>
-    <h2 class="my-5">Your relative environmental impact</h2>
+    <div class="divider-sm"></div>
+    <!-- Comparison values -->
+    <h3 class="my-5">Your relative environmental impact</h3>
     <div id="relative-metric-container">
       <div class="row mx-0">
         <div class="col-3 mx-0 text-center d-flex flex-column justify-content-center">
@@ -78,24 +89,37 @@
       </div>
 
     </div>
-    <h2 class="my-5">How that compares to your other options</h2>
+    <div class="divider-sm"></div>
+    <!-- Graph -->
+    <h3 class="my-5">How that compares to your other options</h3>
     <div id="graph-container">
       <canvas id="emissionsGraph"></canvas>
     </div>
-  <h2 class="mt-5">Offset your impact</h2>
-  <h4 class="green">Consider donating to one of these organizations to offset your CO2 impact:</h4>
-  <div class="card-deck mb-5" id="orgGroup">
-      <div class="card">
-        <img class="card-img-top" src="assets\charities\DavidSuzukiFoundation.png" alt="Card image cap">
+    <div class="divider-sm"></div>
+    <!-- Charity section -->
+    <h3 class="mt-5">Offset your impact</h3>
+    <h5 class="green mb-3">Consider donating to one of these organizations to offset your CO2 impact.</h5>
+    <div class="row mt-5">
+      <div class="col-sm-4 mb-2">
+          <a href="https://davidsuzuki.org/" target="_blank"><img class="click-logo" src="./assets/img/dsf.jpg" alt="DSF"/></a>
       </div>
-      <div class="card">
-        <img class="card-img-top" src="assets\charities\cpawslogo.png" alt="Card image cap">
+      <div class="col-sm-4 mb-2">
+          <a href="https://cpaws.org/" target="_blank"><img class="click-logo" src="./assets/img/cpaws.jpg" alt="CPAWS"/></a>
       </div>
-      <div class="card">
-        <img class="card-img-top" src="assets\charities\EnvironmentalDefence.png" alt="Card image cap">
-      </div>
-  </div>
-</main>
+      <div class="col-sm-4 mb-2">
+        <a href="https://environmentaldefence.ca/" target="_blank"><img class="click-logo" src="./assets/img/ed.jpg" alt="ED"/></a>
+    </div>
+    </div>
+    <div class="divider"></div>
+    <p class="go-back mt-3 mb-5"><a href="./results.html">&larr; Back to results</a></p>
+  </main>
+  <!-- Footer -->
+  <footer class="mb-5">
+    <div class="container">
+        <hr>
+        <p class="footer">Built with <i class="fa green-text">&#xf06c;</i> in Toronto | &copy; 2020</p>
+    </div>
+  </footer>
 
 <script src="./js/modals.js"></script>
 <script src="./js/mapping.js"></script>

@@ -33,8 +33,6 @@ a:hover {
   border-color: #00CC76;
 }
 
-<<<<<<< HEAD
-=======
 .btn-primary:hover, .btn-success:hover, .btn-green:hover {
   background-color: #4a4a4a;
   border-color: #4a4a4a;
@@ -45,7 +43,6 @@ a:hover {
   font-size: large;
 }
 
->>>>>>> master
 /* Navbar */
 .navbar {
   margin-bottom: 0;
@@ -109,23 +106,11 @@ a:hover {
 }
 
 /* User choice styles */
-.btn-transport,
-.btn-car {
-  background-color: #4a4a4a;
+.btn-transport, .btn-car {
+  background-color: #4a4a4a; 
   border-color: #4a4a4a;
 }
 
-<<<<<<< HEAD
-.btn-transport:hover,
-.btn-car:hover {
-  background-color: green;
-  border-color: green;
-}
-
-.dropdown-item.active,
-.dropdown-item:active {
-  background-color: green;
-=======
 .btn-transport:hover, .btn-car:hover {
   background-color: #00CC76; 
   border-color: #00CC76;
@@ -133,7 +118,6 @@ a:hover {
 
 .dropdown-item.active, .dropdown-item:active {
   background-color: #00CC76; 
->>>>>>> master
 }
 
 .units {
@@ -155,13 +139,6 @@ a:hover {
   /* font-size: 2rem; */
 }
 
-<<<<<<< HEAD
-/* Media queries */
-@media only screen and (max-width: 1200px) {
-  #graph-container {
-    width: 100%;
-  }
-=======
 /* Results styles */
 .jumbotron {
   border-radius: 3px;
@@ -178,7 +155,6 @@ a:hover {
 
 .green-text, .green {
   color: #00CC76;
->>>>>>> master
 }
 
 .bold {
@@ -199,63 +175,10 @@ a:hover {
   margin-top: 0;
 }
 
-#co2-amount {
+#co2-amount{
   font-size: 3rem;
 }
 
-<<<<<<< HEAD
-#co2-metrics ul li {
-  position:relative; /* so that pseudoelements are positioned relatively to their "li"s*/
-  /* use padding-bottom instead of margin-bottom.*/ 
-  margin-bottom: 0; /* This overrides previously specified margin-bottom */
-  padding-bottom: 2.5em;
-}
-
-#co2-metrics ul{
-  list-style-type: "" !important;
-  font-size: 1.6vw;
-  /* line-height: 4.6vw; */
-}
-/* 
-#co2-metrics li::before {
-  content: "\2022";
-  font-size: 2.6vw;
-  color: green;
-  font-weight: bold;
-  display: inline-block;
-  width: 1.5em;
-  margin-left: -1em;
-  padding: 0 0 0 0;
-} */
-#co2-metrics ul li:after {
-  /* bullets */
-  content: "\2022";
-  color: green;
-  font-weight: bold;
-  font-size: 2.6vw;
-  position: absolute;
-  left: -21px; /*adjust manually*/
-  top: -15px;
-}
-
-
-#co2-metrics ul li:before {
-  /* lines */
-  content:"";
-  position: absolute;
-  left: -16px; /* adjust manually */
-  border-left: 2px solid rgba(128, 128, 128, 0.637);
-  height: 100%;
-  width: 1px;
-}
-
-#co2-metrics ul li:first-child:before {
-  top: 6px; 
-}
-
-#co2-metrics ul li:last-child:before {
-  height: 6px;
-=======
 /* Media queries */
 @media only screen and (max-width: 1200px) {
   #graph-container {
@@ -273,4 +196,3 @@ a:hover {
     display: none;
   }
 }
->>>>>>> master
