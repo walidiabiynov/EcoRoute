@@ -130,15 +130,19 @@ fuelSelection.addEventListener("click", function(e){
                 switch(mode){
                     case "micro-car":
                         index = 0;
+                        console.log(index);
                         break;
                     case "compact-car":
                         index = 1;
+                        console.log(index);
                         break;
                     case "sedan":
                         index = 2;
+                        console.log(index);
                         break;
                     case "suv":
                         index = 3;
+                        console.log(index);
                         break;
                 }
                 // We default to gasoline if the user does not make a fuel choice
@@ -150,20 +154,26 @@ fuelSelection.addEventListener("click", function(e){
                         }
                         switch(fuelType){
                             case "gasoline":
+                                console.log(options[0].coEmissionGasoline[index])
                                 return options[0].coEmissionGasoline[index];
                             case "diesel":
+                                console.log(options[0].coEmissionDiesel[index])
                                 return options[0].coEmissionDiesel[index];
                             case "electric":
+                                console.log(options[0].coEmissionElectric)
                                 return options[0].coEmissionElectric;
                         }
                     } else {
                         fuelType = "gasoline";
+                        console.log(options[0].coEmissionGasoline[index])
                         return options[0].coEmissionGasoline[index];
                     }
                 }
                 carEmission = getCarEmission();
-                distance = sessionStorage.getItem("distance-car");
+                distance = loadFromSession("distance-car");
+                console.log(distance);
                 inputObject = {id: mode, em: carEmission, distance: distance};
+                console.log(inputObject);
                 validateAndPush();
         }
         resultsList = [];
