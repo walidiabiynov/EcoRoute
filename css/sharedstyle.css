@@ -27,10 +27,20 @@ a:hover {
   width: 100%;
 }
 
-.btn-primary, .btn-success {
+.btn-primary, .btn-success, .btn-green {
   color: #fff;
   background-color: #00CC76;
   border-color: #00CC76;
+}
+
+.btn-primary:hover, .btn-success:hover, .btn-green:hover {
+  background-color: #4a4a4a;
+  border-color: #4a4a4a;
+}
+
+.go-back, a.go-back {
+  color: gray;
+  font-size: large;
 }
 
 /* Navbar */
