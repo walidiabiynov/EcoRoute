@@ -69,7 +69,7 @@ fuelSelection.addEventListener("click", function(e){
             } 
             if(!shouldRemove){
                 userInput.push(inputObject);
-                document.getElementById("car").style = "background-color: green; border-color: green;";
+                document.getElementById("car").style = "background-color: #00CC76; border-color: #00CC76;";
             }
         } else {
             var check = userInput.findIndex(object => inputObject.id === object.id);
@@ -79,7 +79,7 @@ fuelSelection.addEventListener("click", function(e){
             } 
             if(!shouldRemove) {
                 userInput.push(inputObject);
-                document.getElementById(`${inputObject.id}`).style = "background-color: green; border-color: green;";
+                document.getElementById(`${inputObject.id}`).style = "background-color: #00CC76; border-color: #00CC76;";
             }
         }
     }
