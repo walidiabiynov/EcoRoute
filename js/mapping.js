@@ -255,7 +255,7 @@ function renderRoute(map, arrayOfPoints) {
     point = point.split(",");
     linestring.pushLatLngAlt(point[0], point[1]);
   });
-  let polyline = new H.map.Polyline(linestring, { style: { lineWidth: 3 } }); // TODO change line styling
+  let polyline = new H.map.Polyline(linestring, { style: { lineWidth: 3, fillColor: "rgba(0, 128, 0, 0.4)", strokeColor: "rgba(0, 128, 0, 0.8)",  } }); // TODO change line styling
   //Adding a marker to first and last point
 
   //NOTE If we want a marker at each point along the path, uncomment this code and comment out the first and last setting
