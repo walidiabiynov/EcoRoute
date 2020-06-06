@@ -115,8 +115,8 @@ if (chosenRate != 0) {
   comparators.forEach(function (comparator) {
     comparatorRate = (chosenRate / comparator.rate).toFixed(2);
     console.log(comparatorRate, "comp rate", comparator);
-    $("#co2-metrics").append(
-        `<p><span class="info-text">${comparatorRate}</span>${comparator.description}</p>`);
+    $("#co2-metrics ul").append(
+        `<li><span class="info-text">${comparatorRate}</span>${comparator.description}</li>`);
   });
 }
 
