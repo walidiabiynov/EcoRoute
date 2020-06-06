@@ -6,6 +6,21 @@
   margin-bottom: 0;
 }
 
+/* Parallax styles */
+.image-stage {
+  height: 400px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.parallax {
+  height: auto;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 /* Map styles */
 #map-container {
   width: 100%;
@@ -42,8 +57,22 @@
   color: gray;
 }
 
+/* Details styles */
+#graph-container {
+  width: 60%;
+}
+
+.green {
+  color: green;
+}
+
 .minimized-text {
   font-style: italic;
   /* font-size: 2rem; */
-  
 }
+
+/* Media queries */
+@media only screen and (max-width: 1200px) {
+  #graph-container {
+    width: 100%;
+  }

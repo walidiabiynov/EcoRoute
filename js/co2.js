@@ -1,5 +1,5 @@
 // Create input variables
-// var distance; // Has to be in km, will be taken from HERE output
+var distance; // Has to be in km, will be taken from HERE output
 //     // Placeholder input for testing
 //     sessionStorage.setItem("distance-truck", 4);
 //     sessionStorage.setItem("distance-car", 3);
