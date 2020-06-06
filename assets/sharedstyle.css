@@ -1,5 +1,23 @@
 /* Document styles */
+body {
+  font-family: 'Comfortaa', sans-serif;
+}
 
+.divider {
+  height: 50px;
+}
+
+a {
+  color: #008000;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.click-logo {
+  border: 1px solid gray;
+  border-radius: 3px;
+  width: 100%;
+}
 
 /* Navbar */
 .nav-light {
@@ -62,13 +80,14 @@
   width: 60%;
 }
 
-.green {
-  color: green;
-}
-
 .minimized-text {
   font-style: italic;
   /* font-size: 2rem; */
+}
+
+/* Footer styles */
+.footer {
+  text-align: center;
 }
 
 /* Media queries */
@@ -79,8 +98,12 @@
   
 }
 
-.green-text {
+.green-text, .green {
   color: #008000;
+}
+
+.bold {
+  font-weight: 700;
 }
 
 .info-text {

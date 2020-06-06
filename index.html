@@ -7,7 +7,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script
       src="https://js.api.here.com/v3/3.1/mapsjs-core.js"
       type="text/javascript"
@@ -64,7 +66,7 @@
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="#">
             <img src="assets\icons\nature.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-            Eco App
+            <b>EcoRoute</b>
         </a>
         <a class="nav-item">
             <a class="nav-link" href="#">About</a>
@@ -85,26 +87,56 @@
     </div>
     <!-- Main content -->
     <main>
+        <!-- Summary text -->
         <section class="container mt-5 mb-5">
-            <h2 class="display-8">Making green choices when traveling -</br>We're here to help!</h2>
-            </br>
+            <div class="divider"></div>
+            <h2 class="mb-3">Making green choices when traveling—we're here to help!</h2>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum blandit turpis. Nam ut finibus nunc. Vivamus quis congue nisi. Nam pulvinar pretium nisl eget tristique. Etiam a justo fringilla, convallis felis non, gravida metus. Vivamus in quam nibh. Donec eget iaculis erat, a blandit dolor.
+                EcoRoute is here to help you make <span class="green-text bold">environmentally conscious choices</span> when traveling 
+                from A to B. 
+                <br><br>
+                We're making it easy for you to learn more about the environmental impact of your travel choices by helping you 
+                <span class="green-text bold">understand the CO<sub>2</sub> emission</span> of your trip. Simply choose what travel options 
+                you want to consider for your route, enter your destination and origin, and we're giving you all the insights you need to 
+                make a green choice.
+                <br><br>
+                We're even taking the current weather into account to tell you if it's a good time to walk or take the bike. 
+                <span class="green-text bold">So get ready, hit the search button, and help us protect our planet!</span>
             </p>
+            <div class="divider"></div>
         </section>
+        <!-- Forest image stage -->
         <div class="image-stage">
             <img class="parallax" src='assets\splash pics\forest.jpg' alt="image">
         </div>
+        <!-- Data sources text -->
         <section class="container mt-5 mb-5">
-            <h2 class="display-8" style="text-align:left;">Our Data sources</h2>
+            <div class="divider"></div>
+            <h2 class="mb-3">Our Data sources</h2>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum blandit turpis. Nam ut finibus nunc. Vivamus quis congue nisi. Nam pulvinar pretium nisl eget tristique. Etiam a justo fringilla, convallis felis non, gravida metus. Vivamus in quam nibh. Donec eget iaculis erat, a blandit dolor.
+                This web application is using mapping and routing data from <a href="https://www.here.com/" target="_blank">HERE Technologies</a> 
+                to provide the routing for your trip and populate a visual map. 
+                <br><br>
+                We're also tapping into <a href="https://openweathermap.org/" target="_blank">OpenWeatherMap's API</a> to provide weather data 
+                for your trip. You can learn more about the APIs used on this website by clicking the links below.
             </p>
+            <div class="row mt-5">
+                <div class="col-sm-4">
+                    <a><img class="click-logo" src="./assets/img/here.jpg" alt="HERE"/></a>
+                </div>
+                <div class="col-sm-4">
+                    <a><img class="click-logo" src="./assets/img/openweathermap.jpg" alt="OpenWeatherMap"/></a>
+                </div>
+            </div>
+            <div class="divider"></div>
         </section>
+        <!-- Ocean image stage -->
         <div class="image-stage">
             <img class="parallax" src='assets\splash pics\ocean.jpg' alt="image">
         </div>
+        <!-- About us section -->
         <section class="container mt-5 mb-5">
+            <div class="divider"></div>
             <h2 class="display-8 mb-3">The Faces behind Eco App</h2>
             <div class="row">
                 <div class="col-sm-4">
@@ -112,7 +144,8 @@
                         <img src="..." class="card-img-top" alt="...">
                         <div class="card-body">
                           <h5 class="card-title">Name</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's 
+                              content.</p>
                           <a href="#" class="btn btn-primary">View Github profile</a>
                           <a href="#" class="btn btn-primary mt-2">Visit website</a>
                         </div>
@@ -123,7 +156,8 @@
                         <img src="..." class="card-img-top" alt="...">
                         <div class="card-body">
                           <h5 class="card-title">Name</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's 
+                              content.</p>
                           <a href="#" class="btn btn-primary">View Github profile</a>
                           <a href="#" class="btn btn-primary mt-2">Visit website</a>
                         </div>
@@ -134,15 +168,24 @@
                         <img src="..." class="card-img-top" alt="...">
                         <div class="card-body">
                           <h5 class="card-title">Name</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's 
+                              content.</p>
                           <a href="#" class="btn btn-primary">View Github profile</a>
                           <a href="#" class="btn btn-primary mt-2">Visit website</a>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="divider"></div>
         </section>
     </main>
+<!-- Footer -->
+<footer class="mb-5">
+    <div class="container">
+        <hr>
+        <p class="footer">Built with <i class="fa green-text">&#xf06c;</i> in Toronto | &copy; 2020</p>
+    </div>
+</footer>
 
 <script src="./js/modals.js"></script>
 <script src="./js/mapping.js"></script>
