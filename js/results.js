@@ -55,7 +55,7 @@ validateStorage([
 
 map = instantiateMap();
 
-destination = loadFromSession("destination");
+let destination = loadFromSession("destination");
 $("#destination-feedback").text(
     destination.address.label.split(",").slice(0, 2).toString()
 );
@@ -93,7 +93,7 @@ chosenTransportMethods.forEach(function (transportMethod, index) {
     }
 
 
-    let cardElText = `<div class="card results-card mx-3 my-2">
+    let cardElText = `<div class="card results-card mx-3 my-3">
             <div class="card-body">
               <h5 class="card-title text-center bold">${keyTranslator(transportMethodId)}</h5>
               <div class="card-text">
@@ -133,7 +133,7 @@ chosenTransportMethods.forEach(function (transportMethod, index) {
                   </div>
                 </div>
                 <div class="d-flex justify-content-center">
-                    <button class="btn btn-success" data-method="${transportMethod.mode}" data-rate="${transportMethod.co2}" onclick="detailsButton(event)">Learn More</button>
+                    <button class="btn btn-success" data-method="${transportMethod.mode}" data-rate="${transportMethod.co2}" onclick="detailsButton(event)">Get Details</button>
                 </div>
                 </div>
               </div>
@@ -160,16 +160,31 @@ chosenTransportMethods.forEach(function (transportMethod, index) {
     //     `</div></div></div></div>`;
     rowEl.append(cardElText);
 });
-
+let distancesAreEqual = false;
+let lastDistance;
 if (distances.length > 1) {
-    distances.sort((a, b) => b - a);
-    console.log("distances", distances);
-    $("#distance-range").text(
-        "between " +
-            distances[distances.length - 1].toFixed(1) +
-            " to " +
-            distances[0].toFixed(1)
-    );
+    //CHECKING IF ALL DISTANCES ARE EQUAL
+    distances.forEach(function(distance){
+        if (lastDistance){
+            if (Math.abs(lastDistance - distance) < 0.2){
+                distancesAreEqual = true
+            }
+        }
+        lastDistance = distance
+    })
+
+    if (! distancesAreEqual){
+        distances.sort((a, b) => b - a);
+        console.log("distances", distances);
+        $("#distance-range").text(
+            "between " +
+                distances[distances.length - 1].toFixed(1) +
+                " to " +
+                distances[0].toFixed(1)
+        );
+    } else {
+        $("#distance-range").text(distances[0].toFixed(1));
+    }
 } else {
     $("#distance-range").text(distances[0].toFixed(1));
 }
