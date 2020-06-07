@@ -21,12 +21,8 @@ async function submitSearch() {
     }
     saveToSession("origin", choice);
     $("#origin").text(choice.address.label.split(",").slice(0, 2).toString());
-    if (loadFromSession("destination") && loadFromSession("origin")) {
-        await getAllRoutes();
-    }
-    setTimeout(function () {
-        disableMissingRoutes();
-    }, 2500);
+    await getAllRoutes()
+    disableMissingRoutes()
     //TODO Add second marker to screen, zoom screen in some fashion to see both
     //I might be able to define a bounding box based on the highest and lowest lng and lat coords of each and do that to define the min bounding box of the map
 }
@@ -63,13 +59,9 @@ async function getLocation() {
             };
             $("#origin").text(`${position.lat}, ${position.lng}`); //TODO Reverse geocode and get location name, fill that here
             saveToSession("origin", { position: position });
-            if (loadFromSession("destination") && loadFromSession("origin")) {
-                await getAllRoutes();
-            }
+            await getAllRoutes()
+            disableMissingRoutes()
         });
-        setTimeout(function () {
-            disableMissingRoutes();
-        }, 2500);
     } else {
         console.log("Geolocation unsupported by this browser");
         //TODO RETURN MESSAGE IN MODAL TO USER THAT THIS BUTTON DOESN'T FUNCTION

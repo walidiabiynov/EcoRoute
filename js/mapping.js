@@ -198,7 +198,7 @@ function displayOptionsModal(choices, destinationOrOrigin) {
     });
 }
 
-function modalChoiceClicked(event) {
+async function modalChoiceClicked(event) {
     //This takes the modal's button press, logs the chosen choice, and moves to the next page
     choice = loadFromSession("locationChoices")[event.target.dataset.id];
     $("#locationChoiceModal").modal("hide");
@@ -208,12 +208,18 @@ function modalChoiceClicked(event) {
     } else {
         saveToSession("origin", choice);
         $("#origin").text(choice.address.label);
+        await getAllRoutes()
+        disableMissingRoutes()
     }
 }
 
 async function getAllRoutes() {
     //Once called this function loads origin and destination from sessionStorage tags origin and destination
     //It then iterates through all travel methods and processes a route through each
+    if (!(loadFromSession('destination') && loadFromSession('origin'))){
+        console.log('INSIDE GET ALL ROUTES => A destination and origin were not selected before route finding attempted')
+    }
+
     let origin = loadFromSession("origin");
     let destination = loadFromSession("destination");
     let transitTypes = [
