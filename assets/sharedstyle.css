@@ -33,8 +33,6 @@ a:hover {
   border-color: #00CC76;
 }
 
-<<<<<<< HEAD
-=======
 .btn-primary:hover, .btn-success:hover, .btn-green:hover {
   background-color: #4a4a4a;
   border-color: #4a4a4a;
@@ -45,7 +43,6 @@ a:hover {
   font-size: large;
 }
 
->>>>>>> master
 /* Navbar */
 .navbar {
   margin-bottom: 0;
@@ -115,7 +112,6 @@ a:hover {
   border-color: #4a4a4a;
 }
 
-<<<<<<< HEAD
 .btn-transport:hover,
 .btn-car:hover {
   background-color: green;
@@ -125,15 +121,6 @@ a:hover {
 .dropdown-item.active,
 .dropdown-item:active {
   background-color: green;
-=======
-.btn-transport:hover, .btn-car:hover {
-  background-color: #00CC76; 
-  border-color: #00CC76;
-}
-
-.dropdown-item.active, .dropdown-item:active {
-  background-color: #00CC76; 
->>>>>>> master
 }
 
 .units {
@@ -155,13 +142,11 @@ a:hover {
   /* font-size: 2rem; */
 }
 
-<<<<<<< HEAD
 /* Media queries */
 @media only screen and (max-width: 1200px) {
   #graph-container {
     width: 100%;
-  }
-=======
+  }}
 /* Results styles */
 .jumbotron {
   border-radius: 3px;
@@ -178,7 +163,6 @@ a:hover {
 
 .green-text, .green {
   color: #00CC76;
->>>>>>> master
 }
 
 .bold {
@@ -203,7 +187,6 @@ a:hover {
   font-size: 3rem;
 }
 
-<<<<<<< HEAD
 #co2-metrics ul li {
   position:relative; /* so that pseudoelements are positioned relatively to their "li"s*/
   /* use padding-bottom instead of margin-bottom.*/ 
@@ -255,7 +238,14 @@ a:hover {
 
 #co2-metrics ul li:last-child:before {
   height: 6px;
-=======
+}
+
+button:disabled,
+button[disabled] {
+  background-color: #cccccc !important;
+  color: #666666 !important;
+}
+
 /* Media queries */
 @media only screen and (max-width: 1200px) {
   #graph-container {
@@ -273,4 +263,3 @@ a:hover {
     display: none;
   }
 }
->>>>>>> master

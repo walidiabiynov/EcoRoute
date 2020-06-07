@@ -179,6 +179,14 @@ a:hover {
   font-size: 3rem;
 }
 
+button:disabled,
+button[disabled] {
+  background-color: #cccccc !important;
+  color: #666666 !important;
+}
+
+
+
 /* Media queries */
 @media only screen and (max-width: 1200px) {
   #graph-container {
