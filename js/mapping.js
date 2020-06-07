@@ -111,6 +111,8 @@ function instantiateMap() {
         }
     );
     window.addEventListener("resize", () => map.getViewPort().resize());
+    var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+    var ui = H.ui.UI.createDefault(map, defaultLayers);
     return map;
 }
 
