@@ -124,7 +124,7 @@ if (chosenRate == 0) {
             comparatorRate = (chosenRate / comparator.rate).toFixed(2);
             console.log(comparatorRate, "comp rate", comparator);
             $("#co2-metrics ul").append(
-                `<li><img class="co2icon mb-3" src="${comparator.src}" /><span class="green">${comparatorRate}</span>${comparator.description}</li>`
+                `<li><img class="co2icon mb-3" src="${comparator.src}" /><span class="green pl-3">${comparatorRate}</span>${comparator.description}</li>`
             );
         });
     }
@@ -145,7 +145,7 @@ if (chosenRate == 0) {
 //TURN BY TURN DIRECTIONS
 $("#show-directions").click(function (event) {
     console.log(`I was clicked, something is working`);
-    //Expand frame, render line by line instructions in foreach
+    window.location.href = "./directions.html"
 });
 
 //ADDING METRICS
