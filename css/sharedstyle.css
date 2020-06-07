@@ -43,6 +43,14 @@ a:hover {
   font-size: large;
 }
 
+.green-text, .green {
+  color: #00CC76;
+}
+
+.bold {
+  font-weight: 700;
+}
+
 /* Navbar */
 .navbar {
   margin-bottom: 0;
@@ -143,6 +151,15 @@ a:hover {
   width: 10%;
 }
 
+#relative-metric-container .text-center p {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+#co2-amount{
+  font-size: 3rem;
+}
+
 /* Results styles */
 .jumbotron {
   border-radius: 3px;
@@ -152,31 +169,18 @@ a:hover {
   background-color: #092327;
 }
 
-/* Footer styles */
-.footer {
-  text-align: center;
-}
-
-.green-text, .green {
-  color: #00CC76;
-}
-
-.bold {
-  font-weight: 700;
-}
-
 .results-card {
   max-width: 200px;
   min-width: 180px;
 }
 
-#relative-metric-container .text-center p {
-  margin-bottom: 0;
-  margin-top: 0;
+/* Footer styles */
+.footer {
+  text-align: center;
 }
 
-#co2-amount{
-  font-size: 3rem;
+.small {
+  font-size: small;
 }
 
 /* Media queries */
