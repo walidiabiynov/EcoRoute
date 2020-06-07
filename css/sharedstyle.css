@@ -192,6 +192,7 @@ a.go-back {
     font-size: 3rem;
 }
 
+#co2-metrics li {list-style-type: none !important;}
 
 button:disabled,
 button[disabled] {

@@ -122,7 +122,7 @@ if (chosenRate == 0) {
             comparatorRate = (chosenRate / comparator.rate).toFixed(2);
             console.log(comparatorRate, "comp rate", comparator);
             $("#co2-metrics ul").append(
-                `<li><span class="info-text">${comparatorRate}</span>${comparator.description}</li>`
+                `<li><span class="green ml-1">${comparatorRate}</span>${comparator.description}</li>`
             );
         });
     }
