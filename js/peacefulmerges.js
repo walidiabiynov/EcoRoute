@@ -81,19 +81,21 @@ $("#method-ranking").text(rankChoice(routeKey));
 //https://www.wired.co.uk/article/the-strange-war-against-cow-farts -> 240L is 132.96 g . day
 //https://www.bbc.com/news/science-environment-49349566 ->
 let comparisonMetrics = [
-  { description: " days of a ten year old tree's consumption", rate: 59.65 },
+  { description: " days of a ten year old tree's consumption", rate: 59.65, src: "./assets/icons/tree.png" },
   
-  { description: " days of methane from cow flatus", rate: 132.96 },
+  { description: " days of methane from cow flatus", rate: 132.96, src: "./assets/icons/cow.png" },
   {
     description: " passenger kilometres travelled on a domestic flight",
     rate: 133,
+    src: "./assets/icons/plane.png"
   },
   {
     description: " passenger kilometres travelled on a long haul flight",
     rate: 102,
+    src: "./assets/icons/plane.png"
   },
-  { description: " passenger kilometres travelled by rail", rate: 41 },
-  { description: " passenger kilometres travelled on the eurostar", rate: 6 },
+  { description: " passenger kilometres travelled by rail", rate: 41, src: "./assets/icons/train.png" },
+  { description: " passenger kilometres travelled on the eurostar", rate: 6, src: "./assets/icons/train.png" },
 ];
 
 //WE CAN ADD METRICS, I RANDOMLY CHOOSE THREE EACH TIME
@@ -116,7 +118,7 @@ if (chosenRate != 0) {
     comparatorRate = (chosenRate / comparator.rate).toFixed(2);
     console.log(comparatorRate, "comp rate", comparator);
     $("#co2-metrics").append(
-        `<p><span class="info-text">${comparatorRate}</span>${comparator.description}</p>`);
+        `<img class="co2icon" src="${comparator.src}" /><p><span class="green">${comparatorRate}</span>${comparator.description}</p>`);
   });
 }
 

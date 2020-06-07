@@ -139,6 +139,10 @@ a:hover {
   /* font-size: 2rem; */
 }
 
+.co2icon {
+  width: 15%;
+}
+
 /* Results styles */
 .jumbotron {
   border-radius: 3px;
@@ -159,10 +163,6 @@ a:hover {
 
 .bold {
   font-weight: 700;
-}
-
-.info-text {
-  color: #8c8c8c;
 }
 
 .results-card {
