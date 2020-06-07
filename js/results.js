@@ -6,6 +6,20 @@ function detailsButton(event) {
     window.location.href = "./details.html";
 }
 
+function processTime(timeGiven){
+    let hours = Math.floor(timeGiven / 3600)
+    timeGiven = timeGiven - (hours * 3600)
+    let minutes = Math.floor(timeGiven/60)
+    if (hours < 9){
+        hours = "0" + hours
+    }    
+    if (minutes < 10){
+        minutes = "0" + minutes
+    }
+    return `${hours}:${minutes}`
+}
+
+
 //-----------------------------------------
 validateStorage([
     "distance-car",
@@ -67,23 +81,71 @@ chosenTransportMethods.forEach(function (transportMethod, index) {
     console.log(loadFromSession(`distance-${transportMethodId}`).toFixed(1));
     distances.push(loadFromSession(`distance-${transportMethodId}`));
 
-    let cardElText =
-        `<div class=""><div class="card results-card mx-3 my-2"><div class="card-body">` +
-        `<h5 class="card-title">${
-            transportNameVals[transportNameKeys.indexOf(transportMethodId)]
-        }</h5>` +
-        `<div class="card-text">` +
-        `<p>CO<sup>2</sup>: <span class="info-text">${transportMethod.co2.toFixed(
-            1
-        )} <span class="units">g</span></span></p>` +
-        `<p>Time: <span class="info-text">${(
-            loadFromSession(`traveltime-${transportMethodId}`) / 60
-        ).toFixed(1)} minutes</span></p>` +
-        `<p>Distance: <span class="info-text">${loadFromSession(
-            `distance-${transportMethodId}`
-        ).toFixed(1)} km</span></p>` +
-        `<button class="btn btn-success" data-method="${transportMethod.mode}" data-rate="${transportMethod.co2}" onclick="detailsButton(event)">Learn More</button>` +
-        `</div></div></div></div>`;
+    let cardElText = `<div class="card results-card mx-3 my-2">
+            <div class="card-body">
+              <h5 class="card-title text-center bold">${keyTranslator(transportMethodId)}</h5>
+              <div class="card-text">
+                <div class="row">
+                  <div class="col-5 text-right">
+                    <p class="large-number">${transportMethod.co2.toFixed(1)}</p>
+                  </div>
+                  <div class="col-1 px-0 mx-0">
+                    <p class="green fancy-bullet">&#8226;</p>
+                  </div>
+                  <div class="col-5 text-left">
+                    <p class="info-text green">g CO<sup>2</sup></p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-5 text-right">
+                    <p class="large-number">${processTime(loadFromSession(`traveltime-${transportMethodId}`))}</p>
+                  </div>
+                  <div class="col-1 px-0 mx-0">
+                    <p class="green fancy-bullet">&#8226;</p>
+                  </div>
+                  <div class="col-5 text-left">
+                    <p class="info-text green">hr</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-5 text-right">
+                    <p class="large-number">${loadFromSession(
+                        `distance-${transportMethodId}`
+                    ).toFixed(1)}</p>
+                  </div>
+                  <div class="col-1 px-0 mx-0">
+                    <p class="green fancy-bullet">&#8226;</p>
+                  </div>
+                  <div class="col-5 text-left">
+                    <p class="info-text green">km</p>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-success" data-method="${transportMethod.mode}" data-rate="${transportMethod.co2}" onclick="detailsButton(event)">Learn More</button>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`;
+
+    // let cardElText =
+    //     `<div class=""><div class="card results-card mx-3 my-2"><div class="card-body">` +
+    //     `<h5 class="card-title">${
+    //         transportNameVals[transportNameKeys.indexOf(transportMethodId)]
+    //     }</h5>` +
+    //     `<div class="card-text">` +
+    //     `<p>CO<sup>2</sup>: <span class="info-text">${transportMethod.co2.toFixed(
+    //         1
+    //     )} <span class="units">g</span></span></p>` +
+    //     `<p>Time: <span class="info-text">${(
+    //         loadFromSession(`traveltime-${transportMethodId}`) / 60
+    //     ).toFixed(1)} minutes</span></p>` +
+    //     `<p>Distance: <span class="info-text">${loadFromSession(
+    //         `distance-${transportMethodId}`
+    //     ).toFixed(1)} km</span></p>` +
+    //     `<button class="btn btn-success" data-method="${transportMethod.mode}" data-rate="${transportMethod.co2}" onclick="detailsButton(event)">Learn More</button>` +
+    //     `</div></div></div></div>`;
     rowEl.append(cardElText);
 });
 

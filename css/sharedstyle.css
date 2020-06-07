@@ -125,6 +125,16 @@ a.go-back {
     font-size: 6vw;
 }
 
+.fancy-bullet {
+    /* Used in cards on results page */
+    font-size: 1.5rem;
+}
+
+.results-card p {
+    line-height: 3rem;
+}
+
+
 /* User choice styles */
 .btn-transport,
 .btn-car {
@@ -190,9 +200,19 @@ a.go-back {
 }
 
 .results-card {
-    max-width: 200px;
-    min-width: 180px;
+    /* max-width: 200px; */
+    min-width: 220px;
+    /* line-height: 1rem; */
 }
+
+.large-number {
+    font-size: 1.2rem;
+}
+
+.info-text {
+    font-size: 0.8rem;
+}
+
 
 /* Footer styles */
 .footer {
