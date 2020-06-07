@@ -30,7 +30,7 @@ function cardClick(event){
             i++
         }
         mapElements = map.getObjects()
-        mapElements.forEach(function(polyline){map.removeObject(polyline)})
+        mapElements.forEach(function(object){map.removeObject(object)})
         mapRoute(currentElement.dataset.method)
     }
 }
