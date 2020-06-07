@@ -99,29 +99,34 @@ let comparisonMetrics = [
     { description: " passenger kilometres travelled on the eurostar", rate: 6 },
 ];
 
-//WE CAN ADD METRICS, I RANDOMLY CHOOSE THREE EACH TIME
-
-//choosing three metrics, calculating the data relevant for each
-let i = 0;
-let comparators = [];
-while (i < 3) {
-    i++;
-    let randItem = Math.floor(Math.random() * comparisonMetrics.length);
-    comparators.push(comparisonMetrics[randItem]);
-    comparisonMetrics.splice(randItem, 1);
-}
-
-//now making array that has the comparisons
 let chosenRate = loadFromSession("detail-method-rate-chosen");
+//WE CAN ADD METRICS, I RANDOMLY CHOOSE THREE EACH TIME
+if (chosenRate == 0) {
+    $("#relative-section").addClass("d-none");
+    $("#zero-co2-note").removeClass("d-none");
+    $("#comparison-graph-title").removeClass("my-5")
+    $("#comparison-graph-title").addClass("mb-5")
+} else {
+    //choosing three metrics, calculating the data relevant for each
+    let i = 0;
+    let comparators = [];
+    while (i < 3) {
+        i++;
+        let randItem = Math.floor(Math.random() * comparisonMetrics.length);
+        comparators.push(comparisonMetrics[randItem]);
+        comparisonMetrics.splice(randItem, 1);
+    }
 
-if (chosenRate != 0) {
-    comparators.forEach(function (comparator) {
-        comparatorRate = (chosenRate / comparator.rate).toFixed(2);
-        console.log(comparatorRate, "comp rate", comparator);
-        $("#co2-metrics ul").append(
-            `<li><span class="info-text">${comparatorRate}</span>${comparator.description}</li>`
-        );
-    });
+    if (chosenRate != 0) {
+        comparators.forEach(function (comparator) {
+            comparatorRate = (chosenRate / comparator.rate).toFixed(2);
+            console.log(comparatorRate, "comp rate", comparator);
+            $("#co2-metrics ul").append(
+                `<li><span class="info-text">${comparatorRate}</span>${comparator.description}</li>`
+            );
+        });
+    }
+    $("#co2-amount").text(chosenRate);
 }
 
 //TURN BY TURN DIRECTIONS
@@ -131,4 +136,3 @@ $("#show-directions").click(function (event) {
 });
 
 //ADDING METRICS
-$("#co2-amount").text(chosenRate);

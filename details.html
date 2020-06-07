@@ -67,28 +67,32 @@
     <div class="divider-sm"></div>
     <!-- Environmental impact -->
     <h3 class="mt-5">Your environmental impact</h3>
-    <h6 class="green-text"><img src="assets\icons\medal.png" width="20" height="20"> You're making the <span id="method-ranking"></span> most environmentally conscious choice! </h6>
+    <h6 class="green"><img src="assets\icons\medal.png" width="20" height="20"> You're making the <span id="method-ranking"></span> most environmentally conscious choice! </h6>
+    <h6 id="zero-co2-note" class="green mt-4 font-italic d-none">Congratulations, your trip has no direct CO<sup>2</sup> emissions!</h6>
     <div class="divider-sm"></div>
     <!-- Comparison values -->
-    <h3 class="my-5">Your relative environmental impact</h3>
-    <div id="relative-metric-container">
-      <div class="row mx-0">
-        <div class="col-3 mx-0 text-center d-flex flex-column justify-content-center">
-          <p id="co2-amount" class="green">24</p>
-          <p>g CO<sup>2</sup></p>
-        </div>
-        <div id="co2-metrics" class="col-9 d-flex flex-column justify-content-between">
-          <ul>
-            
-          </ul>
-        </div>
+    <div id="relative-section">
 
+      <h3 class="my-5">Your relative environmental impact</h3>
+      <div id="relative-metric-container">
+        <div class="row mx-0">
+          <div class="col-3 mx-0 text-center d-flex flex-column justify-content-center">
+            <p id="co2-amount" class="green">0</p>
+            <p>g CO<sup>2</sup></p>
+          </div>
+          <div id="co2-metrics" class="col-9 d-flex flex-column justify-content-between">
+            <ul>
+              
+            </ul>
+          </div>
+  
+        </div>
+  
       </div>
-
     </div>
     <div class="divider-sm"></div>
     <!-- Graph -->
-    <h3 class="my-5">How that compares to your other options</h3>
+    <h3 id="comparison-graph-title" class="my-5">How that compares to your other options</h3>
     <div id="graph-container">
       <canvas id="emissionsGraph"></canvas>
     </div>
