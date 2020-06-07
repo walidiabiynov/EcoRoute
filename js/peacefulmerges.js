@@ -92,10 +92,10 @@ let comparisonMetrics = [
   {
     description: " passenger kilometres travelled on a long haul flight",
     rate: 102,
-    src: "./assets/icons/plane.png"
+    src: "./assets/icons/plane2.png"
   },
   { description: " passenger kilometres travelled by rail", rate: 41, src: "./assets/icons/train.png" },
-  { description: " passenger kilometres travelled on the eurostar", rate: 6, src: "./assets/icons/train.png" },
+  { description: " passenger kilometres travelled on the eurostar", rate: 6, src: "./assets/icons/train2.png" },
 ];
 
 //WE CAN ADD METRICS, I RANDOMLY CHOOSE THREE EACH TIME
