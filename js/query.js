@@ -21,9 +21,7 @@ async function submitSearch() {
     }
     saveToSession("origin", choice);
     $("#origin").text(choice.address.label.split(",").slice(0, 2).toString());
-    if (loadFromSession("destination") && loadFromSession("origin")) {
-        await getAllRoutes();
-    }
+    await getAllRoutes()
     setTimeout(function () {
         disableMissingRoutes();
     }, 2500);
@@ -63,9 +61,7 @@ async function getLocation() {
             };
             $("#origin").text(`${position.lat}, ${position.lng}`); //TODO Reverse geocode and get location name, fill that here
             saveToSession("origin", { position: position });
-            if (loadFromSession("destination") && loadFromSession("origin")) {
-                await getAllRoutes();
-            }
+            await getAllRoutes()
         });
         setTimeout(function () {
             disableMissingRoutes();

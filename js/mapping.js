@@ -214,6 +214,10 @@ function modalChoiceClicked(event) {
 async function getAllRoutes() {
     //Once called this function loads origin and destination from sessionStorage tags origin and destination
     //It then iterates through all travel methods and processes a route through each
+    if (!(loadFromSession('destination') && loadFromSession('origin'))){
+        console.log('INSIDE GET ALL ROUTES => A destination and origin were not selected before route finding attempted')
+    }
+
     let origin = loadFromSession("origin");
     let destination = loadFromSession("destination");
     let transitTypes = [
@@ -275,6 +279,7 @@ async function getAllRoutes() {
                 console.log("Unable to create route object for ", routeObject);
             }
         });
+        console.log('HERE I SHALL DISABLE MISSING ROUTES')
     });
     // return new Promise((resolve, reject) => )
 }
