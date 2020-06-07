@@ -1,11 +1,5 @@
 // Create input variables
 var distance; // Has to be in km, will be taken from HERE output
-//     // Placeholder input for testing
-//     sessionStorage.setItem("distance-truck", 4);
-//     sessionStorage.setItem("distance-car", 3);
-//     sessionStorage.setItem("distance-pt", 2.7);
-//     sessionStorage.setItem("distance-bike", 2.1);
-//     sessionStorage.setItem("distance-walk", 2.4);
 
 var options = [
     { 
@@ -84,6 +78,7 @@ fuelSelection.addEventListener("click", function(e){
         }
     }
     // Halt calculation until vehicle choice has been made if user makes fuel choice first 
+        // We don't want to addType if user makes fuel choice first, waits for vehicle input
     function checkVehicleChoice(e){
         var vehicleCheck = userInput.findIndex(object => object.id == "micro-car" || object.id == "compact-car" || object.id == "sedan" || object.id == "suv");
         if(vehicleCheck >= 0){
@@ -94,7 +89,6 @@ fuelSelection.addEventListener("click", function(e){
     var shouldRemove;
     function triggerCalculation(e){
         shouldRemove = e.target.classList.contains("active");
-        console.log(shouldRemove);
         e.target.classList.toggle("active");
         var mode = e.target.id;
         addType(mode);
@@ -130,50 +124,40 @@ fuelSelection.addEventListener("click", function(e){
                 switch(mode){
                     case "micro-car":
                         index = 0;
-                        console.log(index);
                         break;
                     case "compact-car":
                         index = 1;
-                        console.log(index);
                         break;
                     case "sedan":
                         index = 2;
-                        console.log(index);
                         break;
                     case "suv":
                         index = 3;
-                        console.log(index);
                         break;
                 }
                 // We default to gasoline if the user does not make a fuel choice
                 var fuelType = fuelChoice;
                 function getCarEmission(){
-                    if($("button").hasClass("selected-fuel") == true || fuelType){
-                        if(!fuelType){
+                    if($("button").hasClass("selected-fuel") == true || fuelType){ // fuelType is defined when fuel type is being passed in as result of checkVehicleChoice function
+                        if(!fuelType){ // if fuelType is not yet defined, we have to explicitly pass it in 
                             fuelType = document.getElementsByClassName("selected-fuel")[0].id;
                         }
-                        switch(fuelType){
+                        switch(fuelType){ // if button is not clicked in the current step, grab it from previous choice
                             case "gasoline":
-                                console.log(options[0].coEmissionGasoline[index])
                                 return options[0].coEmissionGasoline[index];
                             case "diesel":
-                                console.log(options[0].coEmissionDiesel[index])
                                 return options[0].coEmissionDiesel[index];
                             case "electric":
-                                console.log(options[0].coEmissionElectric)
                                 return options[0].coEmissionElectric;
                         }
                     } else {
                         fuelType = "gasoline";
-                        console.log(options[0].coEmissionGasoline[index])
                         return options[0].coEmissionGasoline[index];
                     }
                 }
                 carEmission = getCarEmission();
                 distance = loadFromSession("distance-car");
-                console.log(distance);
                 inputObject = {id: mode, em: carEmission, distance: distance};
-                console.log(inputObject);
                 validateAndPush();
         }
         resultsList = [];
@@ -187,7 +171,5 @@ function calculateEmission(choice){
     coResult = Math.round(choice.em * choice.distance);
     var id = choice.id;
     var pushResult = {mode: id, co2: coResult};
-    // document.getElementsByClassName(`${id}CO2`)[0].textContent = coResult;
-    // document.getElementsByClassName(`${id}Distance`)[0].textContent = choice.distance;
     resultsList.push(pushResult);
 }
