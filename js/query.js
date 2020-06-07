@@ -109,10 +109,12 @@ function disableMissingRoutes() {
                 $(`#truck`).removeAttr("disabled");
             }
         }
-        if (anyMissing) {
+        if (anyMissing.length != 0) {
             $("#missing-routes-display").removeClass("d-none");
             $("#missing-routes-display span").text(anyMissing);
 
+        } else if (! $('#missing-routes-display').hasClass('d-none')){
+            $('#missing-routes-display').addClass('d-none')
         }
     });
 }

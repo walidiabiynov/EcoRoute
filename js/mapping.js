@@ -32,7 +32,7 @@ const startIcon = `<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
 width="24.000000pt" height="24.000000pt" viewBox="0 0 24.000000 24.000000"
 preserveAspectRatio="xMidYMid meet">
 <g transform="translate(0.000000,24.000000) scale(0.100000,-0.100000)"
-fill="#00cc00" stroke="">
+fill="gray" stroke="">
 <path d="M65 215 c-16 -15 -25 -36 -25 -54 0 -31 65 -161 80 -161 15 0 80 130
 80 159 0 69 -86 106 -135 56z m69 -21 c9 -3 16 -16 16 -29 0 -25 -21 -38 -45
 -29 -18 7 -20 50 -2 57 6 3 13 6 14 6 1 1 8 -2 17 -5z"/>
@@ -302,8 +302,8 @@ function renderRoute(map, arrayOfPoints) {
     //    addMarker(point, simpleDotIcon)
     // })
 
-    addMarker(arrayOfPoints[0], endIcon);
-    addMarker(arrayOfPoints[arrayOfPoints.length - 1], startIcon);
+    addMarker(arrayOfPoints[0], startIcon);
+    addMarker(arrayOfPoints[arrayOfPoints.length - 1], endIcon);
 
     map.addObject(polyline);
     // map.addObjects([polyline, markerStart, markerEnd]);
