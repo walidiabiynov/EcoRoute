@@ -86,6 +86,8 @@ Future additional features include:
 * Adding the carbon footprint of a human's breathing to the metric provided for walking and biking
 * Adding user responsiveness to the map to allow zooming and scrolling, as well as seeing turn by turn directions live
 * Adding additional user responsiveness to the weather recommendations for longer journeys
+* Adding in social media sharing for results of total savings
+* Use cookies to keep a running metric of total saved across journeys
 
 ## Credits
 
