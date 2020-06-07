@@ -20,6 +20,7 @@ function processTime(timeGiven){
 }
 
 
+
 //-----------------------------------------
 validateStorage([
     "distance-car",
@@ -73,7 +74,6 @@ chosenTransportMethods.forEach(function (transportMethod, index) {
     if (
         ["micro-car", "compact-car", "sedan", "suv"].includes(transportMethodId)
     ) {
-        console.log("avast a car");
         transportMethodId = "car";
     }
 
@@ -81,19 +81,31 @@ chosenTransportMethods.forEach(function (transportMethod, index) {
     console.log(loadFromSession(`distance-${transportMethodId}`).toFixed(1));
     distances.push(loadFromSession(`distance-${transportMethodId}`));
 
+    let co2Amount = transportMethod.co2;
+    let co2Unit;
+    if (co2Amount > 999){
+        co2Amount /= 1000
+        co2Amount = co2Amount.toFixed(2)
+        co2Unit = "kg"
+    } else {
+        co2Amount = co2Amount.toFixed(1)
+        co2Unit = "g"
+    }
+
+
     let cardElText = `<div class="card results-card mx-3 my-2">
             <div class="card-body">
               <h5 class="card-title text-center bold">${keyTranslator(transportMethodId)}</h5>
               <div class="card-text">
                 <div class="row">
                   <div class="col-5 text-right">
-                    <p class="large-number">${transportMethod.co2.toFixed(1)}</p>
+                    <p class="large-number">${co2Amount}</p>
                   </div>
                   <div class="col-1 px-0 mx-0">
                     <p class="green fancy-bullet">&#8226;</p>
                   </div>
                   <div class="col-5 text-left">
-                    <p class="info-text green">g CO<sup>2</sup></p>
+                    <p class="info-text green">${co2Unit} CO<sup>2</sup></p>
                   </div>
                 </div>
                 <div class="row">
