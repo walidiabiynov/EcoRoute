@@ -1,5 +1,5 @@
 # <img src="https://titanian229.github.io/EcoRoute/assets/icons/nature.png" alt="EcoRouteLogo" width="25"/> EcoRoute
-
+---
 ## What is EcoRoute
 
 Making green choices when traveling—we're here to help!
@@ -13,34 +13,52 @@ We're even taking the current weather into account to tell you if it's a good ti
 This project was created to help inform individuals about their carbon footprints, and help them make informed decisions regarding their travel choices.  It's difficult to understand the weight of choices in a complex world, and lacking information makes choices difficult.  By informing users about the effects of their day to day journeys we hope to inspire positive habit changes for the good of our ecosystem, while providing a useful interface to find routes.
 
 ## Functionality Screenshots
+
 ![Mobile responsive, looks good on desktop or mobile devices][mockup]
+
 
 The web application loads into a page with a simple search field, followed by a description of the project's goal, ethos, and team.
 
 ![Enter your search here][main-page]
 
+
 User responsiveness is provided thoughout through the use of modals, for instance if multiple matches to a given location are found.
+
 ![Multiple locations found][multiple-location-modal]
 
+
 After entering your destination, you're brought to a page where you can see that location on a map and enter your origin point, or optionally use your current position.
+
 ![Query page before input][query-before]
 
+
 Once you've entered both your destination and origin, all of the travel methods and vehicle and fuel choices are presented.
+
 ![Query page after input][query-after]
 
+
 After selecting all of the travel methods, "Get Route" brings you to a page showing you your route mapped out, the total distance, and weather information for your destination!
+
 ![Results page top][results-top]
 
+
 At the bottom of the results page, you're shown the carbon footprint information for each choice.  Clicking the cards will change which route is mapped, and selecting the information button at the bottom of each brings you to the next page.
+
 ![Results page bottom][results-cards]
 
+
 Our details page walks you through exactly what carbon footprint your journey and method of making it will have, so you can make the best possible choice.  You can also click  to see turn by turn directions in a simple mobile friendly format, to take with you on your journey.
+
 ![Details page top][details-top]
 
+
 Information is made understandable, with helpful metrics!
+
 ![Comparison metrics][details-comparison]
 
+
 And finally, all of the choices you made on the initial page are graphed, so you can see them relatively
+
 ![Comparison graph][details-comparison-graph]
 
 
