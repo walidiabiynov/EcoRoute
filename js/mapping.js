@@ -198,7 +198,7 @@ function displayOptionsModal(choices, destinationOrOrigin) {
     });
 }
 
-function modalChoiceClicked(event) {
+async function modalChoiceClicked(event) {
     //This takes the modal's button press, logs the chosen choice, and moves to the next page
     choice = loadFromSession("locationChoices")[event.target.dataset.id];
     $("#locationChoiceModal").modal("hide");
@@ -208,6 +208,8 @@ function modalChoiceClicked(event) {
     } else {
         saveToSession("origin", choice);
         $("#origin").text(choice.address.label);
+        await getAllRoutes()
+        disableMissingRoutes()
     }
 }
 
@@ -279,7 +281,6 @@ async function getAllRoutes() {
                 console.log("Unable to create route object for ", routeObject);
             }
         });
-        console.log('HERE I SHALL DISABLE MISSING ROUTES')
     });
     // return new Promise((resolve, reject) => )
 }
