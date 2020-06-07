@@ -35,7 +35,6 @@ function getDirectionsButton() {
 
     //a check they've input both locations
     if (!(sessionStorage.origin && sessionStorage.destination)) {
-        console.log("danger");
         errorModal("Please enter your origin to proceed");
         return
     }
@@ -80,7 +79,6 @@ function disableMissingRoutes() {
     var anyMissing = [];
     routeMethods.forEach(function (method) {
         isMissing = !Boolean(loadFromSession(`distance-${method}`));
-        console.log("disableMissingRoutes -> isMissing", isMissing, method);
 
         //Enabling the button in case they've changed their destination and before it was disabled
         if (["walk", "bike", "pt"].includes(method)) {

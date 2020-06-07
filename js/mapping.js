@@ -316,7 +316,6 @@ function renderRoute(map, arrayOfPoints) {
             strokeColor: "#00CC76",
         },
     }); // TODO change line styling
-    //Adding a marker to first and last point
 
     //NOTE If we want a marker at each point along the path, uncomment this code and comment out the first and last setting
     // arrayOfPoints.forEach(function(point, index){
@@ -337,10 +336,6 @@ function renderRoute(map, arrayOfPoints) {
     addMarker(arrayOfPoints[arrayOfPoints.length - 1], endIcon);
 
     map.addObject(polyline);
-    // map.addObjects([polyline, markerStart, markerEnd]);
-    // map.getViewModel().setLookAtData({
-    //   bounds: polyline.getBoundingBox(),
-    // });
     bBox = polyline.getBoundingBox();
     bBox.ha += 0.0028; //These are the variables the API uses to define the bounding box, I'm just making it bigger on the N and S to make it a little prettier.
     bBox.ka -= 0.0005;
@@ -355,41 +350,3 @@ function placePinOnMap(map, locationObject) {
         zoom: 16,
     });
 }
-
-//TESTING AREA for getting all routes between two points
-// async function temp() {
-//   sessionStorage.clear();
-//   // instantiateMap();
-//   const destOptions = await processSearch("8 Bloor St. W, Toronto");
-//   populateChoiceList(destOptions, "destination");
-//   const originOptions = await processSearch("499 Church St. Toronto", "origin");
-//   populateChoiceList(originOptions, "origin");
-//   console.log("Beginnining route finding");
-//   await getAllRoutes();
-//   console.log("ending route finding");
-// }
-
-// temp();
-
-// map = instantiateMap();
-// addMarker({ lat: 43.6652641, lng: -79.3807487 });
-
-// setTimeout(getAllRoutes, 2000);
-// map = instantiateMap();
-// mapRoute('walk')
-// setTimeout(function(){mapRoute("walk")}, 8000);
-
-// Pardon this, this is here while I work out all of the options to request different data from the api
-// https://route.ls.hereapi.com/routing/7.2/calculateroute.json?apiKey=x5fo9v5HB4bh1Boxq98XUddpp4vr2x9NRelXAaPyt0E&waypoint0=geo!43.687850,-79.395514&waypoint1=geo!43.664739,-79.413175&mode=fastest;car;traffic:disabled&instructionformat=text
-//https://route.ls.hereapi.com/routing/7.2/calculateroute.json?apiKey=x5fo9v5HB4bh1Boxq98XUddpp4vr2x9NRelXAaPyt0E&waypoint0=geo!43.687850,-79.395514&waypoint1=geo!43.664739,-79.413175&mode=fastest;car;traffic:disabled&instructionformat=text&representation=display
-//https://route.ls.hereapi.com/routing/7.2/calculateroute.json?apiKey=x5fo9v5HB4bh1Boxq98XUddpp4vr2x9NRelXAaPyt0E&waypoint0=geo!43.687850,-79.395514&waypoint1=geo!43.664739,-79.413175&mode=fastest;car;traffic:disabled&instructionformat=text&routeAttributes=summary
-//https://route.ls.hereapi.com/routing/7.2/calculateroute.json?apiKey=x5fo9v5HB4bh1Boxq98XUddpp4vr2x9NRelXAaPyt0E&waypoint0=geo!43.687850,-79.395514&waypoint1=geo!43.664739,-79.413175&mode=fastest;car;traffic:disabled&instructionformat=text&routeAttributes=shape
-
-//SITUATION : Initial map load on the front page
-// instantiateMap()
-//Loads in whatever div has the id map-container
-
-//SITUATION: On main page, destination typed into search bar and search is pressed
-// let tempPlaceholderName = '8 Bloor St. W, Toronto'
-// map = instantiateMap();
-// processSearch(tempPlaceholderName)

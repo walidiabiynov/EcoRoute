@@ -39,7 +39,6 @@ function rankChoice(chosenMethod) {
         return "";
     }
     let rank = (["pt", "car", "truck"].indexOf(chosenMethod) + 2).toString();
-    console.log(rank);
     if (rank[rank.length - 1] == "2") {
         return rank + "nd";
     } else if (rank[rank.length - 1] == "3") {
@@ -138,7 +137,6 @@ if (chosenRate == 0) {
     if (chosenRate != 0) {
         comparators.forEach(function (comparator) {
             comparatorRate = (chosenRate / comparator.rate).toFixed(2);
-            console.log(comparatorRate, "comp rate", comparator);
             $("#co2-metrics ul").append(
                 `<li><img class="co2icon mb-3" src="${comparator.src}" /><span class="green pl-3">${comparatorRate}</span>${comparator.description}</li>`
             );
