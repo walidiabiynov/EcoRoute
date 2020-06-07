@@ -145,6 +145,12 @@ a.go-back {
     display: inline-block;
 }
 
+.btn-fuel:focus {
+  background-color: #092327;
+  border: 1px solid #00CC76;
+  color: #00CC76;
+}
+
 /* Details styles */
 #graph-container {
     width: 60%;
