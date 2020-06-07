@@ -1,4 +1,4 @@
-function errorModal(errorMessage){
-    $('#error-modal').modal('show')
-    $('#error-modal-text').text(errorMessage)
+function errorModal(errorMessage) {
+    $("#error-modal").modal("show");
+    $("#error-modal-text").text(errorMessage);
 }
