@@ -36,7 +36,7 @@ const options = [
 function rankChoice(chosenMethod) {
     //This is missing all of the data regarding electric vs diesel, so for right now this is something that kinda works
     if (["walk", "bike"].includes(chosenMethod)) {
-        return "1st";
+        return  "";
     }
     let rank = (["pt", "car", "truck"].indexOf(chosenMethod) + 2).toString();
     console.log(rank);

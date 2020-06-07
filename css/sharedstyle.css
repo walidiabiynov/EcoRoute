@@ -35,6 +35,12 @@ a:hover {
     border-color: #00cc76;
 }
 
+#destination-search-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
 .btn-primary:hover,
 .btn-success:hover,
 .btn-green:hover {
@@ -48,12 +54,13 @@ a.go-back {
     font-size: large;
 }
 
-.green-text, .green {
-  color: #00CC76;
+.green-text,
+.green {
+    color: #00cc76;
 }
 
 .bold {
-  font-weight: 700;
+    font-weight: 700;
 }
 
 /* Navbar */
@@ -115,7 +122,7 @@ a.go-back {
 }
 
 .location-feedback {
-    font-size: 1.5rem;
+    font-size: 6vw;
 }
 
 /* User choice styles */
@@ -146,8 +153,8 @@ a.go-back {
 }
 
 .btn-fuel:focus {
-  background-color: #092327;
-  color: #00CC76;
+    background-color: #092327;
+    color: #00cc76;
 }
 
 /* Details styles */
@@ -161,25 +168,25 @@ a.go-back {
 }
 
 .co2icon {
-  width: 10%;
+    width: 10%;
 }
 
 #relative-metric-container .text-center p {
-  margin-bottom: 0;
-  margin-top: 0;
+    margin-bottom: 0;
+    margin-top: 0;
 }
 
-#co2-amount{
-  font-size: 3rem;
+#co2-amount {
+    font-size: 3rem;
 }
 
 /* Results styles */
 .jumbotron {
-  border-radius: 3px;
+    border-radius: 3px;
 }
 
 .jumbotron-fluid {
-  background-color: #092327;
+    background-color: #092327;
 }
 
 .results-card {
@@ -189,14 +196,16 @@ a.go-back {
 
 /* Footer styles */
 .footer {
-  text-align: center;
+    text-align: center;
 }
 
 .small {
-  font-size: small;
+    font-size: small;
 }
 
-#co2-metrics li {list-style-type: none !important;}
+#co2-metrics li {
+    list-style-type: none !important;
+}
 
 button:disabled,
 button[disabled] {
@@ -220,4 +229,34 @@ button[disabled] {
     .divider-sm {
         display: none;
     }
+
+    h2 {
+        font-size: 9vw;
+    }
+
+    .input-group-addon,
+    .input-group-btn,
+    .input-group .form-control {
+        display: block;
+        margin-bottom: 0px;
+        margin-top: 15px;
+        clear: both;
+    }
+    .input-group {
+        margin-top: 8vw;
+        display: block;
+
+    }
+    #origin-search-field, #geolocation-search, #search-submit-button {
+        width: 100%;
+    }
+    /* I Keep going back and forth on what I think looks best, uncomment this to restyle the search button to be center aligned and not full width */
+    /* #search-submit-button{
+        width: 50%;
+    }
+    .input-group-append {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    } */
 }
