@@ -21,7 +21,18 @@ function processTime(timeGiven){
 
 function cardClick(event){
     console.log('card was clicked')
-    console.log(event)
+    if (! event.target.matches("button")){
+        //recursing to parent card
+        let currentElement = event.target;
+        let i = 0;
+        while ((! currentElement.classList.contains('card')) && i < 15){
+            currentElement = currentElement.parentElement
+            i++
+        }
+        mapElements = map.getObjects()
+        mapElements.forEach(function(polyline){map.removeObject(polyline)})
+        mapRoute(currentElement.dataset.method)
+    }
 }
 
 
@@ -98,7 +109,7 @@ chosenTransportMethods.forEach(function (transportMethod, index) {
     }
 
 
-    let cardElText = `<div class="card results-card mx-3 my-3">
+    let cardElText = `<div data-method="${transportMethodId}" class="card results-card mx-3 my-3">
             <div class="card-body">
               <h5 class="card-title text-center bold">${keyTranslator(transportMethodId)}</h5>
               <div class="card-text">
