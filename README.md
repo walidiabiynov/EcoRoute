@@ -10,18 +10,50 @@ We're making it easy for you to learn more about the environmental impact of you
 We're even taking the current weather into account to tell you if it's a good time to walk or take the bike. So get ready, hit the search button, and help us protect our planet!
 
 ## Motivation
-This project was created to help inform individuals about their carbon footprints, and help them make informed decisions regarding their travel choices.
+This project was created to help inform individuals about their carbon footprints, and help them make informed decisions regarding their travel choices.  It's difficult to understand the weight of choices in a complex world, and lacking information makes choices difficult.  By informing users about the effects of their day to day journeys we hope to inspire positive habit changes for the good of our ecosystem, while providing a useful interface to find routes.
 
 ## Functionality Screenshots
+![Mobile responsive, looks good on desktop or mobile devices][mockup]
+
+The web application loads into a page with a simple search field, followed by a description of the project's goal, ethos, and team.
+
+![Enter your search here][main-page]
+
+User responsiveness is provided thoughout through the use of modals, for instance if multiple matches to a given location are found.
+![Multiple locations found][multiple-location-modal]
+
+After entering your destination, you're brought to a page where you can see that location on a map and enter your origin point, or optionally use your current position.
+![Query page before input][query-before]
+
+Once you've entered both your destination and origin, all of the travel methods and vehicle and fuel choices are presented.
+![Query page after input][query-after]
+
+After selecting all of the travel methods, "Get Route" brings you to a page showing you your route mapped out, the total distance, and weather information for your destination!
+![Results page top][results-top]
+
+At the bottom of the results page, you're shown the carbon footprint information for each choice.  Clicking the cards will change which route is mapped, and selecting the information button at the bottom of each brings you to the next page.
+![Results page bottom][results-cards]
+
+Our details page walks you through exactly what carbon footprint your journey and method of making it will have, so you can make the best possible choice.  You can also click  to see turn by turn directions in a simple mobile friendly format, to take with you on your journey.
+![Details page top][details-top]
+
+Information is made understandable, with helpful metrics!
+![Comparison metrics][details-comparison]
+
+And finally, all of the choices you made on the initial page are graphed, so you can see them relatively
+![Comparison graph][details-comparison-graph]
 
 
 ## Technologies and External Dependencies
 
 This web application is built largely using Javscript, CSS, and HTML.
+
 ### The Javascript libraries utilized include:
 * jQuery
 * Bootstrap's library for modal functionality
 * HERE Technology's Javscript core library and mapping service libraries
+* SimpleParallax
+* Chart.js
 
 ### External APIs
 * The OpenWeatherMap API was used to return realtime weather information based on a GPS location
@@ -31,7 +63,11 @@ This web application is built largely using Javscript, CSS, and HTML.
 ### Assets
 * Icons from Flaticon.com
 
-## How to use it
+## Future goals
+Future additional features include:
+* Adding the carbon footprint of a human's breathing to the metric provided for walking and biking
+* Adding user responsiveness to the map to allow zooming and scrolling, as well as seeing turn by turn directions live
+* Adding additional user responsiveness to the weather recommendations for longer journeys
 
 ## Credits
 
@@ -39,3 +75,16 @@ This web application is built largely using Javscript, CSS, and HTML.
 * 
 
 ## License
+
+
+[mockup]: https://titanian229.github.io/EcoRoute/assets/screenshots/mockup.png "Mockup"
+[main-page]: https://titanian229.github.io/EcoRoute/assets/screenshots/main-page.jpg "Main Page"
+[multiple-location-modal]: https://titanian229.github.io/EcoRoute/assets/screenshots/multiple-location-modal.jpg "Multiple Location Modal"
+[query-before]: https://titanian229.github.io/EcoRoute/assets/screenshots/query-before-input.jpg "Query Page before input"
+[query-after]: https://titanian229.github.io/EcoRoute/assets/screenshots/query-after-input.jpg "Query Page after input"
+[results-top]: https://titanian229.github.io/EcoRoute/assets/screenshots/results-top.jpg "results page top"
+[results-cards]: https://titanian229.github.io/EcoRoute/assets/screenshots/results-cards.jpg "results cards"
+[route-options-expanded]: https://titanian229.github.io/EcoRoute/assets/screenshots/route-options-expanded.jpg "details page top"
+[details-top]: https://titanian229.github.io/EcoRoute/assets/screenshots/details-top.jpg "details page bottom"
+[details-comparison]: https://titanian229.github.io/EcoRoute/assets/screenshots/details-comparison.jpg "details comparison metrics"
+[details-comparison-graph]: https://titanian229.github.io/EcoRoute/assets/screenshots/details-comparison-graph.jpg "details comparison graph"
