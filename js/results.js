@@ -93,7 +93,7 @@ chosenTransportMethods.forEach(function (transportMethod, index) {
     }
 
 
-    let cardElText = `<div class="card results-card mx-3 my-2">
+    let cardElText = `<div class="card results-card mx-3 my-3">
             <div class="card-body">
               <h5 class="card-title text-center bold">${keyTranslator(transportMethodId)}</h5>
               <div class="card-text">
