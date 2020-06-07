@@ -31,10 +31,15 @@ async function submitSearch() {
     //I might be able to define a bounding box based on the highest and lowest lng and lat coords of each and do that to define the min bounding box of the map
 }
 
-async function getDirectionsButton() {
+function getDirectionsButton() {
     //This needs to be in an async function so I can await, otherwise the page changes and it doesn't actually do the math
 
     //a check they've input both locations
+    if (!(sessionStorage.origin && sessionStorage.destination)) {
+        console.log("danger");
+        errorModal("Please enter your origin to proceed");
+        return
+    }
 
     // Check if at lest one transport option has been selected
     // Save resultsList to sessionStorage
@@ -112,14 +117,14 @@ function disableMissingRoutes() {
         if (anyMissing.length != 0) {
             $("#missing-routes-display").removeClass("d-none");
             $("#missing-routes-display span").text(anyMissing);
-
-        } else if (! $('#missing-routes-display').hasClass('d-none')){
-            $('#missing-routes-display').addClass('d-none')
+        } else if (!$("#missing-routes-display").hasClass("d-none")) {
+            $("#missing-routes-display").addClass("d-none");
         }
     });
 }
 
 //------------------------------------
+validateStorage(["destination"]);
 map = instantiateMap();
 
 //Getting the destination from sessionStorage

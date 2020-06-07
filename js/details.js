@@ -1,3 +1,5 @@
+validateStorage(["distance-car", "detail-method-selected", "directions-walk", "origin", "distance-walk", "directions-car", "shape-walk", "traveltime-bike", "travel-text-walk", "directions-bike", "shape-truck", "distance-truck", "destination", "shape-bike", "directions-pt", "shape-pt", "traveltime-truck", "traveltime-car", "results", "shape-car", "traveltime-walk", "travel-text-bike", "travel-text-car", "travel-text-pt", "traveltime-pt", "travel-text-truck", "detail-method-rate-chosen", "distance-pt", "directions-truck", "distance-bike"])
+
 // Get results array from local storage
 var storageResults = JSON.parse(sessionStorage.getItem("results"));
 var allModes = [];

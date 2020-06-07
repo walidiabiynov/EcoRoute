@@ -7,6 +7,37 @@ function detailsButton(event) {
 }
 
 //-----------------------------------------
+validateStorage([
+    "distance-car",
+    "directions-walk",
+    "origin",
+    "distance-walk",
+    "directions-car",
+    "shape-walk",
+    "traveltime-bike",
+    "travel-text-walk",
+    "directions-bike",
+    "shape-truck",
+    "distance-truck",
+    "destination",
+    "shape-bike",
+    "directions-pt",
+    "shape-pt",
+    "traveltime-truck",
+    "traveltime-car",
+    "results",
+    "shape-car",
+    "traveltime-walk",
+    "travel-text-bike",
+    "travel-text-car",
+    "travel-text-pt",
+    "traveltime-pt",
+    "travel-text-truck",
+    "distance-pt",
+    "directions-truck",
+    "distance-bike",
+]);
+
 map = instantiateMap();
 
 destination = loadFromSession("destination");

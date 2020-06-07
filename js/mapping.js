@@ -83,6 +83,22 @@ function mapKeyTranslator(key) {
     }
 }
 
+function validateStorage(keysList) {
+    //This function checks what's present in localStorage.  If there are keys that shouldn't have been created yet it removes them
+    let sessionStorageKeys = Object.keys(sessionStorage)
+    sessionStorageKeys.forEach(function (sessionStorageKey) {
+        if (!keysList.includes(sessionStorageKey)) {
+            sessionStorage.removeItem(sessionStorageKey);
+        }
+    });
+    keysList.forEach(function(key){
+        if (! sessionStorageKeys.includes(key)){
+            console.log("There was a key required on this page, that hasn't been generated yet", key)
+            window.location.href = "./index.html"
+        }
+    })
+}
+
 function instantiateMap() {
     //Creates a map placed in whatever div has the id map-container, positions it at Toronto
     let defaultLayers = platform.createDefaultLayers();

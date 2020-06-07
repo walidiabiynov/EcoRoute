@@ -192,54 +192,6 @@ a.go-back {
     font-size: 3rem;
 }
 
-/* #co2-metrics ul li {
-    position: relative;
-    margin-bottom: 0;
-    padding-bottom: 2.5em;
-}
-
-#co2-metrics ul {
-    list-style-type: "" !important;
-    font-size: 1.6vw;
-    line-height: 4.6vw;
-} */
-/* 
-#co2-metrics li::before {
-  content: "\2022";
-  font-size: 2.6vw;
-  color: green;
-  font-weight: bold;
-  display: inline-block;
-  width: 1.5em;
-  margin-left: -1em;
-  padding: 0 0 0 0;
-} */
-/* #co2-metrics ul li:after {
-    content: "\2022";
-    color: green;
-    font-weight: bold;
-    font-size: 2.6vw;
-    position: absolute;
-    left: -21px;
-    top: -15px;
-}
-
-#co2-metrics ul li:before {
-    content: "";
-    position: absolute;
-    left: -16px;
-    border-left: 2px solid rgba(128, 128, 128, 0.637);
-    height: 100%;
-    width: 1px;
-}
-
-#co2-metrics ul li:first-child:before {
-    top: 6px;
-}
-
-#co2-metrics ul li:last-child:before {
-    height: 6px;
-} */
 
 button:disabled,
 button[disabled] {

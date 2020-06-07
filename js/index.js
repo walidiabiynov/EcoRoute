@@ -1,4 +1,6 @@
 //PAGE FOR LOADING FUNCTIONS OF MAIN PAGE
+validateStorage([])
+
 
 async function submitSearch() {
     //clear field and grab text
@@ -26,7 +28,6 @@ async function submitSearch() {
 }
 
 //What runs on load
-sessionStorage.clear(); //THIS CLEARS EVERYTHING IN CASE IT'S A RELOAD
 instantiateMap();
 
 $("#destination-search-button").click(function (event) {
