@@ -105,7 +105,7 @@ chosenTransportMethods.forEach(function (transportMethod, index) {
                     <p class="green fancy-bullet">&#8226;</p>
                   </div>
                   <div class="col-5 text-left">
-                    <p class="info-text green">${co2Unit} CO<sup>2</sup></p>
+                    <p class="info-text green">${co2Unit} CO<sub>2</sub></p>
                   </div>
                 </div>
                 <div class="row">
