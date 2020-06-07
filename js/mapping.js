@@ -57,7 +57,6 @@ const simpleDotIcon =
     'fill="#1b468d" stroke="white" stroke-width="1"  />' +
     "</svg>";
 
-//TODO Add slippy/user input to map position/zoom
 //ADD IN WAYPOINTS for each step, with popup dialog with instructions
 
 function keyTranslator(key) {
@@ -75,7 +74,7 @@ function keyTranslator(key) {
 }
 
 function mapKeyTranslator(key) {
-    //Catches the microcars and translates to cars
+    //Catches the microcars and translates to cars, otherwise returns the key
     if (["micro-car", "compact-car", "sedan", "suv"].includes(key)) {
         return "car";
     } else {
@@ -85,18 +84,21 @@ function mapKeyTranslator(key) {
 
 function validateStorage(keysList) {
     //This function checks what's present in localStorage.  If there are keys that shouldn't have been created yet it removes them
-    let sessionStorageKeys = Object.keys(sessionStorage)
+    let sessionStorageKeys = Object.keys(sessionStorage);
     sessionStorageKeys.forEach(function (sessionStorageKey) {
         if (!keysList.includes(sessionStorageKey)) {
             sessionStorage.removeItem(sessionStorageKey);
         }
     });
-    keysList.forEach(function(key){
-        if (! sessionStorageKeys.includes(key)){
-            console.log("There was a key required on this page, that hasn't been generated yet", key)
+    keysList.forEach(function (key) {
+        if (!sessionStorageKeys.includes(key)) {
+            console.log(
+                "There was a key required on this page, that hasn't been generated yet",
+                key
+            );
             // window.location.href = "./index.html"
         }
-    })
+    });
 }
 
 function instantiateMap() {
@@ -111,13 +113,19 @@ function instantiateMap() {
         }
     );
     window.addEventListener("resize", () => map.getViewPort().resize());
-    var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
-    var ui = H.ui.UI.createDefault(map, defaultLayers);
+    const behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+    const ui = H.ui.UI.createDefault(map, defaultLayers); //This should add controls, but doesn't.
+    var mapSettings = ui.getControl("mapsettings");
+    var zoom = ui.getControl("zoom");
+    var scalebar = ui.getControl("scalebar");
+
+    mapSettings.setAlignment("bottom-left");
+    zoom.setAlignment("bottom-left");
+    scalebar.setAlignment("bottom-left");
     return map;
 }
 
 function saveToSession(key, value) {
-    //Just saves to sessionStorage, I'm outsourcing it to a function in case we change how we save data in the future
     sessionStorage.setItem(key, JSON.stringify(value));
 }
 
@@ -193,7 +201,6 @@ function displayOptionsModal(choices, destinationOrOrigin) {
     let listEl = $("#locationChoiceModal .list-group");
     listEl.html("");
     choices.forEach(function (choice, index) {
-        console.log(choice);
         listEl.append(
             `<button type="button" class="list-group-item list-group-item-action" data-id="${index}" data-doro="${destinationOrOrigin}" onclick="modalChoiceClicked(event)">${choice.address.label}</button>`
         );
@@ -210,16 +217,21 @@ async function modalChoiceClicked(event) {
     } else {
         saveToSession("origin", choice);
         $("#origin").text(choice.address.label);
-        await getAllRoutes()
-        disableMissingRoutes()
+        await getAllRoutes();
+        disableMissingRoutes();
+        $("#choice-buttons").removeClass("d-none")
+        $("#get-directions-button").removeClass("d-none")
+    
     }
 }
 
 async function getAllRoutes() {
     //Once called this function loads origin and destination from sessionStorage tags origin and destination
     //It then iterates through all travel methods and processes a route through each
-    if (!(loadFromSession('destination') && loadFromSession('origin'))){
-        console.log('INSIDE GET ALL ROUTES => A destination and origin were not selected before route finding attempted')
+    if (!(loadFromSession("destination") && loadFromSession("origin"))) {
+        console.log(
+            "INSIDE GET ALL ROUTES => A destination and origin were not selected before route finding attempted"
+        );
     }
 
     let origin = loadFromSession("origin");
@@ -235,7 +247,6 @@ async function getAllRoutes() {
     let routeObjects = [];
 
     transitTypes.forEach(function (transitType) {
-        console.log("inside foreach mapping ", transitType);
         routeObject = routeObjects.push(
             fetch(
                 `https://route.ls.hereapi.com/routing/7.2/calculateroute.json?apiKey=${APIKey}` +
@@ -259,12 +270,10 @@ async function getAllRoutes() {
     let transitTypeKey;
     return Promise.all(routeObjects).then((response) => {
         response.forEach(function (routeObject, index) {
-            console.log("route object", routeObject);
             if (
                 !["car", "bike", "truck", "walk", "pt"].includes(routeObject) &&
                 routeObject
             ) {
-                console.log("logging ", routeObject);
                 transitTypeKey = transitTypes[index][1];
                 let distanceTravelled =
                     routeObject.response.route[0].summary.distance / 1000;
@@ -273,7 +282,6 @@ async function getAllRoutes() {
                 let transitText = routeObject.response.route[0].summary.text;
                 let shape = routeObject.response.route[0].shape;
                 let directions = routeObject.response.route[0].leg[0].maneuver;
-                console.log(routeObject);
                 saveToSession(`distance-${transitTypeKey}`, distanceTravelled);
                 saveToSession(`traveltime-${transitTypeKey}`, travelTime);
                 saveToSession(`travel-text-${transitTypeKey}`, transitText);
@@ -289,7 +297,6 @@ async function getAllRoutes() {
 
 function mapRoute(routeKey) {
     //This function takes the chosen route and maps it on the page
-    console.log("mapping route", routeKey);
     renderRoute(map, loadFromSession(`shape-${routeKey}`));
 }
 
