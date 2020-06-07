@@ -23,6 +23,9 @@ async function submitSearch() {
     $("#origin").text(choice.address.label.split(",").slice(0, 2).toString());
     await getAllRoutes()
     disableMissingRoutes()
+    $("#choice-buttons").removeClass("d-none")
+    $("#get-directions-button").removeClass("d-none")
+
     //TODO Add second marker to screen, zoom screen in some fashion to see both
     //I might be able to define a bounding box based on the highest and lowest lng and lat coords of each and do that to define the min bounding box of the map
 }
@@ -61,6 +64,8 @@ async function getLocation() {
             saveToSession("origin", { position: position });
             await getAllRoutes()
             disableMissingRoutes()
+            $("#choice-buttons").removeClass("d-none")
+            $("#get-directions-button").removeClass("d-none")
         });
     } else {
         console.log("Geolocation unsupported by this browser");

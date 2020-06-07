@@ -280,6 +280,10 @@ button[disabled] {
         width: 100%;
     }
 
+    #method-ranking badge {
+        font-size: 2rem;
+    }
+
 
     /* I Keep going back and forth on what I think looks best, uncomment this to restyle the search button to be center aligned and not full width */
     /* #search-submit-button{

@@ -9,6 +9,33 @@ We're making it easy for you to learn more about the environmental impact of you
 
 We're even taking the current weather into account to tell you if it's a good time to walk or take the bike. So get ready, hit the search button, and help us protect our planet!
 
-## External Dependencies
+## Motivation
+This project was created to help inform individuals about their carbon footprints, and help them make informed decisions regarding their travel choices.
 
-This web application is built largely using Javscript, CSS, and HTML.  The Javascript libraries utilized include: jQuery, Bootstrap's modal functionality, and HERE Technology's Javscript core library and mapping service libraries.  The OpenWeatherMap API was used to return realtime weather information based on a GPS location, the HERE Technology  API was used to geocode location names into testingCHANGEFORMERGE
+## Functionality Screenshots
+
+
+## Technologies and External Dependencies
+
+This web application is built largely using Javscript, CSS, and HTML.
+### The Javascript libraries utilized include:
+* jQuery
+* Bootstrap's library for modal functionality
+* HERE Technology's Javscript core library and mapping service libraries
+
+### External APIs
+* The OpenWeatherMap API was used to return realtime weather information based on a GPS location
+* HERE Technology mapping API version 8 was used to geocode location names and addresses into GPS coordinates, as well as return mapping images to be rendered; 
+* HERE Technology mapping API version 7.2 was used to process and return routes between locations.
+
+### Assets
+* Icons from Flaticon.com
+
+## How to use it
+
+## Credits
+
+* Flaticon.com icons made by Pause08, Surang, Smashicons, Freepik, and Photo3Idea_Studio.
+* 
+
+## License
