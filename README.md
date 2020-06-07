@@ -11,4 +11,4 @@ We're even taking the current weather into account to tell you if it's a good ti
 
 ## External Dependencies
 
-This web application is built largely using Javscript, CSS, and HTML.  The Javascript libraries utilized include: jQuery, Bootstrap's modal functionality, and HERE Technology's Javscript core library and mapping service libraries.  The OpenWeatherMap API was used to return realtime weather information based on a GPS location, the HERE Technology  API was used to geocode location names into 
+This web application is built largely using Javscript, CSS, and HTML.  The Javascript libraries utilized include: jQuery, Bootstrap's modal functionality, and HERE Technology's Javscript core library and mapping service libraries.  The OpenWeatherMap API was used to return realtime weather information based on a GPS location, the HERE Technology  API was used to geocode location names into testingCHANGEFORMERGE
