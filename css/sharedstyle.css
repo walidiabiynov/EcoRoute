@@ -196,7 +196,9 @@ a.go-back {
   font-size: small;
 }
 
-button:disabled
+#co2-metrics li {list-style-type: none !important;}
+
+button:disabled,
 button[disabled] {
     background-color: #cccccc !important;
     color: #666666 !important;
