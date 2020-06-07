@@ -128,7 +128,18 @@ if (chosenRate == 0) {
             );
         });
     }
-    $("#co2-amount").text(chosenRate);
+    let co2Amount = parseInt(chosenRate);
+    let co2Unit;
+    if (co2Amount > 999){
+        co2Amount /= 1000
+        co2Amount = co2Amount.toFixed(2)
+        co2Unit = "kg"
+    } else {
+        co2Amount = co2Amount.toFixed(1)
+        co2Unit = "g"
+    }
+    $("#co2-amount").text(co2Amount);
+    $("#co2-unit").text(co2Unit);
 }
 
 //TURN BY TURN DIRECTIONS
