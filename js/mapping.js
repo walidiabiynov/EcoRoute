@@ -94,7 +94,7 @@ function validateStorage(keysList) {
     keysList.forEach(function(key){
         if (! sessionStorageKeys.includes(key)){
             console.log("There was a key required on this page, that hasn't been generated yet", key)
-            window.location.href = "./index.html"
+            // window.location.href = "./index.html"
         }
     })
 }
