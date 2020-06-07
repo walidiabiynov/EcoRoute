@@ -19,6 +19,11 @@ function processTime(timeGiven){
     return `${hours}:${minutes}`
 }
 
+function cardClick(event){
+    console.log('card was clicked')
+    console.log(event)
+}
+
 
 
 //-----------------------------------------
@@ -189,4 +194,4 @@ if (distances.length > 1) {
     $("#distance-range").text(distances[0].toFixed(1));
 }
 
-//TODO catch if the range is within a certain amount and just display that amount
+$(".results-card").on('click', cardClick)
