@@ -28,7 +28,7 @@ async function submitSearch() {
 }
 
 //What runs on load
-instantiateMap();
+// instantiateMap();
 
 $("#destination-search-button").click(function (event) {
     event.preventDefault();

@@ -87,6 +87,7 @@ a.go-back {
 .landing-map {
     height: 500px !important;
     opacity: 0.4 !important;
+    background-image: url(../assets/screenshots/map-large.jpg);
 }
 
 .landing-input {
@@ -115,10 +116,6 @@ a.go-back {
     height: 340px;
     margin: 0 0 0 0;
     animation: all;
-}
-
-.map-dim {
-    opacity: 0.6;
 }
 
 .location-feedback {
@@ -279,10 +276,7 @@ button[disabled] {
     #search-submit-button, #search-input-group .input-group-append {
         width: 100%;
     }
-
-    #method-ranking badge {
-        font-size: 2rem;
-    }
+    
 
 
     /* I Keep going back and forth on what I think looks best, uncomment this to restyle the search button to be center aligned and not full width */
