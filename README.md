@@ -1,7 +1,6 @@
 # <img src="https://titanian229.github.io/EcoRoute/assets/icons/nature.png" alt="EcoRouteLogo" width="25"/> EcoRoute
 ---
 ## What is EcoRoute
-
 Making green choices when traveling—we're here to help!
 EcoRoute is here to help you make environmentally conscious choices when traveling from A to B.
 
@@ -67,19 +66,19 @@ And finally, all of the choices you made on the initial page are graphed, so you
 This web application is built largely using Javscript, CSS, and HTML.
 
 ### The Javascript libraries utilized include:
-* jQuery
-* Bootstrap's library for modal functionality
-* HERE Technology's Javscript core library and mapping service libraries
-* SimpleParallax
-* Chart.js
+* jQuery ([documentation](https://api.jquery.com/))
+* Bootstrap's library for modal functionality ([documentation](https://getbootstrap.com/docs/4.1/getting-started/introduction/))
+* HERE Technology's Javscript core library and mapping service libraries ([documentation](https://developer.here.com/documentation))
+* SimpleParallax ([documentation](https://simpleparallax.com/))
+* Chart.js ([documentation](https://www.chartjs.org/docs/latest/))
 
 ### External APIs
-* The OpenWeatherMap API was used to return realtime weather information based on a GPS location
-* HERE Technology mapping API version 8 was used to geocode location names and addresses into GPS coordinates, as well as return mapping images to be rendered; 
-* HERE Technology mapping API version 7.2 was used to process and return routes between locations.
+* The [OpenWeatherMap API](https://openweathermap.org/api/one-call-api) was used to return realtime weather information based on a GPS location
+* [HERE Technology](https://developer.here.com/develop/javascript-api) mapping API version 8 was used to geocode location names and addresses into GPS coordinates, as well as return mapping images to be rendered; 
+* [HERE Technology](https://developer.here.com/develop/javascript-api) mapping API version 7.2 was used to process and return routes between locations.
 
 ### Assets
-* Icons from Flaticon.com
+* Icons from [Flaticon.com](http://flaticons.com)
 
 ## Future goals
 Future additional features include:
@@ -91,7 +90,7 @@ Future additional features include:
 
 ## Credits
 
-* Flaticon.com icons made by Pause08, Surang, Smashicons, Freepik, and Photo3Idea_Studio.
+* Flaticon.com icons made by [Pause08](https://www.flaticon.com/free-icon/airplane_1358770), [Surang](https://www.flaticon.com/authors/surang), [Smashicons](https://www.flaticon.com/authors/smashicons), [Freepik](https://www.flaticon.com/authors/freepik), and [Photo3Idea_Studio](https://www.flaticon.com/free-icon/airplane_2105232).
 * 
 
 ## License
