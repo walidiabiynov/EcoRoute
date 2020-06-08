@@ -88,6 +88,8 @@ a.go-back {
     height: 500px !important;
     opacity: 0.4 !important;
     background-image: url(../assets/screenshots/map-large.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .landing-input {

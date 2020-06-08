@@ -24,11 +24,32 @@
     <link rel="stylesheet" href="./css/sharedstyle.css">
     <title>EcoApp Directions</title>
 </head>
-<body class="container">
-    <h1>Directions:</h1>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a class="navbar-brand" href="./">
+        <img src="assets\icons\nature.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+        <b>EcoRoute</b>
+    </a>
+    <a class="nav-item">
+        <a class="nav-link" href="#about">About</a>
+    </a>
+  </nav>
+  <!-- Directions -->
+  <main class="container">
+    <h2 class="mt-5 mb-3">Directions</h2>
     <!-- <button class="btn btn-sec ondary my-2">Copy To Clipboard</button> -->
     <div id="directions"></div>
-
+    <p class="go-back mt-5 mb-3"><a href="./details.html">&larr; Back to travel stats</a></p>
+  </main>
+  <!-- Footer -->
+  <footer class="mt-5 mb-5">
+    <div class="container">
+        <hr>
+        <p class="footer">Built with <i class="fa green-text">&#xf06c;</i> in Toronto | &copy; 2020</p>
+        <p class="footer small">Icons from <a href="http://flaticon.com">Flaticon.com</a> made by <a href="https://www.flaticon.com/free-icon/airplane_1358770">Pause08</a>, <a href="https://www.flaticon.com/authors/surang">Surang</a>, <a href="https://www.flaticon.com/authors/smashicons">Smashicons</a>, <a href="https://www.flaticon.com/authors/freepik">Freepik</a>, and <a href="https://www.flaticon.com/free-icon/airplane_2105232">Photo3Idea_Studio</a>.</p>
+    </div>
+  </footer>
 
     <script src="./js/mapping.js"></script>
     <script src="./js/directions.js"></script>
