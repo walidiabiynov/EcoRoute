@@ -86,7 +86,6 @@ mapRoute(mapKeyTranslator(chosenTransportMethods[0].mode));
 chosenTransportMethods.forEach(function (transportMethod, index) {
     transportMethodId = transportMethod.mode;
 
-    //This fixes a problem that micro-cars and whatnot are not keys included in the routes
     transportMethodId = mapKeyTranslator(transportMethodId)
 
     distances.push(loadFromSession(`distance-${transportMethodId}`));

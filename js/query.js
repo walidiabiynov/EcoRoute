@@ -1,7 +1,7 @@
 async function submitSearch() {
     //clear field and grab text
     let searchText = $("#origin-search-field").val();
-    if (searchText === "") return
+    if (searchText === "") return;
     $("#origin-search-field").val("");
     const locations = await processSearch(searchText);
 
@@ -22,10 +22,10 @@ async function submitSearch() {
     }
     saveToSession("origin", choice);
     $("#origin").text(choice.address.label.split(",").slice(0, 2).toString());
-    await getAllRoutes()
-    disableMissingRoutes()
-    $("#choice-buttons").removeClass("d-none")
-    $("#get-directions-button").removeClass("d-none")
+    await getAllRoutes();
+    disableMissingRoutes();
+    $("#choice-buttons").removeClass("d-none");
+    $("#get-directions-button").removeClass("d-none");
 
     //TODO Add second marker to screen, zoom screen in some fashion to see both
     //I might be able to define a bounding box based on the highest and lowest lng and lat coords of each and do that to define the min bounding box of the map
@@ -37,7 +37,7 @@ function getDirectionsButton() {
     //a check they've input both locations
     if (!(sessionStorage.origin && sessionStorage.destination)) {
         errorModal("Please enter your origin to proceed");
-        return
+        return;
     }
 
     // Check if at lest one transport option has been selected
@@ -62,10 +62,10 @@ async function getLocation() {
             };
             $("#origin").text(`${position.lat}, ${position.lng}`); //TODO Reverse geocode and get location name, fill that here
             saveToSession("origin", { position: position });
-            await getAllRoutes()
-            disableMissingRoutes()
-            $("#choice-buttons").removeClass("d-none")
-            $("#get-directions-button").removeClass("d-none")
+            await getAllRoutes();
+            disableMissingRoutes();
+            $("#choice-buttons").removeClass("d-none");
+            $("#get-directions-button").removeClass("d-none");
         });
     } else {
         console.log("Geolocation unsupported by this browser");
