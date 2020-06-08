@@ -5,6 +5,7 @@ validateStorage([])
 async function submitSearch() {
     //clear field and grab text
     let searchText = $("#destination-search-field").val();
+    if (searchText === '') return
     $("#destination-search-field").val("");
     const locations = await processSearch(searchText);
 

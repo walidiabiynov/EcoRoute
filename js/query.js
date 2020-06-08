@@ -1,6 +1,7 @@
 async function submitSearch() {
     //clear field and grab text
     let searchText = $("#origin-search-field").val();
+    if (searchText === "") return
     $("#origin-search-field").val("");
     const locations = await processSearch(searchText);
 

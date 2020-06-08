@@ -155,15 +155,7 @@ function addMarker(
 }
 
 function addLine(map, startPoint, endPoint) {
-    //places a line on the map between two points given
-    //   let lineStyle = {
-    //     strokeColor: "black",
-    //     fillColor: "rgba(255, 255, 255, 0.5)",
-    //     lineWidth: 2,
-    //     lineCap: "square",
-    //     lineJoin: "bevel",
-    //   };
-
+ 
     let points = [startPoint, endPoint];
 
     let linestring = new H.geo.LineString();
