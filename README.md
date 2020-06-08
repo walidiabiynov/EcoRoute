@@ -8,6 +8,8 @@ We're making it easy for you to learn more about the environmental impact of you
 
 We're even taking the current weather into account to tell you if it's a good time to walk or take the bike. So get ready, hit the search button, and help us protect our planet!
 
+ [Find us online here](https://titanian229.github.io/EcoRoute/ "EcoRoute")
+
 ## Motivation
 This project was created to help inform individuals about their carbon footprints, and help them make informed decisions regarding their travel choices.  It's difficult to understand the weight of choices in a complex world, and lacking information makes choices difficult.  By informing users about the effects of their day to day journeys we hope to inspire positive habit changes for the good of our ecosystem, while providing a useful interface to find routes.
 
@@ -91,6 +93,10 @@ Future additional features include:
 ## Credits
 
 * Flaticon.com icons made by [Pause08](https://www.flaticon.com/free-icon/airplane_1358770), [Surang](https://www.flaticon.com/authors/surang), [Smashicons](https://www.flaticon.com/authors/smashicons), [Freepik](https://www.flaticon.com/authors/freepik), and [Photo3Idea_Studio](https://www.flaticon.com/free-icon/airplane_2105232).
+
+## Creators
+
+
 
 ## License
 
