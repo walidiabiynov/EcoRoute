@@ -91,7 +91,6 @@ Future additional features include:
 ## Credits
 
 * Flaticon.com icons made by [Pause08](https://www.flaticon.com/free-icon/airplane_1358770), [Surang](https://www.flaticon.com/authors/surang), [Smashicons](https://www.flaticon.com/authors/smashicons), [Freepik](https://www.flaticon.com/authors/freepik), and [Photo3Idea_Studio](https://www.flaticon.com/free-icon/airplane_2105232).
-* 
 
 ## License
 
