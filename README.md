@@ -21,7 +21,7 @@ The web application loads into a page with a simple search field, followed by a 
 ![Enter your search here][main-page]
 
 
-User responsiveness is provided thoughout through the use of modals, for instance if multiple matches to a given location are found.
+User responsiveness is provided throughout through the use of modals, for instance if multiple matches to a given location are found.
 
 ![Multiple locations found][multiple-location-modal]
 
@@ -36,7 +36,7 @@ Once you've entered both your destination and origin, all of the travel methods 
 ![Query page after input][query-after]
 
 
-After selecting all of the travel methods, "Get Route" brings you to a page showing you your route mapped out, the total distance, and weather information for your destination!
+After selecting all of the travel methods, "Get Route" brings you to a page showing you your route mapped out, the total distance, and weather information for your destination.
 
 ![Results page top][results-top]
 
@@ -46,23 +46,22 @@ At the bottom of the results page, you're shown the carbon footprint information
 ![Results page bottom][results-cards]
 
 
-Our details page walks you through exactly what carbon footprint your journey and method of making it will have, so you can make the best possible choice.  You can also click  to see turn by turn directions in a simple mobile friendly format, to take with you on your journey.
+The details page walks you through exactly what carbon footprint your journey and method of making it will have, so you can make the best possible choice.  You can also click to see turn by turn directions in a simple mobile friendly format, to take with you on your journey.
 
 ![Details page top][details-top]
 
 
-Information is made understandable, with helpful metrics!
+Information is made understandable with helpful metrics and is illustrated by colorful icons.
 
 ![Comparison metrics][details-comparison]
 
 
-And finally, all of the choices you made on the initial page are graphed, so you can see them relatively
+And finally, all of the choices you made on the initial page are graphed, so you can understand the relative impact of your trip.
 
 ![Comparison graph][details-comparison-graph]
 
 
 ## Technologies and External Dependencies
-
 This web application is built largely using Javscript, CSS, and HTML.
 
 ### The Javascript libraries utilized include:
@@ -87,6 +86,7 @@ Future additional features include:
 * Adding additional user responsiveness to the weather recommendations for longer journeys
 * Adding in social media sharing for results of total savings
 * Use cookies to keep a running metric of total saved across journeys
+* Offer the option to send directions to mobile phone
 
 ## Credits
 
@@ -94,7 +94,6 @@ Future additional features include:
 * 
 
 ## License
-
 
 [mockup]: https://titanian229.github.io/EcoRoute/assets/screenshots/mockup.png "Mockup"
 [main-page]: https://titanian229.github.io/EcoRoute/assets/screenshots/main-page.jpg "Main Page"
