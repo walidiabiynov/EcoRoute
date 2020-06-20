@@ -26,9 +26,18 @@ async function submitSearch() {
     disableMissingRoutes();
     $("#choice-buttons").removeClass("d-none");
     $("#get-directions-button").removeClass("d-none");
+    logEmissions()
 
     //TODO Add second marker to screen, zoom screen in some fashion to see both
     //I might be able to define a bounding box based on the highest and lowest lng and lat coords of each and do that to define the min bounding box of the map
+}
+
+function logEmissions(){
+    emissionObjects.forEach(function(obj){
+        obj.getRouteExists()
+        console.log(obj.usageString())
+        obj.saveEmission()
+    })
 }
 
 function getDirectionsButton() {
@@ -66,6 +75,7 @@ async function getLocation() {
             disableMissingRoutes();
             $("#choice-buttons").removeClass("d-none");
             $("#get-directions-button").removeClass("d-none");
+            logEmissions()
         });
     } else {
         console.log("Geolocation unsupported by this browser");
@@ -156,50 +166,3 @@ $("#geolocation-search").click(function (event) {
     //gets the current location of the user
     getLocation();
 });
-
-//TODO Catch if there are already values in sessionStorage from past attempts
-//TODO catch error values
-//TODO catch direct loads of this page
-//TODO catch if there is no destination value from the previous page
-
-///THIS IS JUST A TEST
-
-// const options = [
-//   {
-//       // CO2 emission in g/km, data by: https://www.carbonfootprint.com/
-//       id: "car",
-//       mode: ["micro-car", "compact-car", "sedan", "suv"],
-//       gas: ["gasoline", "diesel", "electric"],
-//       coEmissionGasoline: [ 125.0692, 147.144, 156.4524, 230.2278 ],
-//       coEmissionDiesel: [ 115.6062, 138.82, 141.0578, 170.4394 ],
-//       coEmissionElectric: 7.7, // Considering the current mix of energy production in Ontario: https://www.cer-rec.gc.ca/nrg/ntgrtd/mrkt/snpsht/2018/09-01-1hwrnrgprjctsfnncd-eng.html
-//   },
-//   {
-//       // Generalized CO2 emission for trucks: https://www.transportenvironment.org/sites/te/files/publications/2015%2009%20TE%20Briefing%20Truck%20CO2%20Too%20big%20to%20ignore_FINAL.pdf
-//       id: "truck",
-//       mode: "truck",
-//       coEmission: 924
-//   },
-//   {
-//       // CO2 emission in g/km, TTC as an example: http://www.ttc.ca/PDF/About_the_TTC/Sustainability_Reports/2013_Sustainability_Report.PDF
-//       id: "pt",
-//       mode:"publicTransport",
-//       coEmission: 64
-//   },
-//   {
-//       id: "bike",
-//       mode: "bike",
-//       coEmission: 0
-//   },
-//   {
-//       id: "walk",
-//       mode: "pedestrian",
-//       coEmission: 0
-//   }
-// ]
-
-// $("#choice-buttons").click(function(event){
-//   if (event.target.matches('button')){
-//     event.target.toggleClass('active')
-//   }
-// })
