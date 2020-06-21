@@ -156,15 +156,11 @@ function addMarker(
 
 function addLine(map, startPoint, endPoint) {
  
-    let points = [startPoint, endPoint];
-
     let linestring = new H.geo.LineString();
-    points.forEach(function (point) {
-        linestring.pushPoint(point);
-    });
+    linestring.pushPoint(startPoint)
+    linestring.pushPoint(endPoint)
 
     let polyline = new H.map.Polyline(linestring, { style: { lineWidth: 3 } });
-
     map.addObject(polyline);
 }
 
@@ -217,14 +213,13 @@ async function modalChoiceClicked(event) {
 async function getAllRoutes() {
     //Once called this function loads origin and destination from sessionStorage tags origin and destination
     //It then iterates through all travel methods and processes a route through each
-    if (!(loadFromSession("destination") && loadFromSession("origin"))) {
+    let origin = loadFromSession("origin");
+    let destination = loadFromSession("destination");
+    if (!(origin && destination)) {
         console.log(
             "INSIDE GET ALL ROUTES => A destination and origin were not selected before route finding attempted"
         );
     }
-
-    let origin = loadFromSession("origin");
-    let destination = loadFromSession("destination");
     let transitTypes = [
         ["car", "car"],
         ["bicycle", "bike"],
@@ -264,18 +259,11 @@ async function getAllRoutes() {
                 routeObject
             ) {
                 transitTypeKey = transitTypes[index][1];
-                let distanceTravelled =
-                    routeObject.response.route[0].summary.distance / 1000;
-                let travelTime =
-                    routeObject.response.route[0].summary.travelTime;
-                let transitText = routeObject.response.route[0].summary.text;
-                let shape = routeObject.response.route[0].shape;
-                let directions = routeObject.response.route[0].leg[0].maneuver;
-                saveToSession(`distance-${transitTypeKey}`, distanceTravelled);
-                saveToSession(`traveltime-${transitTypeKey}`, travelTime);
-                saveToSession(`travel-text-${transitTypeKey}`, transitText);
-                saveToSession(`shape-${transitTypeKey}`, shape);
-                saveToSession(`directions-${transitTypeKey}`, directions);
+                saveToSession(`distance-${transitTypeKey}`, routeObject.response.route[0].summary.distance / 1000);
+                saveToSession(`traveltime-${transitTypeKey}`, routeObject.response.route[0].summary.travelTime);
+                saveToSession(`travel-text-${transitTypeKey}`, routeObject.response.route[0].summary.text);
+                saveToSession(`shape-${transitTypeKey}`, routeObject.response.route[0].shape);
+                saveToSession(`directions-${transitTypeKey}`, routeObject.response.route[0].leg[0].maneuver);
             } else {
                 console.log("Unable to create route object for ", routeObject);
             }
@@ -286,11 +274,7 @@ async function getAllRoutes() {
 
 function mapRoute(routeKey) {
     //This function takes the chosen route and maps it on the page
-    renderRoute(map, loadFromSession(`shape-${routeKey}`));
-}
-
-function renderRoute(map, arrayOfPoints) {
-    //Places a set of lines on the map, between points given in the form of an array of strings of 'lat,lng', 'lat,lng'.
+    let arrayOfPoints = loadFromSession(`shape-${routeKey}`)
     let linestring = new H.geo.LineString();
 
     arrayOfPoints.forEach(function (point) {
@@ -305,21 +289,6 @@ function renderRoute(map, arrayOfPoints) {
             strokeColor: "#00CC76",
         },
     }); // TODO change line styling
-
-    //NOTE If we want a marker at each point along the path, uncomment this code and comment out the first and last setting
-    // arrayOfPoints.forEach(function(point, index){
-
-    //   svgMarkup = '<svg width="24" height="24" ' +
-    //     'xmlns="http://www.w3.org/2000/svg">' +
-    //     '<rect stroke="white" fill="red" x="1" y="1" width="22" ' +
-    //     'height="22" /><text x="12" y="18" font-size="12pt" ' +
-    //     'font-family="Arial" font-weight="regular" text-anchor="middle" ' +
-    //     `fill="white">${index}</text></svg>`
-    //   addMarker(point, svgMarkup)
-    // })
-    // arrayOfPoints.forEach(function(point, index){
-    //    addMarker(point, simpleDotIcon)
-    // })
 
     addMarker(arrayOfPoints[0], startIcon);
     addMarker(arrayOfPoints[arrayOfPoints.length - 1], endIcon);
