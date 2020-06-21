@@ -33,11 +33,16 @@ async function submitSearch() {
 }
 
 function logEmissions(){
-    emissionObjects.forEach(function(obj){
-        obj.getRouteExists()
-        console.log(obj.usageString())
-        obj.saveEmission()
-    })
+    // emissionObjects.forEach(function(obj){
+    //     obj.getRouteExists()
+    //     console.log(obj.usageString())
+    //     obj.saveEmission()
+    // })
+    //THIS PART IS HERE FOR TESTING, ALL THAT IS NEEDED IS LINE AFTER THAT SAVES TO STORAGE
+    emissionObjects.forEach(obj => console.log(obj.usageString()))
+
+
+    sessionStorage.setItem('emissionsArray', JSON.stringify(emissionObjects.map(obj => obj.getRepr())))
 }
 
 function getDirectionsButton() {

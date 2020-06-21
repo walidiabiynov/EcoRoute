@@ -1,38 +1,3 @@
-// const choiceRanking =
-const options = [
-    {
-        // CO2 emission in g/km, data by: https://www.carbonfootprint.com/
-        id: "car",
-        mode: ["micro-car", "compact-car", "sedan", "suv"],
-        gas: ["gasoline", "diesel", "electric"],
-        coEmissionGasoline: [125.0692, 147.144, 156.4524, 230.2278],
-        coEmissionDiesel: [115.6062, 138.82, 141.0578, 170.4394],
-        coEmissionElectric: 7.7, // Considering the current mix of energy production in Ontario: https://www.cer-rec.gc.ca/nrg/ntgrtd/mrkt/snpsht/2018/09-01-1hwrnrgprjctsfnncd-eng.html
-    },
-    {
-        // Generalized CO2 emission for trucks: https://www.transportenvironment.org/sites/te/files/publications/2015%2009%20TE%20Briefing%20Truck%20CO2%20Too%20big%20to%20ignore_FINAL.pdf
-        id: "truck",
-        mode: "truck",
-        coEmission: 924,
-    },
-    {
-        // CO2 emission in g/km, TTC as an example: http://www.ttc.ca/PDF/About_the_TTC/Sustainability_Reports/2013_Sustainability_Report.PDF
-        id: "pt",
-        mode: "publicTransport",
-        coEmission: 64,
-    },
-    {
-        id: "bike",
-        mode: "bike",
-        coEmission: 0,
-    },
-    {
-        id: "walk",
-        mode: "pedestrian",
-        coEmission: 0,
-    },
-];
-
 function rankChoice(chosenMethod) {
     //This is missing all of the data regarding electric vs diesel, so for right now this is something that kinda works
     if (["walk", "bike"].includes(chosenMethod)) {
@@ -57,6 +22,7 @@ if (!chosenMethod) {
     errorModal(
         "You haven't selected a method to see details for, please return to the previous page"
     );
+
 }
 const routeKey = mapKeyTranslator(chosenMethod);
 
@@ -144,6 +110,7 @@ if (chosenRate == 0) {
     }
     let co2Amount = parseInt(chosenRate);
     let co2Unit;
+
     if (co2Amount > 999) {
         co2Amount /= 1000;
         co2Amount = co2Amount.toFixed(2);

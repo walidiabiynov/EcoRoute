@@ -20,6 +20,7 @@ class TravelMethod {
         return this.co2produced;
     }
     getCalcEmission() {
+        this.getRouteExists()
         //get the data for this method from session storage, then calc
         let distance = JSON.parse(sessionStorage.getItem(this.distanceKey));
         let travelTime = JSON.parse(sessionStorage.getItem(this.timeKey));
@@ -30,8 +31,9 @@ class TravelMethod {
         }
     }
     usageString() {
+        this.getRouteExists()
         if (this.routeExists){
-            return `Using ${this.subtype ? this.subtype : this.typeName} your journey will produce ${this.getCalcEmission().toFixed(2)} grams of CO2`;
+            return `${this.subtype ? this.subtype : this.typeName} your journey will produce ${this.getCalcEmission().toFixed(2)} grams of CO2`;
         } else {
             return `The route was not found for ${this.subtype ? this.subtype : this.typeName}`
         }
@@ -45,6 +47,11 @@ class TravelMethod {
             sessionStorage.setItem(`emission-${this.subtype ? this.subtype : this.typeName}`, JSON.stringify(this.getCalcEmission().toFixed(2)));
         }
     }
+    getRepr(){
+        
+        return {name: this.subtype ? this.subtype : this.typeName, emission: this.getCalcEmission().toFixed(2)}
+    }
+
 }
 
 const emissionObjects = [];
