@@ -10,8 +10,8 @@ class TravelMethod {
         this.typeName = typeName;
         this.co2produced = 0;
         this.routeExists = false
-        this.distanceKey = `distance-${this.routeId}`
-        this.timeKey = `traveltime-${this.routeId}`
+        this.distanceKey = `distance-${routeId}`
+        this.timeKey = `traveltime-${routeId}`
     }
     calcEmission(distance, time) {
         this.co2produced = this.useTime
@@ -89,7 +89,3 @@ emissionObjects.push(new TravelMethod("pt", "public transportation", 64));
 emissionObjects.push(new TravelMethod("bike", "biking", 208.6, null, true)); //https://keith.seas.harvard.edu/blog/climate-impacts-biking-vs-driving
 //https://www.eta.co.uk/2011/12/13/co2-emissions-from-cycling-revealed/
 emissionObjects.push(new TravelMethod("walk", "walking", 87.5, null, true));
-
-//at sesssionStorage in distance-method and travelTime-method there will be the time in seconds and the distance in km
-
-// emissionObjects.forEach(function(obj){console.log(obj.getCalcEmission())})

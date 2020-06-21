@@ -192,11 +192,8 @@ function displayOptionsModal(choices, destinationOrOrigin) {
 
     let listEl = $("#locationChoiceModal .list-group");
     listEl.html("");
-    choices.forEach(function (choice, index) {
-        listEl.append(
-            `<button type="button" class="list-group-item list-group-item-action" data-id="${index}" data-doro="${destinationOrOrigin}" onclick="modalChoiceClicked(event)">${choice.address.label}</button>`
-        );
-    });
+    choices = choices.map((choice, index)  => `<button type="button" class="list-group-item list-group-item-action" data-id="${index}" data-doro="${destinationOrOrigin}" onclick="modalChoiceClicked(event)">${choice.address.label}</button>`)
+    listEl.append(choices)
 }
 
 async function modalChoiceClicked(event) {
