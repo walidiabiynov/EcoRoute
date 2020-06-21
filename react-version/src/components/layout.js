@@ -1,18 +1,14 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
+import { Helmet } from "react-helmet"
 import Header from "./header"
-import "./layout.css"
+import "../css/sharedstyle.css"
+import ErrorModal from "./error-modal"
+import Footer from "./footer"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, subheader }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -25,13 +21,16 @@ const Layout = ({ children }) => {
 
   return (
     <>
+      <Helmet>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+      <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+      <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+      </Helmet>
       <Header siteTitle={data.site.siteMetadata.title} />
-        <main className="container">{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
+        {subheader}
+        <main>{children}</main>
+        <ErrorModal />
+      <Footer />
     </>
   )
 }

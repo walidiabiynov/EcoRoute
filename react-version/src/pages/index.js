@@ -1,22 +1,24 @@
 import React from "react"
-import { Link } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
+import MapImageHeader from "../components/map-image-header"
+import About from "../components/about"
+import IndexModal from "../components/index-modal"
+import useScript from "../hooks/useScript";
 
-const IndexPage = () => (
-  <Layout>
+const IndexPage = () => {
+  useScript("https://js.api.here.com/v3/3.1/mapsjs-core.js");
+  useScript("https://js.api.here.com/v3/3.1/mapsjs-service.js");
+  useScript("/js/modals.js");
+  useScript("/js/mapping.js");
+  useScript("/js/index.js");
+  return (
+  <Layout subheader={<MapImageHeader />}>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
+    <About />
+    <IndexModal />
   </Layout>
-)
+)}
 
 export default IndexPage
