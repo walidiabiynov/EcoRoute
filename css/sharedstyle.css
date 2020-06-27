@@ -222,6 +222,7 @@ a.go-back {
 .large-number {
     font-size: 1.2rem;
     color: rgb(133, 133, 133);
+    white-space: nowrap;
 }
 
 .info-text {

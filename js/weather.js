@@ -44,9 +44,21 @@ function createMethodString(prefix, optionText, options) {
     return '';
 }
 
+// Compare car and truck with PT
+function checkPTvsCar(cartime){
+    var ptTime = loadFromSession(`traveltime-pt`);
+    if(cartime >= 7200 && ptTime/cartime < 1.5){
+        return true;
+    } else if(cartime < 7200 && ptTime/cartime < 2){
+        return true;
+    } else {
+        return false;
+    }
+}
+
 // Show recommendation
 function showRecommendation(walkOrBike, currentCondition){
-    var rankedOptions = ["walk", "bike", "pt", "car", "truck"];
+    var rankedOptions = ["walk", "bike", "pt", "micro-car", "compact-car", "sedan", "suv", "truck"];
     var recommendedIndex = rankedOptions.findIndex(method => {
         var methodIndex = chosenTransportMethods.findIndex(m => {
             return m.mode == method;
@@ -58,13 +70,20 @@ function showRecommendation(walkOrBike, currentCondition){
                 } else {
                     return false;
                 }
+            } else if(method == "pt" && loadFromSession(`traveltime-car`)){
+                return checkPTvsCar(loadFromSession(`traveltime-car`));
+            } else if(method == "pt" && loadFromSession(`traveltime-truck`)){
+                return checkPTvsCar(loadFromSession(`traveltime-truck`));
+            } else {
+                return true;
             }
-            return true;
         } else {
             return false;
         }
     });
-    document.querySelector(`[data-method=${rankedOptions[recommendedIndex]}]`).classList.add("recommended");
+    if(recommendedIndex >= 0){
+        document.querySelector(`[data-method=${mapKeyTranslator(rankedOptions[recommendedIndex])}]`).classList.add("recommended");
+    }
 }
 
 // Render weather
