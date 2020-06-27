@@ -160,7 +160,7 @@ a.go-back {
     display: inline-block;
 }
 
-.btn-fuel:focus {
+.btn-fuel:focus, .selected-fuel {
     background-color: #092327;
     color: #00cc76;
 }
