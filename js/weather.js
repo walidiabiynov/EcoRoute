@@ -64,7 +64,7 @@ function showRecommendation(walkOrBike, currentCondition){
             return false;
         }
     });
-    console.log(rankedOptions[recommendedIndex]);
+    document.querySelector(`[data-method=${rankedOptions[recommendedIndex]}]`).classList.add("recommended");
 }
 
 // Render weather
