@@ -12,6 +12,25 @@ async function fetchWeather(){
     renderWeather();
 }
 
+// Determining if walking and/or biking are options
+function determineOptions(){
+    var walkIndex = chosenTransportMethods.findIndex(method => method.mode == "walk");
+    var bikeIndex = chosenTransportMethods.findIndex(method => method.mode == "bike");
+    var walkStatus = false;
+    var bikeStatus = false;
+    if(walkIndex >= 0){
+        if(distances[walkIndex] <= 5){
+            walkStatus = true;
+        } 
+    }
+    if(bikeIndex >= 0){
+        if(distances[bikeIndex] <= 15){
+            bikeStatus = true;
+        }
+    }
+    return {walk: walkStatus, bike: bikeStatus}
+}
+
 // Render weather
 function renderWeather(){
     // Determine conditions

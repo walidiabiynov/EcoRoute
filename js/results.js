@@ -99,7 +99,7 @@ chosenTransportMethods.forEach(function (transportMethod, index) {
     } else {
         co2Amount = co2Amount.toFixed(1)
         co2Unit = "g"
-    }
+    } 
 
 
     let cardElText = `<div data-method="${transportMethodId}" class="card results-card mx-3 my-3">
