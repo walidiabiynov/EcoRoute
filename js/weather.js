@@ -19,7 +19,7 @@ function determineOptions(){
     var walkStatus = false;
     var bikeStatus = false;
     if(walkIndex >= 0){
-        if(distances[walkIndex] <= 5){
+        if(distances[walkIndex] <= 2){
             walkStatus = true;
         } 
     }
@@ -44,6 +44,29 @@ function createMethodString(prefix, optionText, options) {
     return '';
 }
 
+// Show recommendation
+function showRecommendation(walkOrBike, currentCondition){
+    var rankedOptions = ["walk", "bike", "pt", "car", "truck"];
+    var recommendedIndex = rankedOptions.findIndex(method => {
+        var methodIndex = chosenTransportMethods.findIndex(m => {
+            return m.mode == method;
+        });
+        if(methodIndex >= 0){
+            if(method == "walk" || method == "bike"){
+                if(walkOrBike[method] == true && (currentCondition >= 800 || currentCondition >= 300 && currentCondition < 400)){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            return true;
+        } else {
+            return false;
+        }
+    });
+    console.log(rankedOptions[recommendedIndex]);
+}
+
 // Render weather
 function renderWeather(){
     // Determine conditions
@@ -63,6 +86,7 @@ function renderWeather(){
     } 
     document.getElementById("temperature").textContent = `It's ${(weather.current.temp-273.15).toFixed(1)} °C.`;
     document.getElementById("weather-icon").innerHTML = `<img src="https://openweathermap.org/img/wn/${weather.current.weather[0].icon}@2x.png"  alt="Icon today's weather"/>`
+    showRecommendation(options, currentConditionId);
 }
 
 fetchWeather();
