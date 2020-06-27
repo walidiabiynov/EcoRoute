@@ -247,6 +247,7 @@ a.go-back {
     width: 100%;
     text-align: center;
     color: #00cc76;
+    pointer-events: none;
 }
 
 .recommended::after {
@@ -258,6 +259,7 @@ a.go-back {
     top: -8px;
     left: -8px;
     border-radius: .25rem;
+    pointer-events: none;
 }
 
 /* Footer styles */
