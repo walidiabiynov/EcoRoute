@@ -106,7 +106,7 @@ chosenTransportMethods.forEach(function (transportMethod, index) {
             <div class="card-body">
               <h5 class="card-title text-center bold">${keyTranslator(transportMethodId)}</h5>
               <div class="card-text">
-                <div class="row">
+                <div class="row bold-row">
                   <div class="col-5 text-right">
                     <p class="large-number">${co2Amount}</p>
                   </div>
