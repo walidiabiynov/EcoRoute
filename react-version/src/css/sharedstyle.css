@@ -87,7 +87,7 @@ a.go-back {
 .landing-map {
     height: 500px !important;
     opacity: 0.4 !important;
-    background-image: url(../assets/screenshots/map-large.jpg);
+    background-image: url(../images/map-large.jpg);
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -160,14 +160,9 @@ a.go-back {
     display: inline-block;
 }
 
-.btn-fuel:focus, .selected-fuel {
+.btn-fuel:focus {
     background-color: #092327;
     color: #00cc76;
-}
-
-#loading-spinner {
-    display: none;
-    width: 50px;
 }
 
 /* Details styles */
@@ -194,23 +189,12 @@ a.go-back {
 }
 
 /* Results styles */
-
-.bold-row {
-    font-weight: bold;
-}
-
-.bold-row .large-number {
-    font-size: 1.5rem;
-    color: #4a4a4a;
-}
-
 .jumbotron {
     border-radius: 3px;
 }
 
 .jumbotron-fluid {
     background-color: #092327;
-    padding: 30px 0;
 }
 
 #travelChoices {
@@ -227,39 +211,10 @@ a.go-back {
 .large-number {
     font-size: 1.2rem;
     color: rgb(133, 133, 133);
-    white-space: nowrap;
 }
 
 .info-text {
     font-size: 0.9rem;
-}
-
-.recommended {
-    position: relative;
-
-}
-
-.recommended::before {
-    content: "Our recommendation";
-    position: absolute;
-    top: -30px;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    color: #00cc76;
-    pointer-events: none;
-}
-
-.recommended::after {
-    content: "";
-    position: absolute;
-    border: 2px solid #00cc76;
-    width: calc(100% + 16px);
-    height: calc(100% + 16px);
-    top: -8px;
-    left: -8px;
-    border-radius: .25rem;
-    pointer-events: none;
 }
 
 /* Footer styles */

@@ -68,6 +68,7 @@ function getDirectionsButton() {
 
 async function getLocation() {
     if (navigator.geolocation) {
+        document.getElementById("loading-spinner").style.display = "block";
         navigator.geolocation.getCurrentPosition(async function (position) {
             //TODO put in the call to the generalized function for setting the place name
             position = {
@@ -81,6 +82,7 @@ async function getLocation() {
             $("#choice-buttons").removeClass("d-none");
             $("#get-directions-button").removeClass("d-none");
             logEmissions()
+            document.getElementById("loading-spinner").style.display = "none";
         });
     } else {
         console.log("Geolocation unsupported by this browser");

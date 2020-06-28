@@ -36,7 +36,6 @@ var options = [
 ]
 
 // Add class "selected-fuel" to the selected fuel type
-    // Assumption: we'll be using a Bootstrap button group for this part: https://getbootstrap.com/docs/4.0/components/button-group/
 const fuelSelection = document.querySelector("#fuel-selector");
 fuelSelection.addEventListener("click", function(e){
     var otherButtons = fuelSelection.childNodes;
