@@ -26,12 +26,12 @@ var options = [
     {
         id: "bike",
         mode: "bike",
-        coEmission: 0
+        coEmission: 208.6
     }, 
     {
         id: "walk",
         mode: "pedestrian",
-        coEmission: 0
+        coEmission: 87.5
     }
 ]
 
@@ -104,11 +104,13 @@ fuelSelection.addEventListener("click", function(e){
                 break;
             case "walk":
                 distance = sessionStorage.getItem("distance-walk");
+                time = sessionStorage.getItem("traveltime-walk")
                 inputObject = {id: mode, em: options[4].coEmission, distance: distance};
                 validateAndPush();
                 break;
             case "bike":
                 distance = sessionStorage.getItem("distance-bike");
+                time = sessionStorage.getItem("traveltime-bike")
                 inputObject = {id: mode, em: options[3].coEmission, distance: distance};
                 validateAndPush();
                 break;
@@ -167,8 +169,13 @@ fuelSelection.addEventListener("click", function(e){
 var resultsList = [];
 var coResult;
 function calculateEmission(choice){
-    coResult = Math.round(choice.em * choice.distance);
     var id = choice.id;
+    console.log("choice is ", choice)
+    if (id === "walk" || id === "bike"){
+        coResult = Math.round(choice.em * (loadFromSession(`traveltime-${choice.id}`) / 3600))    
+    } else {
+        coResult = Math.round(choice.em * choice.distance);
+    }
     var pushResult = {mode: id, co2: coResult};
     resultsList.push(pushResult);
 }
