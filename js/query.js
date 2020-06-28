@@ -26,27 +26,12 @@ async function submitSearch() {
     disableMissingRoutes();
     $("#choice-buttons").removeClass("d-none");
     $("#get-directions-button").removeClass("d-none");
-    logEmissions()
 
     //TODO Add second marker to screen, zoom screen in some fashion to see both
     //I might be able to define a bounding box based on the highest and lowest lng and lat coords of each and do that to define the min bounding box of the map
 }
 
-function logEmissions(){
-    // emissionObjects.forEach(function(obj){
-    //     obj.getRouteExists()
-    //     console.log(obj.usageString())
-    //     obj.saveEmission()
-    // })
-    //THIS PART IS HERE FOR TESTING, ALL THAT IS NEEDED IS LINE AFTER THAT SAVES TO STORAGE
-    emissionObjects.forEach(obj => console.log(obj.usageString()))
-
-
-    sessionStorage.setItem('emissionsArray', JSON.stringify(emissionObjects.map(obj => obj.getRepr())))
-}
-
 function getDirectionsButton() {
-    //This needs to be in an async function so I can await, otherwise the page changes and it doesn't actually do the math
 
     //a check they've input both locations
     if (!(sessionStorage.origin && sessionStorage.destination)) {
@@ -81,7 +66,6 @@ async function getLocation() {
             disableMissingRoutes();
             $("#choice-buttons").removeClass("d-none");
             $("#get-directions-button").removeClass("d-none");
-            logEmissions()
             document.getElementById("loading-spinner").style.display = "none";
         });
     } else {
