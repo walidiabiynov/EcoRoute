@@ -170,7 +170,6 @@ var resultsList = [];
 var coResult;
 function calculateEmission(choice){
     var id = choice.id;
-    console.log("choice is ", choice)
     if (id === "walk" || id === "bike"){
         coResult = Math.round(choice.em * (loadFromSession(`traveltime-${choice.id}`) / 3600))    
     } else {

@@ -2,6 +2,7 @@ async function submitSearch() {
     //clear field and grab text
     let searchText = $("#origin-search-field").val();
     if (searchText === "") return;
+    document.getElementById("loading-spinner").style.display = "block";
     $("#origin-search-field").val("");
     const locations = await processSearch(searchText);
 
@@ -26,6 +27,8 @@ async function submitSearch() {
     disableMissingRoutes();
     $("#choice-buttons").removeClass("d-none");
     $("#get-directions-button").removeClass("d-none");
+    document.getElementById("loading-spinner").style.display = "none";
+
 
     //TODO Add second marker to screen, zoom screen in some fashion to see both
     //I might be able to define a bounding box based on the highest and lowest lng and lat coords of each and do that to define the min bounding box of the map
@@ -39,7 +42,7 @@ function getDirectionsButton() {
         return;
     }
 
-    // Check if at lest one transport option has been selected
+    // Check if at least one transport option has been selected
     // Save resultsList to sessionStorage
     if (resultsList.length > 0) {
         sessionStorage.setItem("results", JSON.stringify(resultsList));
@@ -113,7 +116,7 @@ function disableMissingRoutes() {
         }
         if (anyMissing.length != 0) {
             $("#missing-routes-display").removeClass("d-none");
-            $("#missing-routes-display span").text(anyMissing);
+            $("#missing-routes-display span").text(anyMissing.join(", "));
         } else if (!$("#missing-routes-display").hasClass("d-none")) {
             $("#missing-routes-display").addClass("d-none");
         }

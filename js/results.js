@@ -1,6 +1,4 @@
 function detailsButton(event) {
-    console.log("details button clicked");
-    console.log(event.target.dataset.method);
     saveToSession("detail-method-selected", event.target.dataset.method);
     saveToSession("detail-method-rate-chosen", event.target.dataset.rate);
     window.location.href = "./details.html";
@@ -20,7 +18,6 @@ function processTime(timeGiven){
 }
 
 function cardClick(event){
-    console.log('card was clicked')
     if (! event.target.matches("button")){
         //recursing to parent card
         let currentElement = event.target;
