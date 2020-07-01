@@ -23,6 +23,9 @@
     <link rel="stylesheet" href="./css/sharedstyle.css">
 </head>
 <body>
+    <script>
+        if (location.protocol !== "https:"){ location.replace(window.location.href.replace("http:", "https:")); } 
+    </script>
     <!-- Modal for choosing from mulitple destinations -->
     <div class="modal fade" id="locationChoiceModal" tabindex="-1" role="dialog" aria-labelledby="locationChoiceModal" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
